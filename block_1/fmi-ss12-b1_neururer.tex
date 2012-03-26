@@ -1,0 +1,265 @@
+\documentclass [11pt]{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{epsfig} 
+\usepackage{enumerate}
+\usepackage{xspace}
+
+   \textwidth      15cm
+   \textheight     23cm
+   \oddsidemargin 0.5cm
+   \topmargin    -0.5cm
+   \evensidemargin\oddsidemargin
+
+ \newcommand{\nop}[1]{}
+
+
+   \pagestyle{plain}
+   \bibliographystyle{plain}
+
+
+\title{Formale Methoden der Informatik \\
+Block 1: Computability and Complexity }
+\author{Exercises 1-10}
+\date{SS 2012}
+
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \newtheorem{definition}[theorem]{Definition}
+  \newtheorem{example}[theorem]{Example}
+  \newtheorem{remark}[theorem]{Remark}
+  \newtheorem{exercise}[theorem]{Exercise}
+
+  \newcommand{\ra}{\rightarrow}
+  \newcommand{\Ra}{\Rightarrow}
+  \newcommand{\La}{\Leftarrow}
+  \newcommand{\la}{\leftarrow}
+  \newcommand{\LR}{\Leftrightarrow}
+
+  \renewcommand{\phi}{\varphi}
+  \renewcommand{\theta}{\vartheta}
+
+
+\newcommand{\ccfont}[1]{\protect\mathsf{#1}}
+\newcommand{\NP}{\ccfont{NP}}
+
+\newcommand{\NN}{\textbf{N}}
+\newcommand{\IN}{\textbf{Z}}
+\newcommand{\bigO}{\mathrm{O}}
+\newcommand{\bigOmega}{\Omega}
+\newcommand{\bigTheta}{\Theta}
+\newcommand{\REACHABILITY}{\mbox{\bf REACHABILITY}}
+\newcommand{\MAXFLOW}{\mbox{\bf MAX FLOW}}
+\newcommand{\MAXFLOWD}{\mbox{\bf MAX FLOW(D)}}
+\newcommand{\MAXFLOWSUB}{\mbox{\bf MAX FLOW SUBOPTIMAL}}
+\newcommand{\MATCHING}{\mbox{\bf BIPARTITE MATCHING}}
+\newcommand{\TSP}{\mbox{\bf TSP}}
+\newcommand{\TSPD}{\mbox{\bf TSP(D)}}
+
+\newcommand{\ThreeCol}{\mbox{\bf 3-COLORABILITY}}
+\newcommand{\TwoCol}{\mbox{\bf 2-COLORABILITY}}
+\newcommand{\kCol}{\mbox{\bf k-COLORABILITY}}
+\newcommand{\HamPath}{\mbox{\bf HAMILTON-PATH}}
+\newcommand{\HamCycle}{\mbox{\bf HAMILTON-CYCLE}}
+
+\newcommand{\ONESAT}{\mbox{\bf 1-IN-3-SAT}}
+\newcommand{\MONONESAT}{\mbox{\bf MONOTONE 1-IN-3-SAT}}
+\newcommand{\kSAT}{\mbox{\bf k-SAT}}
+\newcommand{\NAESAT}{\mbox{\bf NAESAT}}
+\newcommand{\CLIQUE}{\textbf{CLIQUE}\xspace} 
+\newcommand{\VC}{\textbf{VERTEX COVER}\xspace}
+
+
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+%%% useful macros for Turing machines:
+\newcommand{\blank}{\sqcup}
+\newcommand{\ssym}{\triangleright}
+\newcommand{\esym}{\triangleleft}
+\newcommand{\halt}{\mbox{h}}
+\newcommand{\yess}{\mbox{``yes''}}
+\newcommand{\nos}{\mbox{``no''}}
+\newcommand{\lmove}{\leftarrow}
+\newcommand{\rmove}{\rightarrow}
+\newcommand{\stay}{-}
+\newcommand{\diverge}{\nearrow}
+\newcommand{\yields}[1]{\stackrel{#1}{\rightarrow}}
+
+\newcommand{\HALTING}{\mbox{\bf HALTING}}
+
+\newcommand{\true}{{\it true}}
+\newcommand{\false}{{\it false}}
+
+
+\newcommand{\samplesolution}[1]{\noindent {\bf Sample solution.}  #1}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{exercise}
+  Consider the problem \textbf{PROCEDURE NEG-ASSIGNMENT}, which is defined
+  as follows:
+
+  \begin{center}
+    \fbox{
+      \begin{minipage}[c]{.9\linewidth}
+        \textbf{PROCEDURE NEG-ASSIGNMENT}
+
+        \medskip INSTANCE: A triple $(\Pi,I, k)$, where (i) $\Pi$ is a
+        program that takes one string as input and outputs true or false, (ii) $I$ is a
+        string, and (iii) $k$ is an integer variable used in program $\Pi$.     \\
+        QUESTION: Does variable $k$ ever get assigned a negative value when the program $\Pi$ is executed with input $I$?
+
+        
+      \end{minipage}
+    }
+  \end{center}
+  Prove that \textbf{NEG-ASSIGNMENT} is undecidable. Prove the undecidability
+  by providing a reduction from the \textbf{HALTING} problem to
+  \textbf{NEG-ASSIGNMENT}, and arguing that your reduction is correct.
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  Prove that the problem \textbf{NEG-ASSIGNMENT} from Exercise 1 is semi-decidable. 
+To this end, provide a semi-decision procedure and justify your solution. Additionally,  show that the co-problem of \textbf{NEG-ASSIGNMENT} is not semi-decidable.
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  Give a formal proof that \textbf{SUBSET SUM} is in $\NP$, i.e.\, define a
+  certificate relation and discuss that it is polynomially balanced and
+  polynomial-time decidable.
+  
+   \smallskip
+    
+  \noindent In the \textbf{SUBSET SUM} problem we are given a finite set of integer numbers $S=\{a_1, a_2, \ldots, a_n\}$ and an integer number $t$. We ask whether there is a subset $S'\subseteq S$ whose elements sum is equal to $t$?
+  
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:partition}
+  Formally prove that \textbf{PARTITION} is $\NP$-complete. For this you may use
+  the fact that \textbf{SUBSET SUM} is $\NP$-complete.   
+  
+  \smallskip
+  \noindent In the \textbf{PARTITION} problem we are given a finite set of integers $S=\{a_1, a_2, \ldots, a_n\}$. We ask whether the set $S$ can be partitioned into two sets $S_1, S_2$ such that the sum of the numbers in $S1$ equals the sum of the numbers in $S_2$? 
+  
+
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:frequency}
+  Formally prove that \textbf{FREQUENCY ASSIGNMENT} is $\NP$-complete. For this you may use
+  the fact that a similar problem used in lectures is $\NP$-complete.
+      
+    \smallskip
+        
+  \noindent In the \textbf{FREQUENCY ASSIGNMENT} problem we are given a set of transmitters $T=\{t_1, t_2, \ldots, t_n\}$,  $k$ frequencies, and the list of pairs of transmitters that interfer and therefore cannot use the same frequency. We ask whether there is an assignment of each transmitter to one of $k$ frequencies such that there is no interference between the transmitters. 
+            
+\end{exercise}
+
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:CO-NP}
+  Fomally prove that logical entailment is $co-\NP$-complete. The formal definition of entailment ( $\models$) is this: $\alpha \models \beta$ if and only if, in every truth assignment in which $\alpha$ is true, $\beta$ is also true.  
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+
+\begin{exercise}
+  \label{ex:Colors}
+  It is well known that the \textbf{k-COLORABILITY} problem is $\NP$-complete for every $k \geq 3$. Recall that the instance of \textbf{k-COLORABILITY} is an undirected graph $G = (V, E)$. Suppose that we restrict this instance of \textbf{k-COLORABILITY} to trees. Can the restricted problem be solved with an algorithm that runs in polynomial time? If yes, provide such an algorithm. 
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:Nqueens}
+  Provide a reduction of \textbf{N-Queens} problem to \textbf{SAT}. Give a proof sketch of the correctness of your reduction. Does this implies that the \textbf{N-Queens} is an $\NP$-complete problem? Argue your answer.  
+  
+  \smallskip 
+  
+\noindent In the \textbf{N-Queens} problem we are given $n$ queens and an $n \times n$ chessboard. We ask whether we can place these $n$ queens on the  chessboard such that no two queens attack each other. Two queens attack each other if they are placed in the same row, or in the same column, or in the same diagonal.    
+       
+   
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  Consider the following problem:
+  \begin{center}
+    \fbox{
+      \begin{minipage}[c]{.95\linewidth}
+        \textbf{N-SORTED-ELEMENTS}
+
+        \medskip
+
+        INSTANCE: A non-empty list $L=(e_1,\ldots,e_n)$ of non-negative integers. \\
+        QUESTION: Does the list $L$ contain a sub-list of $k$ consecutive sorted numbers in ascending order (from left to right)?
+      \end{minipage}
+    }
+  \end{center}
+
+  \medskip Argue that \textbf{N-SORTED-ELEMENTS} can be solved using only logarithmic
+  space.
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:turing}
+
+  Design a Turing machine that increments by one a value represented by a string of 0s and 1s.
+
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+
+\end{document}
+
+

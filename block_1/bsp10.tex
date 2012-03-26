@@ -1,3 +1,46 @@
-\subsection{solution}
+\subsection{solution 10}
 
-test
+$M=(K,\Sigma, \delta, start)$\\
+$K=\{s, l, r', r, e\}$\\
+$\Sigma=(0,1,\triangleright, \sqcup)$
+
+\begin{center}
+\begin{tabular}[t]{| l | l | l |}
+\hline
+$p \in K$ & $\sigma \in \Sigma $ & $ \delta ( p, \sigma ) $ \\ \hline
+s & $\triangleright$ & (s, $\triangleright$, $\rightarrow$ )\\ 
+s & 0 & (s, 0, $\rightarrow$ )\\ 
+s & 1 & (s, 1, $\rightarrow$ )\\ 
+s & $\sqcup$ & (ok, 1, --)\\ \hline
+l & 0 & (ok, 1, -- )\\ 
+l & 1 & (l, 0, $\leftarrow$ )\\ 
+l & $\triangleright$ & (r, $\triangleright$, $\rightarrow$ )\\ \hline
+r' & 0 & (r, 1, $\rightarrow$ )\\ \hline
+r & 0 & (r, 0, $\rightarrow$ )\\ 
+r & $\sqcup$ & (e, 0, $\rightarrow$ )\\ \hline
+e & $\sqcup$ & (ok, $\sqcup$, -- )\\ \hline
+\end{tabular} 
+\end{center}
+
+\subsubsection{High lvl definition}
+\begin{itemize}
+\item state s:
+The tourig-machine M starts at state \textbf{s} and then checks if it got an end sign.
+If this is the case it writes \textbf{1} end stops with positive validity 
+furthermore scans M the whole input from left to right without changes and jumps to state
+l if it got the $\sqcup$ sign
+\item state l:
+Directed to the left it tries to fill in a \textbf{1} on the first position with a \textbf{0}
+and ends with positive validity afterwards.
+If this isn't effective it flips every \textbf{1} to 0 
+gets back to the $\triangleright$ and jumps in state r'
+\item state r':
+It fills position with a \textbf{1} and changes to state \textbf{r}
+\item state r: 
+It goes right without changes till the $\sqcup$ sign, writes a \textbf{0} 
+instead of $\sqcup$ and jumps to state \textbf{e}
+\item state e:
+Goes right, writes an $\sqcup$ and stops.
+
+\end{itemize}
+%%%%%%%%%%%%%%%% END EXERCISES

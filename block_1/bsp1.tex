@@ -1,3 +1,76 @@
 \subsection{solution}
+\textbf{Proof}: Reduction from \textsc{Halting} problem to \textsc{%
+Neg-Assignment}.
 
-test
+Let $(\Pi ,I)$ be an arbitrary instance of \textsc{Halting}, i.e. $\Pi $ \
+is a program that takes an input. Based on this, we have to construct an
+instance $(\Pi ^{\prime },I^{\prime },k)$ for \textsc{Neg-Assignment} by
+setting $I^{\prime }=I$ and setting initially $k\geq 0$. Then $\Pi ^{\prime
+} $ is defined as follows:
+
+%TCIMACRO{%
+%\TeXButton{Procedure}{\begin{center}
+%\fbox{
+%\begin{minipage}[c]{.9\linewidth}
+%
+%boolean $\Pi'$(String $S$) $\{$\\
+%int $k := 0$;\\
+%$call \Pi(S)$;\\
+%$k := -1$;\\
+%return \textit{true};\\
+%$\}$\\
+%
+%\end{minipage}
+%}
+%\end{center}}}%
+%BeginExpansion
+\begin{center}
+\fbox{
+\begin{minipage}[c]{.9\linewidth}
+
+boolean $\Pi'$(String $S$) $\{$\\
+int $k := 0$;\\
+$call \Pi(S)$;\\
+$k := -1$;\\
+return \textit{true};\\
+$\}$\\
+
+\end{minipage}
+}
+\end{center}%
+%EndExpansion
+
+Let $x=(\Pi ,I)$ be an instance of \textsc{Halting} and $R(x)=(\Pi ^{\prime
+},I^{\prime },k)$ the resulting instance from the reduction. Then, we have
+to show that $x$ is reducible to $R(x)$ by following equivalence relation:%
+\begin{eqnarray*}
+&&(\Pi ,I)\text{ is a positive instance of \textsc{Halting}}%
+\quad\Leftrightarrow\quad (\Pi ^{\prime },I^{\prime },k)\text{ is apositive
+instance} \\
+&&\text{of the procedure \textsc{Neg-Assignment}.}
+\end{eqnarray*}
+
+(i.e. $\Pi $ halts on $I$ and assigns to $k$ a negative integer value$\quad
+\Leftrightarrow\quad \Pi^{\prime }$ returns \textit{true}.)
+
+$\Rightarrow :$ Suppose that $\left( \Pi ,I\right) $ is a positive instance
+of \textsc{Halting}, i.e. $\Pi $ terminates on $I$.
+
+Then by construction of $(\Pi ^{\prime },I^{\prime },k)$, the call of $\Pi
+(I^{\prime })$ in program $\Pi ^{\prime }$ terminates since $I^{\prime }=I$.
+Hence, $\Pi ^{\prime }$ halts on input $I^{\prime }$, assignes $k:=-1$ and
+returns \textit{true} respectively.
+
+Thus, $(\Pi ^{\prime },I^{\prime },k)$ is a positive instance of \textsc{%
+Neg-Assignment}.
+
+\bigskip
+
+$\Leftarrow :$ Suppose that $\left( \Pi ^{\prime },I^{\prime },k\right) $ is
+a positive instance of \textsc{Neg-Assignment}, i.e. $\Pi ^{\prime }$
+returns \textit{true} after assigning a negative value to $k$. Since $\Pi
+^{\prime }$ involves the call of $\Pi (I^{\prime })$ with $I^{\prime }=I$, $%
+\Pi $ terminates on $I$ and $k$ will be set to $-1$. Hence, $(\Pi ,I)$ is a
+positive instance of \textsc{Halting}.
+
+\bigskip

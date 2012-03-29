@@ -38,7 +38,7 @@
 % \thispagestyle{scrheadings} ~
 
 \subsection{solution}
-\hfill \newline
+%\hfill \newline
 At first we have to check if \textbf{Set-Partition} is a membership of NP.%
 \newline
 This can be shown by using a simple guess \& check procedure:\newline
@@ -73,18 +73,18 @@ We have to show following equation:%
 \begin{proof}
 \hfill\newline
 $\Leftarrow :$ Suppose that $S^{\prime }=\{b_{1},\ldots ,b_{n+1}\}$ is a
-positive instance of \textbf{Set-Partition}. Then there exists a subset $%
-S_1\subseteq S^{\prime }$,which specify the partition, such that $S_2=S^{\prime
+positive instance of \textbf{Set-Partition}. Then there exists a subset 
+$S_1\subseteq S^{\prime }$,which specify the partition, such that $S_2=S^{\prime
 }\backslash S_1$ and the sum of the elements in\ $S_1$ and $S_2$ are equal.
 
-Let $S^1=\tsum\limits_{i\in S_1}b_{i}$ and $S^2=\tsum\limits_{i\in B}b_{i}$
-be the sum of the elements in the subsets. Since $c=M-2\cdot t$ and $c\in
-S^{\prime }$, hence $c$ is in one of the two partitions.
+Let $$S^1=\sum\limits_{i\in S_1}b_{i}$$ and $$S^2=\sum\limits_{i\in B}b_{i}$$
+be the sum of the elements in the subsets. Since $c=M-2\cdot t$ 
+and $$c\in S^{\prime }$$, hence $c$ is in one of the two partitions.
 
-Without loss of generality, suppose that $c\in S_1$. Then $N=M+c=M+M-2\cdot
-t=2\cdot M-2\cdot t=\tsum\limits_{i\in S^{\prime }}b_{i}$. Since $S^1=S^2
-$ and $N=S^1+S^2$, it follows that $S^1=S^2=\frac{N}{2}=$ $\frac{%
-2\cdot M-2\cdot t}{2}=M-t$.
+Without loss of generality, suppose that $c\in S_1$. 
+Then $$N=M+c=M+M-2\cdot t=2\cdot M-2\cdot t=\sum \limits_{i\in S^{\prime }} b_{i}$$.
+Since $S^1=S^2$ and $N=S^1+S^2$, it follows 
+that $S^1=S^2=\frac{N}{2}=$ $\frac{2\cdot M-2\cdot t}{2}=M-t$.
 
 Since $c\in S_1$ and $c=M-2\cdot t$, we can conclude that $S^1=t+c$. If $c$
 is in the fist part of the partition, then $S_1\backslash \{c\}$ is a subset
@@ -92,9 +92,9 @@ of $S$ that sum to $t$, and if $c$ is in the second part of the partition,
 then $S_2\backslash \{c\}$ is a subset of elements of $S$ that sum to $t$.
 Hence, $(S,t)$ is a positive instance of \textbf{Subset-Sum}.
 
-$\Rightarrow :$ Suppose that $(S,t)$ is a positive instance of \textbf{%
-Subset-Sum}. Then there exists a subset $T\subseteq S$ such that $%
-\tsum\limits_{i\in T}b_{i}=t$.
+$\Rightarrow :$ Suppose that $(S,t)$ is a positive instance of 
+\textbf{Subset-Sum}. Then there exists a subset $T\subseteq S$ such that 
+$$\sum \limits_{i\in T} b_{i}=t$$.
 
 We have to show that $S^{\prime }=S\cup \{c\}$ is a positive instance of 
 \textbf{Set-Partition}. Thus, we have to find two subsets of $S^{\prime }$
@@ -107,18 +107,18 @@ positive instance of \textbf{Set-Partition}.
 
 Since \textbf{Set-Partition} $\in $ NP and is NP-hard, it follows that it is
 NP-complete.
-\end{solution}
+
 
 \begin{remark}
 To see how algorithms are represented in pseudo-code see how algorithms are
-described in the book \^{a}\euro \oe Introduction to Algorithms\^{a}\euro 
+described in the book  \oe Introduction to Algorithms
 \"{\i}\textquestiondown 
 %TCIMACRO{\U{bd} }%
 %BeginExpansion
 $\frac12$
 %EndExpansion
 by Cormen, Leiserson, Rivest, and Stein. A link to the book (that let\^{a}%
-\euro \texttrademark s you browse the pages of the book) can be found on
+\texttrademark s you browse the pages of the book) can be found on
 Moodle.
 
 Also recall the $\mathcal{O}$-notation: Let $f$ and $g$ be two functions

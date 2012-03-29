@@ -2,5 +2,26 @@
 
 %$$F=\bigwedge_{z=1}^{9}\Bigg(\bigvee_{y=1}^{9} v_{1,y,z}\Bigg)$$
 
-$$\psi \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{ij} \vee \neg s_{ik})$$
+\subsubsection{Assertion for at most one queen}
+Rule to assert that we get at most one queen in a column.
+$$\psi_1 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{i;j} \vee \neg s_{i;k})$$
 
+Rule to assert that we get at most one queen in each row.
+$$\psi_2 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{j;i} \vee \neg s_{k;i})$$
+
+Left-lower to right-upper diagonal
+$$\psi_3 \equiv \bigwedge_{d=0}^{n-2}\bigwedge_{j=1}^{n-d}\bigwedge_{k=j+1}^{n-2}(\neg s_{d+j;i} \vee \neg s_{d+k;k})$$
+
+Left-upper to right-lower diagonal
+$$\psi_4 \equiv \bigwedge_{d=2-n)}^{-1}\bigwedge_{j=1}^{n+d}\bigwedge_{k=j+1}^{n+d}(\neg s_{j;j-d} \vee \neg s_{k;k-d})$$
+
+$$\psi_5 \equiv \bigwedge_{d=3}^{n+1}\bigwedge_{j=1}^{d-1}\bigwedge_{k=j+1}^{d-1}(\neg s_{dj;d-j} \vee \neg s_{k;d-k})$$
+
+
+$$\psi_6 \equiv \bigwedge_{d=n+2}^{2n-1}\bigwedge_{j=d-n}^{n}\bigwedge_{k=j+1}^{d-1}(\neg s_{j;d-j} \vee \neg s_{k;d-k})$$
+
+
+$$\psi_7 \equiv \bigwedge_{i=1}^{n}\bigvee_{j=i}^{n}s_{i;j}$$
+
+\subsubsection{adsf}
+asf

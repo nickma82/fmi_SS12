@@ -6,7 +6,7 @@
 # *~
 *.log
 *.aux
-*.pdf
+block*/*.pdf
 *.tex~
 *.tex.backup
 ex?.tex~

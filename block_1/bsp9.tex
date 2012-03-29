@@ -17,16 +17,16 @@ This can be explained by using a small procedure (see Procedure \ref%
 %\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
 %\ENSURE $\mathbf{true}$ or $\mathbf{false}$
 %\STATE $i \leftarrow 1$
-%\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted el. of size $k$} 
-%\FOR $i$ \IN $|L| - 1$ \STEP $1$ \DO
-%	\IF{$\(e(i) + 1\) = e(i+1)$}
+%\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted elements of size $k$} 
+%\FORALL{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
+%	\IF{$\left(e(i) + 1\right) = e(i+1)$}
 %			\STATE $count \leftarrow count + 1$
 %		\IF{$count = k$}
-%			\RETURN \textit{true}
+%			\RETURN \textbf{true}
 %		\ENDIF
 %	\ENDIF
-%	\RETURN \textit{false}
 %\ENDFOR
+%\RETURN \textbf{false}
 %\end{algorithmic}
 %\end{algorithm}}}%
 %BeginExpansion
@@ -43,16 +43,16 @@ This can be explained by using a small procedure (see Procedure \ref%
 \REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
 \ENSURE $\mathbf{true}$ or $\mathbf{false}$
 \STATE $i \leftarrow 1$
-\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted el. of size $k$} 
-\FOR $i$ \IN $|L| - 1$ \STEP $1$ \DO
-	\IF{$\(e(i) + 1\) = e(i+1)$}
+\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted elements of size $k$} 
+\FORALL{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
+	\IF{$\left(e(i) + 1\right) = e(i+1)$}
 			\STATE $count \leftarrow count + 1$
 		\IF{$count = k$}
-			\RETURN \textit{true}
+			\RETURN \textbf{true}
 		\ENDIF
 	\ENDIF
-	\RETURN \textit{false}
 \ENDFOR
+\RETURN \textbf{false}
 \end{algorithmic}
 \end{algorithm}%
 %EndExpansion

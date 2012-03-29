@@ -1,3 +1,89 @@
-\subsection{solution}
+\documentclass[a4paper,parskip=half]{scrartcl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{scrpage2}
+\usepackage{ifthen}
+\usepackage[ruled, boxed]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{units}
+\usepackage{enumerate}
 
-test
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=Latex.dll}
+%TCIDATA{Version=5.00.0.2606}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{LastRevised=Friday, April 01, 2011 07:06:22}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+
+\newenvironment{solution}{\large \textsf{\textbf{Solution:}} \\ \normalsize}{\vspace{2ex}}
+\newenvironment{remark}{\large \textsf{\textbf{Remark}} \\ \normalsize}{\vspace{2ex}}
+\newtheorem{claim}{Claim}
+\newtheorem{lemma}{Lemma}
+\input{tcilatex}
+
+\begin{document}
+
+
+\thispagestyle{scrheadings} ~
+
+\subsection{solution}
+\hfill \newline
+
+%TCIMACRO{%
+%\TeXButton{algorithm: N-SORTED-ELEMENTS}{\begin{algorithm}
+%	\KwIn{non-empty list L, integer k $\geq$ 1}
+%	\KwOut{bool}
+%		int count $\leftarrow 1;$\\
+%		\For{i in 1 \KwTo n}{
+%			\If{$L[i]==L[i+1]$}{
+%				$count = count+1;$\\ }
+%			\Else {
+%				\If{$count==k$}
+%					return ("yes");\\ 
+%				\Else 
+%					\tcc{number of sorted elements was too small}
+%					$count = 1$;\\
+%				\ Fi
+%			}
+%		}
+%		return ("no");
+%	\caption{\textfb{N-SORTED-ELEMENTS}}
+%	\label{alg:n-sorted}
+%\end{algorithm}}}%
+%BeginExpansion
+\begin{algorithm}
+	\KwIn{non-empty list L, integer k $\geq$ 1}
+	\KwOut{bool}
+		int count $\leftarrow 1;$\\
+		\For{i in 1 \KwTo n}{
+			\If{$L[i]==L[i+1]$}{
+				$count = count+1;$\\ }
+			\Else {
+				\If{$count==k$}
+					{return ("yes");\\ }
+				\Else 
+					{\tcc{number of sorted elements was too small}
+					$count = 1$;\\}
+				\Fi
+			}
+		}
+		return ("no");
+	\caption{\textfb{N-SORTED-ELEMENTS}}
+	\label{alg:n-sorted}
+\end{algorithm}%
+%EndExpansion
+
+The algorithm above requires logarithmic space in the sice of the length of the input list:\\
+\newline
+\bullet $ count needs log_2|n| space.$
+
+\end{document}
+

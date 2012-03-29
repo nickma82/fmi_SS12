@@ -1,87 +1,120 @@
-% \documentclass[a4paper,parskip=half]{scrartcl}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{eurosym}
-% \usepackage[utf8]{inputenc}
-% \usepackage[T1]{fontenc}
-% \usepackage{lmodern}
-% \usepackage[english]{babel}
-% \usepackage{graphicx}
-% \usepackage{scrpage2}
-
-% \usepackage[ruled, boxed]{algorithm2e}
-% \usepackage{amsmath}
-% \usepackage{amsthm}
-% \usepackage{amssymb}
-% \usepackage{units}
-% \usepackage{enumerate}
-% 
-% \setcounter{MaxMatrixCols}{10}
-% %TCIDATA{OutputFilter=Latex.dll}
-% %TCIDATA{Version=5.00.0.2606}
-% %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
-% %TCIDATA{BibliographyScheme=Manual}
-% %TCIDATA{LastRevised=Friday, April 01, 2011 07:06:22}
-% %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
-% 
-% \newenvironment{solution}{\large \textsf{\textbf{Solution:}} \\ \normalsize}{\vspace{2ex}}
-% \newenvironment{remark}{\large \textsf{\textbf{Remark}} \\ \normalsize}{\vspace{2ex}}
-% \newtheorem{claim}{Claim}
-% \newtheorem{lemma}{Lemma}
-% \input{tcilatex}
-% 
-% \begin{document}
-% 
-% 
-% \thispagestyle{scrheadings} ~
-
 \subsection{solution}
+This can be explained by using a small procedure (see Procedure \ref%
+{Alg-N-Sorted-El}) for this problem.
 
+\bigskip 
 %TCIMACRO{%
-%\TeXButton{algorithm: N-SORTED-ELEMENTS}{\begin{algorithm}
-%	\KwIn{non-empty list L, integer k $\geq$ 1}
-%	\KwOut{bool}
-%		int count $\leftarrow 1;$\\
-%		\For{i in 1 \KwTo n}{
-%			\If{$L[i]==L[i+1]$}{
-%				$count = count+1;$\\ }
-%			\Else {
-%				\If{$count==k$}
-%					return ("yes");\\ 
-%				\Else 
-%					\tcc{number of sorted elements was too small}
-%					$count = 1$;\\
-%				\ Fi
-%			}
-%		}
-%		return ("no");
-%	\caption{\textfb{N-SORTED-ELEMENTS}}
-%	\label{alg:n-sorted}
+%\TeXButton{Algorithm: N-SORTED-ELEMENTS}{\floatname{algorithm}{Procedure}
+%\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+%\renewcommand{\algorithmicensure}{\textbf{Output:}}
+%\renewcommand{\algorithmicforall}{\textbf{for each}}
+%
+%\begin{algorithm}[h]
+%\small
+%\caption{N-SORTED-ELEMENTS}
+%\label{Alg-N-Sorted-El}
+%\begin{algorithmic}
+%\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
+%\ENSURE $\mathbf{true}$ or $\mathbf{false}$
+%\STATE $i \leftarrow 1$
+%\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted el. of size $k$} 
+%\FOR $i$ \IN $|L| - 1$ \STEP $1$ \DO
+%	\IF{$\(e(i) + 1\) = e(i+1)$}
+%			\STATE $count \leftarrow count + 1$
+%		\IF{$count = k$}
+%			\RETURN \textit{true}
+%		\ENDIF
+%	\ENDIF
+%	\RETURN \textit{false}
+%\ENDFOR
+%\end{algorithmic}
 %\end{algorithm}}}%
 %BeginExpansion
-\begin{algorithm}[H]
-	\KwIn{non-empty list L, integer k $\geq$ 1}
-	\KwOut{bool}
-		int count $\leftarrow 1;$\\
-		\For{i in 1 \KwTo n} {
- 			\If{$L[i]==L[i+1]$}{
-				$count = count+1;$\\ }
-			\Else {
-				\If{$count==k$}
-					{return ("yes");\\ }
-				\Else 
-					{\tcc{number of sorted elements was too small}
-					$count = 1$;\\}
-			}
-		}
-		return ("no")
-% 	\caption{\textfb{N-SORTED-ELEMENTS}}
-	\label{alg:n-sorted}
+\floatname{algorithm}{Procedure}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\renewcommand{\algorithmicforall}{\textbf{for each}}
+
+\begin{algorithm}[h]
+\small
+\caption{N-SORTED-ELEMENTS}
+\label{Alg-N-Sorted-El}
+\begin{algorithmic}
+\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
+\ENSURE $\mathbf{true}$ or $\mathbf{false}$
+\STATE $i \leftarrow 1$
+\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted el. of size $k$} 
+\FOR $i$ \IN $|L| - 1$ \STEP $1$ \DO
+	\IF{$\(e(i) + 1\) = e(i+1)$}
+			\STATE $count \leftarrow count + 1$
+		\IF{$count = k$}
+			\RETURN \textit{true}
+		\ENDIF
+	\ENDIF
+	\RETURN \textit{false}
+\ENDFOR
+\end{algorithmic}
 \end{algorithm}%
 %EndExpansion
 
-The algorithm above requires logarithmic space in the sice of the length of the input list:\\
-\newline
-\begin{itemize}
- \item $ count needs log_2|n| space.$
-\end{itemize}
+The above procedure can be solved in logarithmic space in the size of the
+input $I$ with $|I|=|L|$.
 
+The procedure needs only one pointer to an element in the list $L$ and one
+count variable of constant size. I.e. the pointer variable $i$ need $\log (n)
+$ bits for its representation. Observe a very large list $L$ of non-negative
+intergers. Since the memory of a program is limited to constant many
+pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits of
+memory.
+
+\bigskip 
+
+
+%%TCIMACRO{%
+%%\TeXButton{algorithm: N-SORTED-ELEMENTS}{\begin{algorithm}
+%%	\KwIn{non-empty list L, integer k $\geq$ 1}
+%%	\KwOut{bool}
+%%		int count $\leftarrow 1;$\\
+%%		\For{i in 1 \KwTo n}{
+%%			\If{$L[i]==L[i+1]$}{
+%%				$count = count+1;$\\ }
+%%			\Else {
+%%				\If{$count==k$}
+%%					return ("yes");\\ 
+%%				\Else 
+%%					\tcc{number of sorted elements was too small}
+%%					$count = 1$;\\
+%%				\ Fi
+%%			}
+%%		}
+%%		return ("no");
+%%	\caption{\textfb{N-SORTED-ELEMENTS}}
+%%	\label{alg:n-sorted}
+%%\end{algorithm}}}%
+%%BeginExpansion
+%\begin{algorithm}[H]
+%	\KwIn{non-empty list L, integer k $\geq$ 1}
+%	\KwOut{bool}
+%		int count $\leftarrow 1;$\\
+%		\For{i in 1 \KwTo n} {
+% 			\If{$L[i]==L[i+1]$}{
+%				$count = count+1;$\\ }
+%			\Else {
+%				\If{$count==k$}
+%					{return ("yes");\\ }
+%				\Else 
+%					{\tcc{number of sorted elements was too small}
+%					$count = 1$;\\}
+%			}
+%		}
+%		return ("no")
+%% 	\caption{\textfb{N-SORTED-ELEMENTS}}
+%	\label{alg:n-sorted}
+%\end{algorithm}%
+%%EndExpansion
+%
+%The algorithm above requires logarithmic space in the sice of the length of the input list:\\
+%\newline
+%\begin{itemize}
+% \item $ count needs log_2|n| space.$
+%\end{itemize}

@@ -1,12 +1,12 @@
 \subsection{solution}
-\hfill \newline
+%\hfill \newline
 
 To prove that \textbf{SUBSET SUM} $\in$ \textbf{NP} we have to define a polynomially balanced and polynomially decidable certificate relation for \textbf{SUBSET SUM}:
 \newline
 \newline
-Let $R=\{S'$\subseteq$S | S' is a subset sum of S if the sum of it's elements is exactly t\}$.
+Let $$R=\{S'\subseteq S | S' is a subset sum of S if the sum of it's elements is exactly t\}$$.
 \newline
-R $ is a certificate relation by construction: S' is a positive instance of $ \textbf{SUBSET SUM} $\leftrightarrow$ the sum of S' elements is exactly t $\leftrightarrow S' \subseteq S $\in R$.
+$R$ is a certificate relation by construction: $S'$ is a positive instance of \textbf{SUBSET SUM} $\leftrightarrow$ the sum of S' elements is exactly t $$\leftrightarrow S' \subseteq \in R$$.
 \newline
 \newline
 Now we show that the given relation is polynomially balanced:
@@ -19,4 +19,3 @@ Next we have to show that there exists a polynomial time algorithm to sum a give
 \newline
 Since $ R $ is polynomially balanced and polinomial-time decidable, it follows that \textbf{SUBSET SUM} is in NP.
 
-\end

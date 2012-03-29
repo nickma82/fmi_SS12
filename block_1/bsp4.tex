@@ -1,41 +1,41 @@
-\documentclass[a4paper,parskip=half]{scrartcl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{eurosym}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[english]{babel}
-\usepackage{graphicx}
-\usepackage{scrpage2}
-\usepackage{ifthen}
-\usepackage[ruled, boxed]{algorithm2e}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{units}
-\usepackage{enumerate}
-
-\setcounter{MaxMatrixCols}{10}
-%TCIDATA{OutputFilter=Latex.dll}
-%TCIDATA{Version=5.00.0.2606}
-%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
-%TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Friday, April 01, 2011 07:06:22}
-%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
-
-\newcounter{exercise}
-\setcounter{exercise}{1}
-\newenvironment{exercise}[1]{\large \textsf{\textbf{Problem \arabic{exercise}}} \ifthenelse{#1>0}{(#1 points)}{} \\ \normalsize \addtocounter{exercise}{1}}{\vspace{2ex}}
-\newenvironment{solution}{\large \textsf{\textbf{Solution:}} \\ \normalsize}{\vspace{2ex}}
-\newenvironment{remark}{\large \textsf{\textbf{Remark}} \\ \normalsize}{\vspace{2ex}}
-\newtheorem{claim}{Claim}
-\newtheorem{lemma}{Lemma}
-\input{tcilatex}
-
-\begin{document}
-
-
-\thispagestyle{scrheadings} ~
+% \documentclass[a4paper,parskip=half]{scrartcl}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{eurosym}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{lmodern}
+% \usepackage[english]{babel}
+% \usepackage{graphicx}
+% \usepackage{scrpage2}
+% \usepackage{ifthen}
+% \usepackage[ruled, boxed]{algorithm2e}
+% \usepackage{amsmath}
+% \usepackage{amsthm}
+% \usepackage{amssymb}
+% \usepackage{units}
+% \usepackage{enumerate}
+% 
+% \setcounter{MaxMatrixCols}{10}
+% %TCIDATA{OutputFilter=Latex.dll}
+% %TCIDATA{Version=5.00.0.2606}
+% %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+% %TCIDATA{BibliographyScheme=Manual}
+% %TCIDATA{LastRevised=Friday, April 01, 2011 07:06:22}
+% %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+% 
+% \newcounter{exercise}
+% \setcounter{exercise}{1}
+% \newenvironment{exercise}[1]{\large \textsf{\textbf{Problem \arabic{exercise}}} \ifthenelse{#1>0}{(#1 points)}{} \\ \normalsize \addtocounter{exercise}{1}}{\vspace{2ex}}
+% \newenvironment{solution}{\large \textsf{\textbf{Solution:}} \\ \normalsize}{\vspace{2ex}}
+% \newenvironment{remark}{\large \textsf{\textbf{Remark}} \\ \normalsize}{\vspace{2ex}}
+% \newtheorem{claim}{Claim}
+% \newtheorem{lemma}{Lemma}
+% \input{tcilatex}
+% 
+% \begin{document}
+% 
+% 
+% \thispagestyle{scrheadings} ~
 
 \subsection{solution}
 \hfill \newline
@@ -47,12 +47,14 @@ Guess an arbitrary subset $S_1\subseteq S$ and verify if the sum of the
 elements in $S_1$ and in $S\backslash S_1$ are equal. The summing of the
 elements in the subsets takes linear time in the size of $S$.
 
-To show NP-hardness of \textbf{Set-Partition}, we reduce \textbf{%
-Subset-Sum} to \textbf{Set-Partition}.
+To show NP-hardness of \textbf{Set-Partition}, we reduce \textbf{Subset-Sum} to \textbf{Set-Partition}.
 
-Let $S=\{b_{1},\ldots ,b_{n}\}$ be a set of integers and an integer $t$ be a target. Let $S^{\prime }$ be an instance of 
-\textbf{Set-Partition}, such that $S^{\prime }=S\cup \{c\}$ with $c=M-2\cdot
-t$ and $M=\tsum\limits_{i\in S}b_{i}$.
+Let $$S=\{b_{1},\ldots ,b_{n}\}$$ be a set of integers and an integer $t$ be a target.
+Let $S^{\prime }$ be an instance of 
+\textbf{Set-Partition}, 
+such that $$S^{\prime }=S\cup \{c\}$$ 
+%with $$c=M-2\cdott$$ 
+%and $$M=\tsum\limits_{i\in S}b_{i}$$.
 
 We have to show following equation:%
 \begin{equation*}
@@ -129,5 +131,5 @@ that $T(n)=\mathcal{O}(n^{d})$. For more details see Chapter 3 in the above
 book.
 \end{remark}
 
-\end{document}
+% \end{document}
 

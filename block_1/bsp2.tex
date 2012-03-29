@@ -41,28 +41,27 @@ assignment to $k$, where $k$ get a negative value (i.e. $k:=-1$) and thus, $%
 
 \item[\normalfont\slshape Case 2:] 
 
-\item[a.)] Suppose that $x$ is a "no"-instance, i.e. the program $\Pi $ on
+\item[\textit{a)}] Suppose that $x$ is a "no"-instance, i.e. the program $\Pi $ on
 input $I$ halts without reaching the negative value assignment of $k$. Then
 by construction of $\Pi ^{\prime }$, the simulation in $\Pi ^{\prime }$ on
 input $I^{\prime }=I$ is not able to change the initial value assignment of $%
 k$, with $k\geq 0$, to a negative value. Hence, $\Pi ^{\prime }$ returns 
 \textit{false}.
 
-\item[b.)] Suppose that $x$ is negative instance and $\Pi $ does not halt on
-input $I$, i.e. $\Pi $ does not terminate ($\Rightarrow $ loops forever).
-Then the simulation in $\Pi ^{\prime }$ on $I^{\prime }=I$ will also run
-forever and $k$ will never get assigned a negative value.Therefore, $\Pi
-^{\prime }$ will never return any output
-
-\item does not reach any output. Hence
-
-\item . This means, that $\Pi $ loops forever, or it halts with an output
-which is different to $\left( I+I\right) $. Hence, the simulation $\Pi
-^{\prime }$ does not reach the output $\left( I^{\prime }+I^{\prime }\right) 
-$ with $I^{\prime }=I$. This means, that the simulation $\Pi ^{\prime }$
-either runs forever or it halts with output \textit{false}. Thus, both
-behaviors for a semi-decision procedure in the case of a negative instance
-are correct.
+\item[\textit{b)}] Suppose that $x$ is negative instance and $\Pi $ does not halt on
+input $I$, i.e. $\Pi $ does not terminate (loops forever). Then the
+simulation in $\Pi ^{\prime }$ on $I^{\prime }=I$ will also run forever and $%
+k$ will never assigned with a negative integer value. Hence, $\Pi ^{\prime }$
+will run forever on the negative instance $(\Pi ,I,k)$ and will never return
+any output.
 \end{description}
 
-\bigskip
+Thus, both behaviors of the negative cases describes a correct behavior of
+semi-decision procedure.
+
+\medskip 
+
+Co-problem of \textsc{Neg-Assignment}:
+
+\bigskip 
+

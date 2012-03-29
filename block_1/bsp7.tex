@@ -1,5 +1,6 @@
 \subsection{solution}
 
+\subsubsection{Algorithm}
 \begin{algorithmic}
 \Function{DFS}{$a$}
     \For {each vertex $u \in V[G]$}
@@ -9,6 +10,8 @@
     \State $time \gets 0$
 \EndFunction
 \end{algorithmic}
+
+\smallskip
 
 \begin{algorithmic}
 \Function{DFS-Visit}{$u$}
@@ -25,3 +28,10 @@
     \State f[u] $\gets$ time $\gets$ time + 1
 \EndFunction
 \end{algorithmic}
+
+\subsubsection{Description}
+The definition of the tree saies that:
+\begin{itemize}
+ \item there are no cycles allowed
+ \item paths are connected
+\end{itemize}

@@ -1,15 +1,23 @@
 \subsection{solution}
 
+\renewcommand{\algorithmicforall}{\textbf{for each}}
 \subsubsection{Algorithm}
+c ... color\\
+k ... coloring
 \begin{algorithm}[ht]
 \small
 \caption{DFS(a)}
 \begin{algorithmic}
-    \FOR{each vertex $u \in V[G]$}
-       \STATE color[u] $\gets$ k
-       \STATE $\pi[u] \gets NULL$
-    \ENDFOR
-    \STATE $time \gets 0$
+  \FOR{each vertex $u \in V[G]$}
+      \STATE c[u] $\gets$ k
+      \STATE $\pi[u] \gets NULL$
+  \ENDFOR
+  \STATE $time \gets 0$
+  \FORALL{vertex $u \in V[G]$}
+    \IF{$c[u] == k$}
+      \STATE \textit{call} DFS-Visit(u)
+    \ENDIF
+  \ENDFOR
 \end{algorithmic}
 \end{algorithm}
 
@@ -21,7 +29,7 @@
     \STATE d[u] $\gets$ time $\gets$ time + 1
     \FOR {each $v \in Adj[u]$}
        \STATE $\triangleright$ explore edge $(u,v)$
-       \IF {color[v] = k}
+       \IF {color[v] == k}
            \STATE $\pi[v] \gets u$
            \STATE DFS-Visit($v$)
        \ENDIF

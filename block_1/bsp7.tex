@@ -1,10 +1,9 @@
 \subsection{solution}
 
 \subsubsection{Algorithm}
-\begin{algorithm}[h]
+\begin{algorithm}[ht]
 \small
-\caption{DFS}
-
+\caption{DFS(a)}
 \begin{algorithmic}
     \FOR{each vertex $u \in V[G]$}
        \STATE color[u] $\gets$ k
@@ -14,23 +13,23 @@
 \end{algorithmic}
 \end{algorithm}
 
-% \smallskip
-% 
-% \begin{algorithmic}
-% \Function{DFS-Visit}{$u$}
-%     \State color[u] $\gets$ k
-%     \State d[u] $\gets$ time $\gets$ time + 1
-%     \For {each $v \in Adj[u]$}
-%       \State $\triangleright$ explore edge $(u,v)$
-%       \If {color[v] = k}
-%           \State $\pi[v] \gets u$
-%           \State DFS-Visit($v$)
-%       %\EndIf
-%     %\EndFor
-%     \State color[v] $\gets$  k
-%     \State f[u] $\gets$ time $\gets$ time + 1
-% \EndFunction
-% \end{algorithmic}
+\begin{algorithm}[ht]
+\small
+\caption{DFS-Visit(u)}
+\begin{algorithmic}
+    \STATE color[u] $\gets$ k
+    \STATE d[u] $\gets$ time $\gets$ time + 1
+    \FOR {each $v \in Adj[u]$}
+       \STATE $\triangleright$ explore edge $(u,v)$
+       \IF {color[v] = k}
+           \STATE $\pi[v] \gets u$
+           \STATE DFS-Visit($v$)
+       \ENDIF
+     \ENDFOR
+     \STATE color[v] $\gets$  k
+     \STATE f[u] $\gets$ time $\gets$ time + 1
+\end{algorithmic}
+\end{algorithm}
 
 
 \subsubsection{Description}

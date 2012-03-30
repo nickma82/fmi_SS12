@@ -1,20 +1,50 @@
 \subsection{solution}
+\textbf{Argumentation:}
+The restricted problem of \textsc{Vertex k-Coloring} to trees can be
+solved in polynomial time.
+
+Let $G_{T}=(V,E)$ be an arbitrary tree with the vertex set $V=\{v_{1},\ldots
+,v_{n}\}$ and a mapping $c:V(G_{T})\,$ $\longrightarrow \,\{1,,\ldots ,k\}$
+such that $V_{i}=\{v\in V(G_{T})\mid c(v)=i\}$ and $c(u)\neq c(v)$, whenever 
+$u,v\in V$ are adjacent $\forall (u,v)\in E(G_{T})$. Let us denote $\langle
+V_{i}\rangle $ the subgraph induced by $V_{i}$ in $G_{T}$. Depending on the
+graph property $\Pi _{T\text{ }}$for trees, which can be enforced on each $%
+\langle V_{i}\rangle $, there can be defined different coloring concepts. If
+each $V_{i}$ is an independent set for $1\leq i\leq k$, then the coloring
+function $c$ is a proper $k$-coloring.
+
+The maximum independent set of a tree can be found in \textit{linear time},
+by
+\begin{enumerate}
+\item[(1)] stripping off the end-vertexes (leaf nodes),
+\item[(2)] adding them to the independent set,
+\item[(3)] deleting the newly formed end-nodes and
+\item[(4)] repeating from the first step until the resulting tree is empty.
+\end{enumerate}
+Moreover if each $V_{i}$ induces a forest (i.e. each connected component of $%
+V_{i}$ is a tree), then the coloring function $c$ is called a $k$\textit{%
+-tree coloring}. Then every graph has a proper $k$-coloring if the integer
+value $k$ is large enough. Since $G_{T}$ is an acyclic graph, then every
+vertex $v$ is pairwise different colored to its predecessor node $\pi (v)=u$.
+
+\bigskip
 
 \renewcommand{\algorithmicforall}{\textbf{for each}}
 \subsubsection{Algorithm}
-c ... color\\
-k ... coloring
+\textrm{Legend:}\\
+$c \ldots$ color function\\
+$i \ldots$ color value\\
 \begin{algorithm}[ht]
 \small
 \caption{DFS(a)}
 \begin{algorithmic}
   \FOR{each vertex $u \in V[G]$}
-      \STATE c[u] $\gets$ k
+      \STATE c[u] $\gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$
       \STATE $\pi[u] \gets NULL$
   \ENDFOR
   \STATE $time \gets 0$
   \FORALL{vertex $u \in V[G]$}
-    \IF{$c[u] == k$}
+    \IF{c[u] == $i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$}
       \STATE \textit{call} DFS-Visit(u)
     \ENDIF
   \ENDFOR
@@ -25,16 +55,16 @@ k ... coloring
 \small
 \caption{DFS-Visit(u)}
 \begin{algorithmic}
-    \STATE color[u] $\gets$ k
+    \STATE c[u] $\gets$ k
     \STATE d[u] $\gets$ time $\gets$ time + 1
-    \FOR {each $v \in Adj[u]$}
+    \FORALL{$v \in adj[u]$}
        \STATE $\triangleright$ explore edge $(u,v)$
-       \IF {color[v] == k}
+       \IF {c[v] == $i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$}
            \STATE $\pi[v] \gets u$
            \STATE DFS-Visit($v$)
        \ENDIF
      \ENDFOR
-     \STATE color[v] $\gets$  k
+     \STATE c[v] $\gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$
      \STATE f[u] $\gets$ time $\gets$ time + 1
 \end{algorithmic}
 \end{algorithm}

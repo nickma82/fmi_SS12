@@ -57,7 +57,7 @@ such that $$S^{\prime }=S\cup \{c\}$$
 %and $$M=\tsum\limits_{i\in S}b_{i}$$.
 
 We have to show following equation:%
-\begin{equation*}
+\begin{equation}
 (S,t)\in 
 %TCIMACRO{\TeXButton{Subset-Sum}{\mbox{\textbf{Subset-Sum}}}}%
 %BeginExpansion
@@ -68,9 +68,9 @@ We have to show following equation:%
 %BeginExpansion
 \mbox{\textbf{Set-Partition}}%
 %EndExpansion
-\end{equation*}
+\end{equation}
 
-\begin{proof}
+\subsubsection{Proof}
 \hfill\newline
 $\Leftarrow :$ Suppose that $S^{\prime }=\{b_{1},\ldots ,b_{n+1}\}$ is a
 positive instance of \textbf{Set-Partition}. Then there exists a subset 
@@ -103,7 +103,7 @@ Then $S^1=t+M-2\cdot t=M-t=\frac{N}{2}$, wich is exactly the half of the
 sum of elements in $S^{\prime }$, i.e. $S^1=\frac{N}{2}=S^2$. This
 implies that $S^{\prime }$ is partitionable. Thus, $S^{\prime }$ is a
 positive instance of \textbf{Set-Partition}.
-\end{proof}
+
 
 Since \textbf{Set-Partition} $\in $ NP and is NP-hard, it follows that it is
 NP-complete.

@@ -1,34 +1,37 @@
 \subsection{solution}
 
 \subsubsection{Algorithm}
-\begin{algorithmic}
-\Function{DFS}{$a$}
-   \State 
-    \For{each vertex $u \in V[G]$}
-       \State color[u] $\gets$ k
-       \State $\pi[u] \gets NULL$
-    %\EndFor
-    \State $time \gets 0$
-\EndFunction
-\end{algorithmic}
-
-\smallskip
-
-\begin{algorithmic}
-\Function{DFS-Visit}{$u$}
-    \State color[u] $\gets$ k
-    \State d[u] $\gets$ time $\gets$ time + 1
-    \For {each $v \in Adj[u]$}
-      \State $\triangleright$ explore edge $(u,v)$
-      \If {color[v] = k}
-          \State $\pi[v] \gets u$
-          \State DFS-Visit($v$)
-      %\EndIf
-    %\EndFor
-    \State color[v] $\gets$  k
-    \State f[u] $\gets$ time $\gets$ time + 1
-\EndFunction
-\end{algorithmic}
+% \begin{algorithm}[h]
+% \small
+% \begin{algorithmic}
+% \Function{DFS}{$a$}
+%    \State 
+%     \For{each vertex $u \in V[G]$}
+%        \State color[u] $\gets$ k
+%        \State $\pi[u] \gets NULL$
+%     %\EndFor
+%     \State $time \gets 0$
+% \EndFunction
+% \end{algorithmic}
+% 
+% \smallskip
+% 
+% \begin{algorithmic}
+% \Function{DFS-Visit}{$u$}
+%     \State color[u] $\gets$ k
+%     \State d[u] $\gets$ time $\gets$ time + 1
+%     \For {each $v \in Adj[u]$}
+%       \State $\triangleright$ explore edge $(u,v)$
+%       \If {color[v] = k}
+%           \State $\pi[v] \gets u$
+%           \State DFS-Visit($v$)
+%       %\EndIf
+%     %\EndFor
+%     \State color[v] $\gets$  k
+%     \State f[u] $\gets$ time $\gets$ time + 1
+% \EndFunction
+% \end{algorithmic}
+% \end{algorithm}
 
 \subsubsection{Description}
 The definition of the tree saies that:

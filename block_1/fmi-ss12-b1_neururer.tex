@@ -1,94 +1,46 @@
-\documentclass [11pt]{article}
+\documentclass[11pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{latexsym}
 \usepackage{amssymb}
-\usepackage{epsfig} 
+\usepackage{epsfig}
 \usepackage{enumerate}
-
-\usepackage{float}
 \usepackage{xspace}
-\usepackage{relsize}
-\usepackage{ifthen}
-\usepackage{xspace}
-\usepackage{algpseudocode}
-\usepackage[ruled, boxed]{algorithm2e}
-\usepackage{pdfpages}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
-\usepackage{lmodern}
-\usepackage[english]{babel}
-\usepackage{graphicx}
-\usepackage{scrpage2}
-\usepackage{ifthen}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{units}
-\usepackage{enumerate}
-
-\setcounter{MaxMatrixCols}{10}
-
-%\usepackage{graphicx}
-%\usepackage{typearea}
-%\usepackage{multicol}
-%\usepackage{amsfonts}
-%\usepackage[nounderscore]{syntax}
-%\usepackage{paralist}
-%\usepackage{tikz}
-%\usetikzlibrary{positioning}
-%\usepackage{url}
-%\usepackage{xspace}
-%\usepackage{bbm}
-%\usepackage{listings}
-%%\usepackage{MnSymbol}
-%%\usepackage[ruled]{algorithm2e}
-%\def\NN{{\ensuremath{\mathbbm{N}_0\xspace}}}
-%\usepackage{wrapfig}
-%\usepackage{graphicx}
-%\usetikzlibrary{arrows,automata}
-%\setlength{\textheight}{25cm}
-
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2606}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{LastRevised=Thursday, March 29, 2012 23:52:41}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
    \textheight     23cm
    \oddsidemargin 0.5cm
    \topmargin    -0.5cm
    \evensidemargin\oddsidemargin
-
- \newcommand{\nop}[1]{}
-
-
+\newcommand{\nop}[1]{}
    \pagestyle{plain}
    \bibliographystyle{plain}
-
-
-\title{Formale Methoden der Informatik \\
-Block 1: Computability and Complexity }
-\author{Exercises 1-10}
-\date{SS 2012}
-
-
-  \newtheorem{theorem}{Theorem}
-  \newtheorem{lemma}[theorem]{Lemma}
-  \newtheorem{corollary}[theorem]{Corollary}
-  \newtheorem{proposition}[theorem]{Proposition}
-  \newtheorem{conjecture}[theorem]{Conjecture}
-  \newtheorem{definition}[theorem]{Definition}
-  \newtheorem{example}[theorem]{Example}
-  \newtheorem{remark}[theorem]{Remark}
-  \newtheorem{exercise}[theorem]{Exercise}
-
-  \newcommand{\ra}{\rightarrow}
-  \newcommand{\Ra}{\Rightarrow}
-  \newcommand{\La}{\Leftarrow}
-  \newcommand{\la}{\leftarrow}
-  \newcommand{\LR}{\Leftrightarrow}
-
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}[theorem]{Exercise}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\LR}{\Leftrightarrow}
   \renewcommand{\phi}{\varphi}
   \renewcommand{\theta}{\vartheta}
-
-
 \newcommand{\ccfont}[1]{\protect\mathsf{#1}}
 \newcommand{\NP}{\ccfont{NP}}
-
 \newcommand{\NN}{\textbf{N}}
 \newcommand{\IN}{\textbf{Z}}
 \newcommand{\bigO}{\mathrm{O}}
@@ -101,25 +53,18 @@ Block 1: Computability and Complexity }
 \newcommand{\MATCHING}{\mbox{\bf BIPARTITE MATCHING}}
 \newcommand{\TSP}{\mbox{\bf TSP}}
 \newcommand{\TSPD}{\mbox{\bf TSP(D)}}
-
 \newcommand{\ThreeCol}{\mbox{\bf 3-COLORABILITY}}
 \newcommand{\TwoCol}{\mbox{\bf 2-COLORABILITY}}
 \newcommand{\kCol}{\mbox{\bf k-COLORABILITY}}
 \newcommand{\HamPath}{\mbox{\bf HAMILTON-PATH}}
 \newcommand{\HamCycle}{\mbox{\bf HAMILTON-CYCLE}}
-
 \newcommand{\ONESAT}{\mbox{\bf 1-IN-3-SAT}}
 \newcommand{\MONONESAT}{\mbox{\bf MONOTONE 1-IN-3-SAT}}
 \newcommand{\kSAT}{\mbox{\bf k-SAT}}
 \newcommand{\NAESAT}{\mbox{\bf NAESAT}}
-\newcommand{\CLIQUE}{\textbf{CLIQUE}\xspace} 
+\newcommand{\CLIQUE}{\textbf{CLIQUE}\xspace}
 \newcommand{\VC}{\textbf{VERTEX COVER}\xspace}
-
-
-
 \renewcommand{\labelenumi}{(\alph{enumi})}
-
-%%% useful macros for Turing machines:
 \newcommand{\blank}{\sqcup}
 \newcommand{\ssym}{\triangleright}
 \newcommand{\esym}{\triangleleft}
@@ -131,23 +76,20 @@ Block 1: Computability and Complexity }
 \newcommand{\stay}{-}
 \newcommand{\diverge}{\nearrow}
 \newcommand{\yields}[1]{\stackrel{#1}{\rightarrow}}
-
 \newcommand{\HALTING}{\mbox{\bf HALTING}}
-
 \newcommand{\true}{{\it true}}
 \newcommand{\false}{{\it false}}
-
-
 \newcommand{\samplesolution}[1]{\noindent {\bf Sample solution.}  #1}
+%\input{tcilatex}
 
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-
+\title{Formale Methoden der Informatik \\
+Block 1: Computability and Complexity }
+\author{Exercises 1-10}
+\date{SS 2012}
 \maketitle
 
 

@@ -34,7 +34,7 @@
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Thursday, March 29, 2012 23:52:41}
+%TCIDATA{LastRevised=Friday, March 30, 2012 19:03:05}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -149,10 +149,10 @@ setting $I^{\prime }=I$ and setting initially $k\geq 0$. Then $\Pi ^{\prime
 %\begin{minipage}[c]{.9\linewidth}
 %\small
 %boolean $\Pi'$(String $S$) $\{$\\
-%   int $k := 0$;\\
-%   call $\Pi(S)$;\\
-%   $k := -1$;\\
-%   return true;\\
+% int $k := 0$;\\
+% call $\Pi(S)$;\\
+% $k := -1$;\\
+% return true;\\
 %$\}$\\
 %
 %\end{minipage}
@@ -164,10 +164,10 @@ setting $I^{\prime }=I$ and setting initially $k\geq 0$. Then $\Pi ^{\prime
 \begin{minipage}[c]{.9\linewidth}
 \small
 boolean $\Pi'$(String $S$) $\{$\\
-   int $k := 0$;\\
-   call $\Pi(S)$;\\
-   $k := -1$;\\
-   return true;\\
+ int $k := 0$;\\
+ call $\Pi(S)$;\\
+ $k := -1$;\\
+ return true;\\
 $\}$\\
 
 \end{minipage}
@@ -312,8 +312,6 @@ numbers in $S1$ equals the sum of the numbers in $S_{2}$?
 \mathsf{NP}$-complete. For this you may use the fact that a similar problem
 used in lectures is $\mathsf{NP}$-complete.
 
-\smallskip
-
 \noindent In the \textbf{FREQUENCY ASSIGNMENT} problem we are given a set of
 transmitters $T=\{t_{1},t_{2},\ldots ,t_{n}\}$, $k$ frequencies, and the
 list of pairs of transmitters that interfer and therefore cannot use the
@@ -337,6 +335,36 @@ restrict this instance of \textbf{k-COLORABILITY} to trees. Can the
 restricted problem be solved with an algorithm that runs in polynomial time?
 If yes, provide such an algorithm.
 \end{exercise}
+
+\textbf{Argumentation:}
+The restricted problem of \textsc{Vertex k-Coloring} to trees can be
+solved in polynomial time.
+
+Let $G_{T}=(V,E)$ be an arbitrary tree with the vertex set $V=\{v_{1},\ldots
+,v_{n}\}$ and a mapping $c:V(G_{T})\,$ $\longrightarrow \,\{1,,\ldots ,k\}$
+such that $V_{i}=\{v\in V(G_{T})\mid c(v)=i\}$ and $c(u)\neq c(v)$, whenever 
+$u,v\in V$ are adjacent $\forall (u,v)\in E(G_{T})$. Let us denote $\langle
+V_{i}\rangle $ the subgraph induced by $V_{i}$ in $G_{T}$. Depending on the
+graph property $\Pi _{T\text{ }}$for trees, which can be enforced on each $%
+\langle V_{i}\rangle $, there can be defined different coloring concepts. If
+each $V_{i}$ is an independent set for $1\leq i\leq k$, then the coloring
+function $c$ is a proper $k$-coloring.
+
+The maximum independent set of a tree can be found in \textit{linear time},
+by
+\begin{enumerate}
+\item[(1)] stripping off the end-vertexes (leaf nodes),
+\item[(2)] adding them to the independent set,
+\item[(3)] deleting the newly formed end-nodes and
+\item[(4)] repeating from the first step until the resulting tree is empty.
+\end{enumerate}
+Moreover if each $V_{i}$ induces a forest (i.e. each connected component of $%
+V_{i}$ is a tree), then the coloring function $c$ is called a $k$\textit{%
+-tree coloring}. Then every graph has a proper $k$-coloring if the integer
+value $k$ is large enough. Since $G_{T}$ is an acyclic graph, then every
+vertex $v$ is pairwise different colored to its predecessor node $\pi (v)=u$.
+
+\bigskip
 
 \begin{exercise}
 \label{ex:Nqueens} Provide a reduction of \textbf{N-Queens} problem to 

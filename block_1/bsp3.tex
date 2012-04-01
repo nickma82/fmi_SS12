@@ -4,17 +4,21 @@
 To prove that \textbf{SUBSET SUM} $\in$ \textbf{NP} we have to define a polynomially balanced and polynomially decidable certificate relation for \textbf{SUBSET SUM}:
 \newline
 \newline
-Let $$R=\{S'\subseteq S | S' is a subset sum of S if the sum of it's elements is exactly t\}$$.
-\newline
-$R$ is a certificate relation by construction: $S'$ is a positive instance of \textbf{SUBSET SUM} $\leftrightarrow$ the sum of S' elements is exactly t $$\leftrightarrow S' \subseteq \in R$$.
+Let $R=\{S'\subseteq S | S'\}$ be a subset of sum of S. \\
+This is the case if $\sum (S')$ of it's elements ($S'$) is exactly $t$.
+\newline\newline
+$R$ is a certificate relation by construction: $S'$ is a positive instance of \textbf{SUBSET SUM} 
+$\leftrightarrow$ the sum of S' elements is exactly t $\leftrightarrow S' \subseteq \in R$.
 \newline
 \newline
 Now we show that the given relation is polynomially balanced:
 \newline
-S' is always $\leq$ then S because by definition a subset sum ia a subset or equal the original set of integer numbers.
+S' is always $\leq$ then S because by definition a subset sum ia a subset or equal the 
+original set of integer numbers.
 \newline
 \newline
-Next we have to show that there exists a polynomial time algorithm to sum a given subset. For this we can simply sum all elements of S' which is possible in linear time.
+Next we have to show that there exists a polynomial time algorithm to sum a given subset. 
+For this we can simply sum all elements of S' which is possible in linear time.
 \newline
 \newline
 Since $ R $ is polynomially balanced and polinomial-time decidable, it follows that \textbf{SUBSET SUM} is in NP.

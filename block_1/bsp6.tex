@@ -1,3 +1,33 @@
 \subsection{solution}
 
-test
+By trying to prove that $\vDash$ is \textit{co-NP-complete} we whave to show that
+\begin{itemize}
+ \item entailment is in \textit{co-NP} \dots Membership (through reduction) and
+ \item NP-hardness \dots co-NP-complete Problem can be reduced to \textit{entailment}
+\end{itemize}
+
+\subsubsection{Membership}
+And the counterprove for us that we have to show is that:
+$\alpha \vDash \beta \iff \alpha \wedge \neg\beta$ isn't satisfiable.
+
+We try to show membership through a reduction from \textit{entailment} the well known 
+co-NP-complete problem: \textit{co-SAT}.\newline
+
+\noindent Proof $\Rightarrow$:\\
+We take a look at \textbf{every truth assignments} for \textit{entailment} what means 
+that $\alpha \wedge \neg\beta$ isn't satisfied and therefore \textbf{also true}. \\
+The last case - a \textbf{false} \textit{entailment} ($\alpha = true$ and $\beta = false$) 
+followes a satisfied $\alpha \wedge \neg\beta$ which is \textbf{also false}.
+
+\noindent Proof $\Leftarrow$:\\
+if $\alpha \wedge \neg\beta$ isn't satisfiable the entailment is true.\\
+So in case $\alpha \wedge \neg\beta$ is true ($\alpha = true$ and $\beta = false$)
+the entailment is not valid too.
+
+\subsubsection{NP-hardness}
+We try to show a reduction from \textit{co-SAT} to \textit{entailment}\\
+
+$\alpha \wedge \neg\beta$ isn't satisfiable $\iff \alpha \vDash \beta$\\
+And fortunately we already proved this reduction while showing Membership above.\\
+
+What show's us that \textit{entailment} is NP-hard and complete.

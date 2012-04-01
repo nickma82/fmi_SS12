@@ -45,6 +45,7 @@ $$\psi \equiv \psi_1\bigwedge\psi_2\bigwedge\psi_3\bigwedge\psi_4\bigwedge\psi_5
 is in CNF form and each truth assignment which makes it true represents a solution to the \textbf{N-Queens} problem.
 
 \subsubsection{Proof sketch}
+
 $\Rightarrow$ direction:\\
 Suppose that n is a positive instance of \textbf{N-Queens} and now we have to show that
 $\psi$ also is a positive instance of \textbf{SAT}.\\
@@ -69,7 +70,7 @@ Analogously this works for $\psi_4 to \psi_6$.\\
 $\psi_7$ evaluates to true if for each number $j \in {1,..,n}$ the number 
 has been assigned at least once which is true for a positive instance of \textbf{N-Queens}.\\
 
-$\Leftarrow$ direction:\\
+\noindent $\Leftarrow$ direction:\\
 Suppose we have a positive instance T of \textbf{SAT} that is a truth assignment for the propositional
 formula $\psi$. We have to show that it's possible to derive a poitive instance of 
 \textbf{N-Queens} out of T.\\

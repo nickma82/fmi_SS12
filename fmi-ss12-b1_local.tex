@@ -18,6 +18,7 @@
 %\usetikzlibrary{arrows,automata}
 %\setlength{\textheight}{25cm}
 %%% useful macros for Turing machines:
+%\usepackage{algpseudocode}
 
 
 \documentclass[11pt]{article}
@@ -27,15 +28,16 @@
 \usepackage{epsfig}
 \usepackage{enumerate}
 \usepackage{xspace}
-\usepackage{algorithm}
-\usepackage{algorithmic}
 \usepackage{paralist}
+\usepackage[boxed]{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 
 %TCIDATA{OutputFilter=LATEX.DLL}
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Saturday, March 31, 2012 19:31:03}
+%TCIDATA{LastRevised=Sunday, April 01, 2012 04:24:19}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -353,17 +355,126 @@ function $c$ is a proper $k$-coloring.
 Then the maximum independent set of a tree can be found in \textit{linear
 time}, by%
 \begin{inparaenum}[\itshape 1\upshape)]
-\item stripping off all the end-vertexes (leaf nodes),
+\item stripping off all the end-vertices (leaf nodes),
 \item adding them to the independent set,
 \item deleting the newly formed end-nodes and
 \item repeating from the first step until the resulting tree is empty.
-\end{inparaenum}
-Moreover if each $V_{i}$ induces a forest (i.e. each
+\end{inparaenum}Moreover if each $V_{i}$ induces a forest (i.e. each
 connected component of $V_{i}$ is a tree), then the coloring function $c$ is
 called a $k$\textit{-tree coloring}. Then every graph has a proper $k$%
 -coloring if the integer value $k$ is large enough. Since $G_{T}$ is an
 acyclic connected graph, then every vertex $v$ is pairwise different colored
 to its predecessor node $\pi (v)=u$.
+
+\bigskip 
+
+Then the \textit{predecessor subgraph} of a depth-first search, denoted as $%
+G_{\pi }=(V,E_{\pi })(=\langle V_{i}\rangle ?)$ with $E_{\pi }=\{(\pi
+(v),v)\mid v\in V$ and $\pi (v)\neq $ \textsc{Null}$\}$, forms a \textit{%
+depth-first forest} which is composed of serveral \textit{depth-first trees}%
+. The edges in $E_{\pi }$ are also called \textit{tree edges}.
+
+%TCIMACRO{%
+%\TeXButton{DFS-Algortim for k-Coloring}{\floatname{algorithm}{Algorithm}
+%\algrenewcommand{\algorithmicrequire}{\textbf{Input:}}
+%\algrenewcommand{\algorithmicensure}{\textbf{Output:}}
+%\algrenewcommand{\algorithmicforall}{\textbf{for each}}
+%
+%\begin{algorithm}[ht]
+%\small
+%\begin{algorithmic}[1]
+%	\Require An undirected tree $G_{T} = (V,E)$
+%	\Ensure A $k$-coloring of $G_{T}$.
+%	\newline
+%
+%	\Procedure{\textsc{Dfs}}{$G_{T}$}
+%		\ForAll{vertex $u \in V[G_{T}]$}
+%			%\State $c[u] \gets i \in \{1,\ldots, k\} \text{ s.t. } c[u] \neq c[\pi[u]]$
+%			\State $c[u] \gets 1$ \Comment{paint initially all vertices with color $1$.}
+%			\State $\pi[u] \gets \text{\textsc{null}}$ \Comment{set initially the predecessor of $u$ to \textsc{null}.}
+%		\EndFor
+%		\State $time \gets 0$ \Comment{initialize the global timestamp variable.}
+%		\ForAll{vertex $u \in V[G_{T}]$}
+%		  %\If{$c[u] = i \in \{1,\ldots ,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$}
+%		  \If{$c[u] = 1$}
+%			\State \textit{call} \textsc{Dfs-Visit}($u$)
+%		  \EndIf
+%		\EndFor
+%	\EndProcedure
+%	\newline
+%
+%	\Procedure{\textsc{Dfs-Visit}}{$u$}
+%		%\State $c[u] \gets 0$ \Comment{vertex $u$ with color $i \in \{1,\ldots, k\}$ has been discovered.}
+%		\State $c[u] \gets 0$ \Comment{vertex $u$ with color $1$ has been discovered.}
+%		\State $d[u] \gets time \gets time + 1$ \Comment{update the discovering time.}
+%		\ForAll{$v \in adj[u]$} \Comment{explore edge $(u,v)$.}
+%		   %\If {$c[v] = i \in \{1,\ldots,k\} \text{ s.t. } c[v] \neq c[\pi[v]]$}
+%		   \If {$c[v] = 1$}
+%			   \State $\pi[v] \gets u$
+%			   \State \textit{call} \textsc{DFS-Visit($v$)}
+%		   \EndIf
+%		 \EndFor
+%		 \State $c[u] \gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$, i.e. $i \in \{1,\ldots,k\}\backslash \{c[\pi[u]]\}$
+%		 \Statex\Comment{paint vertex $u$ with color $i \in \{1,\ldots,k\}$; $\Rightarrow$ finished.}
+%		 \State $f[u] \gets time \gets time + 1$ \Comment{update the finishing time.}
+%	\EndProcedure	
+%\end{algorithmic}
+%\caption{\small Polynomial time DFS-Algorithm for $k$-Coloring of trees.}
+%\label{alg_k-coloring_dfs}
+%\end{algorithm}}}%
+%BeginExpansion
+\floatname{algorithm}{Algorithm}
+\algrenewcommand{\algorithmicrequire}{\textbf{Input:}}
+\algrenewcommand{\algorithmicensure}{\textbf{Output:}}
+\algrenewcommand{\algorithmicforall}{\textbf{for each}}
+
+\begin{algorithm}[ht]
+\small
+\begin{algorithmic}[1]
+	\Require An undirected tree $G_{T} = (V,E)$
+	\Ensure A $k$-coloring of $G_{T}$.
+	\newline
+
+	\Procedure{\textsc{Dfs}}{$G_{T}$}
+		\ForAll{vertex $u \in V[G_{T}]$}
+			%\State $c[u] \gets i \in \{1,\ldots, k\} \text{ s.t. } c[u] \neq c[\pi[u]]$
+			\State $c[u] \gets 1$ \Comment{paint initially all vertices with color $1$.}
+			\State $\pi[u] \gets \text{\textsc{null}}$ \Comment{set initially the predecessor of $u$ to \textsc{null}.}
+		\EndFor
+		\State $time \gets 0$ \Comment{initialize the global timestamp variable.}
+		\ForAll{vertex $u \in V[G_{T}]$}
+		  %\If{$c[u] = i \in \{1,\ldots ,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$}
+		  \If{$c[u] = 1$}
+			\State \textit{call} \textsc{Dfs-Visit}($u$)
+		  \EndIf
+		\EndFor
+	\EndProcedure
+	\newline
+
+	\Procedure{\textsc{Dfs-Visit}}{$u$}
+		%\State $c[u] \gets 0$ \Comment{vertex $u$ with color $i \in \{1,\ldots, k\}$ has been discovered.}
+		\State $c[u] \gets 0$ \Comment{vertex $u$ with color $1$ has been discovered.}
+		\State $d[u] \gets time \gets time + 1$ \Comment{update the discovering time.}
+		\ForAll{$v \in adj[u]$} \Comment{explore edge $(u,v)$.}
+		   %\If {$c[v] = i \in \{1,\ldots,k\} \text{ s.t. } c[v] \neq c[\pi[v]]$}
+		   \If {$c[v] = 1$}
+			   \State $\pi[v] \gets u$
+			   \State \textit{call} \textsc{DFS-Visit($v$)}
+		   \EndIf
+		 \EndFor
+		 \State $c[u] \gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$, i.e. $i \in \{1,\ldots,k\}\backslash \{c[\pi[u]]\}$
+		 \Statex\Comment{paint vertex $u$ with color $i \in \{1,\ldots,k\}$; $\Rightarrow$ finished.}
+		 \State $f[u] \gets time \gets time + 1$ \Comment{update the finishing time.}
+	\EndProcedure	
+\end{algorithmic}
+\caption{\small Polynomial time DFS-Algorithm for $k$-Coloring of trees.}
+\label{alg_k-coloring_dfs}
+\end{algorithm}%
+%EndExpansion
+
+The algortihm works as follows. Lines 2--4 paint all vertices with color $1$
+and initialize their predecessor (parent node) to \textsc{Null}. Line 5
+initialize the global time counter with $0$.
 
 \bigskip
 
@@ -410,25 +521,26 @@ This can be explained by using a small procedure (see Procedure \ref%
 %\renewcommand{\algorithmicensure}{\textbf{Output:}}
 %\renewcommand{\algorithmicforall}{\textbf{for each}}
 %
-%\begin{algorithm}[h]
+%\begin{algorithm}[ht]
 %\small
-%\caption{N-SORTED-ELEMENTS}
-%\label{Alg-N-Sorted-El}
 %\begin{algorithmic}
-%\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
-%\ENSURE $\mathbf{true}$ or $\mathbf{false}$
-%\STATE $i \leftarrow 1$
-%\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted elements of size $k$} 
-%\FORALL{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
-%	\IF{$\left(e(i) + 1\right) = e(i+1)$}
-%			\STATE $count \leftarrow count + 1$
-%		\IF{$count = k$}
-%			\RETURN \textbf{true}
-%		\ENDIF
-%	\ENDIF
-%\ENDFOR
-%\RETURN \textbf{false}
+%	\Require $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
+%	\Ensure $\mathbf{true}$ if $n$-sorted elements of size $k$ are found, $\mathbf{false}$ otherwise.
+%	\newline
+%	\State $i \leftarrow 1$
+%	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$} 
+%	\ForAll{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
+%		\If{$\left(e(i) + 1\right) = e(i+1)$}
+%				\State $count \leftarrow count + 1$
+%			\If{$count = k$}
+%				\Return \textbf{true}
+%			\EndIf
+%		\EndIf
+%	\EndFor\\
+%	\Return \textbf{false}
 %\end{algorithmic}
+%\caption{\small \textsc{N-Sorted-Elements} procedure.}
+%\label{Alg-N-Sorted-El}
 %\end{algorithm}}}%
 %BeginExpansion
 \floatname{algorithm}{Procedure}
@@ -436,25 +548,26 @@ This can be explained by using a small procedure (see Procedure \ref%
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 \renewcommand{\algorithmicforall}{\textbf{for each}}
 
-\begin{algorithm}[h]
+\begin{algorithm}[ht]
 \small
-\caption{N-SORTED-ELEMENTS}
-\label{Alg-N-Sorted-El}
 \begin{algorithmic}
-\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
-\ENSURE $\mathbf{true}$ or $\mathbf{false}$
-\STATE $i \leftarrow 1$
-\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted elements of size $k$} 
-\FORALL{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
-	\IF{$\left(e(i) + 1\right) = e(i+1)$}
-			\STATE $count \leftarrow count + 1$
-		\IF{$count = k$}
-			\RETURN \textbf{true}
-		\ENDIF
-	\ENDIF
-\ENDFOR
-\RETURN \textbf{false}
+	\Require $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
+	\Ensure $\mathbf{true}$ if $n$-sorted elements of size $k$ are found, $\mathbf{false}$ otherwise.
+	\newline
+	\State $i \leftarrow 1$
+	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$} 
+	\ForAll{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
+		\If{$\left(e(i) + 1\right) = e(i+1)$}
+				\State $count \leftarrow count + 1$
+			\If{$count = k$}
+				\Return \textbf{true}
+			\EndIf
+		\EndIf
+	\EndFor\\
+	\Return \textbf{false}
 \end{algorithmic}
+\caption{\small \textsc{N-Sorted-Elements} procedure.}
+\label{Alg-N-Sorted-El}
 \end{algorithm}%
 %EndExpansion
 

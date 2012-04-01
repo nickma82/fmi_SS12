@@ -1,46 +1,42 @@
 \subsection{solution}
-%\hfill \newline
 
-To prove that \textbf{SUBSET SUM} $\in$ \textbf{NP} we have to define a polynomially balanced and 
-polynomially decidable certificate relation for \textbf{SUBSET SUM}:
-\newline
-\newline
-Let $R=\{S'\subseteq S | S'\}$ be a subset of sum of S. \\
-This is the case if $\sum (S')$ of it's elements ($S'$) is exactly $t$.
-\newline\newline
+\textbf{Proof:}
 
-% $R$ is indeed a certificate relation through the construction: \\
-% $S'$ is a positive instance of \textbf{SUBSET SUM} $\leftrightarrow$ the 
-% sum of S' elements is exactly t $\leftrightarrow \exists S' \subseteq \in R$.
-% \newline
-% \newline
-% Now we show that the given relation is polynomially balanced:
-% \newline
-% S' is always $\leq$ then S because by definition a subset sum ia a subset or equal the 
-% original set of integer numbers.
-% \newline
-% \newline
-% Next we have to show that there exists a polynomial time algorithm to sum a given subset. 
-% For this we can simply sum all elements of S' which is possible in linear time.
-% \newline
-% \newline
-% Since $ R $ is polynomially balanced and polinomial-time decidable, it follows that \textbf{SUBSET SUM} is in NP.
+To prove that \textsc{Subset-Sum} $\in $ NP, we have to define a
+polynomially balanced and polynomially decidable certificate relation for 
+\textsc{Subset-Sum}:
 
-$R_s = \{\langle S,t\rangle\} \| \exists S' \subseteq S s.t. t = \sum_{a \in S}a and t \geq 1\}$
+Let $S=\{a_{1},\ldots ,a_{n}\}$ be an arbitrary finite set of integer
+numbers with $n\geq 1$ and let $t$ $\in \mathbb{N}$, s.t. $t\geq 1$.
 
-\noindent $\Rightarrow$ 
-We argue that $R_s$ is indeed a certificate relation for \textit{SUBS.-SUM} 
-since following holds:
+Then the certificate relation for \textsc{Subset-Sum} is defined as follows:
 
-$S$ is a positive instance of \textit{SUBS.-SUM} $\leftrightarrow \exists$ a certificate
-subset $S' \subseteq S$ of non-negative integers, s.t.
-$$\sum_{a \in S'}a = t \leftrightarrow \exists t \in N^{+}, s.t. \langle S,t\rangle\in R_s$$
+\begin{equation*}
+R_{S}=\{\langle S,t\rangle \mid \exists \,S^{\prime }\subseteq S\text{ s.t. }%
+t=\tsum\limits_{a\in S^{\prime }}a\text{ and }t\geq 1\}.
+\end{equation*}
+
+We argue that $R_{S}$ is indeed a certificate relation for \textsc{Subset-Sum%
+}, since following holds:
+
+\begin{gather*}
+S\text{ is a positive instance of \textsc{Subset-Sum}}\quad \Leftrightarrow 
+\\
+\exists \text{ a certificate subset }S^{\prime }\subseteq S\text{ of
+non-negative integers, s.t. }\tsum\limits_{a\in S^{\prime }}a=t\quad
+\Leftrightarrow  \\
+\exists \,t\in \mathbb{N}^{+}\text{, s.t. }\langle S,t\rangle \in R_{S}\text{%
+.}
+\end{gather*}
 
 \begin{itemize}
- \item $R_s$ is polynomial balanced since every subset $S' \subseteq S$ of
-integer values can be represented in linear space s (array) and
-the sum of elements is t.
- \item $R_s$ is polynomial - time descidable since the sum of all elements 
-of $S' \subseteq S$ needs linear time. Hence $S'$ can be finished at most in 
-polynomial time
+\item $R_{s}$ is \textit{polynomial balanced} since every subset $S^{\prime
+}\subseteq S$ of integer values can be represented in linear space (array)
+and the sum of elements is $t$, which uses only constant space.
+
+\item $R_{s}$ is \textit{polynomial-time decidable} since the sum of all
+elements of $S^{\prime }\subseteq S$ needs linear time. Hence $S^{\prime }$
+can be finished at most in polynomial time.
 \end{itemize}
+
+\bigskip 

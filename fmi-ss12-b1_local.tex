@@ -46,7 +46,7 @@
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Sunday, April 01, 2012 23:02:56}
+%TCIDATA{LastRevised=Sunday, April 01, 2012 23:29:55}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -308,6 +308,47 @@ We ask whether there is a subset $S^{\prime }\subseteq S$ whose elements sum
 is equal to $t$?
 \end{exercise}
 
+\textbf{Proof:}
+
+To prove that \textsc{Subset-Sum} $\in $ NP, we have to define a
+polynomially balanced and polynomially decidable certificate relation for 
+\textsc{Subset-Sum}:
+
+Let $S=\{a_{1},\ldots ,a_{n}\}$ be an arbitrary finite set of integer
+numbers with $n\geq 1$ and let $t$ $\in \mathbb{N}$, s.t. $t\geq 1$.
+
+Then the certificate relation for \textsc{Subset-Sum} is defined as follows:
+
+\begin{equation*}
+R_{S}=\{\langle S,t\rangle \mid \exists \,S^{\prime }\subseteq S\text{ s.t. }%
+t=\tsum\limits_{a\in S^{\prime }}a\text{ and }t\geq 1\}.
+\end{equation*}
+
+We argue that $R_{S}$ is indeed a certificate relation for \textsc{Subset-Sum%
+}, since following holds:
+
+\begin{gather*}
+S\text{ is a positive instance of \textsc{Subset-Sum}}\quad \Leftrightarrow 
+\\
+\exists \text{ a certificate subset }S^{\prime }\subseteq S\text{ of
+non-negative integers, s.t. }\tsum\limits_{a\in S^{\prime }}a=t\quad
+\Leftrightarrow  \\
+\exists \,t\in \mathbb{N}^{+}\text{, s.t. }\langle S,t\rangle \in R_{S}\text{%
+.}
+\end{gather*}
+
+\begin{itemize}
+\item $R_{s}$ is \textit{polynomial balanced} since every subset $S^{\prime
+}\subseteq S$ of integer values can be represented in linear space (array)
+and the sum of elements is $t$, which uses only constant space. 
+
+\item $R_{s}$ is \textit{polynomial-time decidable} since the sum of all
+elements of $S^{\prime }\subseteq S$ needs linear time. Hence $S^{\prime }$
+can be finished at most in polynomial time.
+\end{itemize}
+
+\bigskip 
+
 \begin{exercise}
 \label{ex:partition} Formally prove that \textbf{PARTITION} is $\mathsf{NP}$%
 -complete. For this you may use the fact that \textbf{SUBSET SUM} is $%
@@ -388,7 +429,7 @@ function $\mu $ such that $\mu :fr(t)\rightarrow c(v)$, for all $t\in
 T(G_{F})$ and for\ all $v\in V(G_{C})$. Since $(G_{F},k)$ is a positive
 instance of \textsc{Frequency-Assignment}, then there exists a corresponding
 mapping $\mu $ from each node $t\in T(G_{F})$ to each node $v\in V(G_{C})$,
-such that $\forall (t_{i},t_{j})\in E(G_{F}):fr(t_{i})\neq fr(t_{j})$ and 
+such that $\forall (t_{i},t_{j})\in E(G_{F}):fr(t_{i})\neq fr(t_{j})$ and
 
 $\forall (v_{i},v_{j})\in E(G_{C}):c(v_{i})\neq c(v_{j})$ and $i\neq j$ and $%
 k=k^{\prime }$. This means that both functions are behaving identical on
@@ -405,7 +446,7 @@ Since there exists a bijection on both vertex sets of the graphs $G_{C}$ and
 $G_{F}$, i.e. both graphs are \textit{isomorph}, $(G_{F},k)$ is also a
 positive instance of \textsc{Frequency-Assignment}.
 
-\bigskip 
+\bigskip
 
 \begin{exercise}
 \label{ex:CO-NP} Fomally prove that logical entailment is $co-\mathsf{NP}$%

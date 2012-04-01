@@ -3,13 +3,14 @@
 %$$F=\bigwedge_{z=1}^{9}\Bigg(\bigvee_{y=1}^{9} v_{1,y,z}\Bigg)$$
 
 \subsubsection{Reduction}
-Now we have to construct a polynomial-time reduction from \textbf{N-Queens} to SAT. Let an arbitrary 
+We have to construct a polynomial-time reduction from \textbf{N-Queens} to SAT. Let an arbitrary 
 instance of \textbf{N-Queens} be given by n queens and a $n \times n$ chessboard. 
 We construct a propositional formula $\psi$ (i.e. an instance of \textbf{SAT}) as follows.\\
-First of all we use the following propositional variables:
+First of all, we use the following propositional variables:
 $s_ij$, where $s_ij$ stands for the cell (i,j) of the $n \times n$ chessboard. 
 The variable $s_ij$ is assigned true iff a queen is assigned to the cell (i,j).
-The different constraints of the puzzle can be expressed with this representation in the following way:
+The different constraints of the puzzle can be expressed with this representation 
+in the following way:
 
 \noindent Rule to assert that we get at most one queen in a column:
 $$\psi_1 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{i;j} \vee \neg s_{i;k})$$
@@ -18,7 +19,8 @@ $$\psi_1 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg
 $$\psi_2 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{j;i} \vee \neg s_{k;i})$$
 
 \noindent Left-lower to right-upper diagonal lines are splitted in two parts:
-The bottom lines are characterized by a numer $d \in {0,...,n-2}$, and each line is compounded by the cells (i,j) such that $i-j=d$.
+The bottom lines are characterized by a numer $d \in {0,...,n-2}$, and each line is 
+compounded by the cells (i,j) such that $i-j=d$.
 Notice that the lines with only one cell (the corners) are removed.\\
 Rule to assert that we get at most one queen in a diagonal line:
 $$\psi_3 \equiv \bigwedge_{d=0}^{n-2}\bigwedge_{j=1}^{n-d}\bigwedge_{k=j+1}^{n-2}(\neg s_{d+j;i} \vee \neg s_{d+k;k})$$

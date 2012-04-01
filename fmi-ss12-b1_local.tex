@@ -46,7 +46,7 @@
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Sunday, April 01, 2012 17:27:49}
+%TCIDATA{LastRevised=Sunday, April 01, 2012 20:46:53}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -331,6 +331,31 @@ same frequency. We ask whether there is an assignment of each transmitter to
 one of $k$ frequencies such that there is no interference between the
 transmitters.
 \end{exercise}
+
+\textbf{Proof:}
+
+The NP-hardness of the \textsc{Frequency-Assignment} problem can be shown by
+a reduction to $k$\textsc{-Colorability}, since $k$\textsc{-Colorability} is
+in NP.
+
+At first we have to check \ if \textsc{Frequency-Assignment} id a membership
+of NP.
+
+This can be done by a guess \& check procedure:
+
+Let\ $G_{F}=(T,E)$ be an arbitrary graph for \textsc{Frequency-Assignment}
+with $T=\{t_{1},t_{2},\ldots ,t_{n}\}$ and $E=\{(t_{i},t_{j})\mid
+t_{i},t_{j}\in T$ with $i\neq j$ s.t. $t_{i}$ and $t_{j}$ are interfering
+each other$\}$.
+
+Guess an arbitrary set of frequencies $F=\{f_{1},\ldots ,f_{k}\}$ of size $k$%
+. Then for each transmitter-vertex $t\in T(G_{F})$, verify if $\forall
+t_{i},t_{j}\in T(G_{F})$ with $i\neq j$, that $t_{i}$ has no adjacent vertex 
+$t_{j}$ with the same frequency $f\in F$.
+
+\bigskip
+
+\bigskip
 
 \begin{exercise}
 \label{ex:CO-NP} Fomally prove that logical entailment is $co-\mathsf{NP}$%

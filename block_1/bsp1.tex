@@ -3,7 +3,7 @@
 Neg-Assignment}.
 
 Let $(\Pi ,I)$ be an arbitrary instance of \textsc{Halting}, i.e. $\Pi $ \
-is a program that takes an input. Based on this, we have to construct an
+is a program that takes an input I. Based on this, we have to construct an
 instance $(\Pi ^{\prime },I^{\prime },k)$ for \textsc{Neg-Assignment} by
 setting $I^{\prime }=I$ and setting initially $k\geq 0$. Then $\Pi ^{\prime
 } $ is defined as follows:
@@ -13,9 +13,9 @@ setting $I^{\prime }=I$ and setting initially $k\geq 0$. Then $\Pi ^{\prime
 %\fbox{
 %\begin{minipage}[c]{.9\linewidth}
 %\small
-%boolean $\Pi'$(String $S$) $\{$\\
+%boolean $\Pi'$(String $I$) $\{$\\
 %   int $k := 0$;\\
-%   call $\Pi(S)$;\\
+%   call $\Pi(I)$;\\
 %   $k := -1$;\\
 %   return true;\\
 %$\}$\\
@@ -28,9 +28,9 @@ setting $I^{\prime }=I$ and setting initially $k\geq 0$. Then $\Pi ^{\prime
 \fbox{
 \begin{minipage}[c]{.9\linewidth}
 \small
-boolean $\Pi'$(String $S$) $\{$\\
+boolean $\Pi'$(String $I$) $\{$\\
    int $k := 0$;\\
-   call $\Pi(S)$;\\
+   call $\Pi(I)$;\\
    $k := -1$;\\
    return true;\\
 $\}$\\
@@ -56,12 +56,12 @@ instance} \\
 $\Rightarrow :$ Suppose that $\left( \Pi ,I\right) $ is a positive instance
 of \textsc{Halting}, i.e. $\Pi $ terminates on $I$.
 
-Then by construction of $(\Pi ^{\prime },I^{\prime },k)$, the call of $\Pi
+\noindent Then by construction of $(\Pi ^{\prime },I^{\prime },k)$, the call of $\Pi
 (I^{\prime })$ in program $\Pi ^{\prime }$ terminates since $I^{\prime }=I$.
 Hence, $\Pi ^{\prime }$ halts on input $I^{\prime }$, assignes $k:=-1$ and
 returns \textit{true} respectively.
 
-Thus, $(\Pi ^{\prime },I^{\prime },k)$ is a positive instance of \textsc{%
+\noindent Thus, $(\Pi ^{\prime },I^{\prime },k)$ is a positive instance of \textsc{%
 Neg-Assignment}.
 
 \bigskip

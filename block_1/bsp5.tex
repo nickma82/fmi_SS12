@@ -1,3 +1,75 @@
 \subsection{solution}
+The NP-hardness of the \textsc{Frequency-Assignment} problem can be shown by
+a reduction to $k$\textsc{-Colorability}, since $k$\textsc{-Colorability} is
+in NP.
 
-test
+At first we have to check \ if \textsc{Frequency-Assignment} id a membership
+of NP.
+
+This can be done by a guess \& check procedure:
+
+\begin{definition}
+Let\ $G_{F}=(T,E)$ be an arbitrary undirected graph for \textsc{%
+Frequency-Assignment} with $T=\{t_{1},t_{2},\ldots ,t_{n}\}$ and $E^{\prime
+}=\{(t_{i},t_{j})\mid t_{i},t_{j}\in T(G_{F})$ with $i\neq j$ s.t. $t_{i}$
+and $t_{j}$ are interfering each other$\}\subseteq E=$.$\{(t_{i},t_{j})\mid
+t_{i},t_{j}\in T(G_{F})$ with $i\neq j\}$. Let $F=\{f_{1},\ldots ,f_{k}\}$
+be an arbitrary set of frequencies and $fr:T(G_{F})\rightarrow F$ a function
+for assigning each transmitter-vertex $t\in T(G_{F})$ to a frequency $f\in F$%
+.
+\end{definition}
+
+Guess an arbitrary set of frequencies $F=\{f_{1},\ldots ,f_{k}\}$ of size $k$%
+. Then for each transmitter-vertex $t\in T(G_{F})$, verify that $t$ has no
+adjacent verteices $u\in T(G_{F})$ with the same frequency $f\in F$, i.e. $%
+\forall t_{i},t_{j}\in T(G_{F})$ with $i\neq j$, s.t. $(t_{i},t_{j})\in E$
+and $fr(t_{i})\neq fr(t_{j})$. The verification of the edges in $G_{F}$
+takes polynomial time in the size of $k=|F|$ and the number of edges $n=|E|$
+in $G_{F}$.
+
+It remains to show that \textsc{Frequency-Assignment} is NP-hard, by
+reducing \textsc{Frequency-Assignment} to $k$\textsc{-Colorability}.
+
+Let\ $G_{F}=(T,E)$ be an arbitrary undirected graph for \textsc{%
+Frequency-Assignment} (as defined above). To prove the correctness of the
+reduction, we have to show that following equation holds:%
+\begin{equation*}
+(G_{F},k)\text{ is a positive instance of \textsc{Frequency-Assignment}}%
+\quad \Leftrightarrow \quad (G_{C},k^{\prime })\text{ is a positive instance
+of }k\text{\textsc{-Colorability}.}
+\end{equation*}
+
+\textbf{Proof:}
+
+Given an arbitrary instance $(G_{F},k)$ of \textsc{Frequency-Assignment}.
+Then an instance of $(G_{C},k^{\prime })$ of $k$\textsc{-Colorability} can
+be produced iff, $k=k^{\prime }$ and there exists a function $%
+c:V(G_{C})\rightarrow C$, where $C=\{1,\ldots ,k^{\prime }\}$ is a set of
+colors of size $k^{\prime }$.
+
+$\Rightarrow :$ Suppose $(G_{F},k)$ is a positive instance of \textsc{%
+Frequency-Assignment}. Then $\forall t_{i},t_{j}\in T(G_{F})$ with $i\neq j$%
+, every edge $(t_{i},t_{j})\in E(G_{F})$, has pairwise different frequencies
+such that $fr(t_{i})\neq fr(t_{j})$. We have to define an assignment
+function $\mu $ such that $\mu :fr(t)\rightarrow c(v)$, for all $t\in
+T(G_{F})$ and for\ all $v\in V(G_{C})$. Since $(G_{F},k)$ is a positive
+instance of \textsc{Frequency-Assignment}, then there exists a corresponding
+mapping $\mu $ from each node $t\in T(G_{F})$ to each node $v\in V(G_{C})$,
+such that $\forall (t_{i},t_{j})\in E(G_{F}):fr(t_{i})\neq fr(t_{j})$ and 
+
+$\forall (v_{i},v_{j})\in E(G_{C}):c(v_{i})\neq c(v_{j})$ and $i\neq j$ and $%
+k=k^{\prime }$. This means that both functions are behaving identical on
+each graph, such that $fr=c$, i.e. there is a \textit{bijection} between the
+vertex sets of $G_{F}$ and $G_{C}$. Thus, both undirected graphs $G_{F}$ and 
+$G_{C}$ are \textit{isomorph}. Hence, $(G_{C},k^{\prime })$ is a positive
+instance of $k$\textsc{-Colorability}$.$
+
+$\Leftarrow :$ Suppose that $(G_{C},k^{\prime })$ is a positive instance of $%
+k$\textsc{-Colorability}. Then there exists an assignment function $\mu $
+(similar as above but in the other direction), such that $\mu
+:c(v)\rightarrow fr(t)$ for all $v\in V(G_{C})$ and for all $t\in T(G_{F})$.
+Since there exists a bijection on both vertex sets of the graphs $G_{C}$ and 
+$G_{F}$, i.e. both graphs are \textit{isomorph}, $(G_{F},k)$ is also a
+positive instance of \textsc{Frequency-Assignment}.
+
+\bigskip 

@@ -70,6 +70,17 @@ $\psi_7$ evaluates to true if for each number $j \in {1,..,n}$ the number
 has been assigned at least once which is true for a positive instance of \textbf{N-Queens}.\\
 
 $\Leftarrow$ direction:\\
+Suppose we have a positive instance T of \textbf{SAT} that is a truth assignment for the propositional
+formula $\psi$. We have to show that it's possible to derive a poitive instance of 
+\textbf{N-Queens} out of T.\\
+While T is a positive instance of \textbf{SAT}, each clause of $\psi$ will evaluate 
+to true. Thus we can derive a queen set on an $n \times n$ chessboard by using the 
+first 6 clauses. What we now have to show is that we can derive a \textbf{N-Queens}
+out if T and that \textbf{N-Queens} is exactly of size n.\\
+By definition of clauses $\psi_1 to \psi_6$ we already made sure that there can be at
+most 1 queen in each line, each row and each diagonal line. Because of cluase 
+$\psi_7$ there must be at least one queen in each column and therefore we can be sure
+that \textbf{N-Queens} is of size n.
 
 \subsubsection{NP-complete}
 Yes, \textbf{N-Queens} is NP-complete because we have constructed a polynomial-time 

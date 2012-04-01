@@ -2,26 +2,44 @@
 
 %$$F=\bigwedge_{z=1}^{9}\Bigg(\bigvee_{y=1}^{9} v_{1,y,z}\Bigg)$$
 
-\subsubsection{Assertion for at most one queen}
-Rule to assert that we get at most one queen in a column.
+\subsubsection{Reduction}
+Now we have to construct a polynomial-time reduction from \textbf{N-Queens} to SAT. Let an arbitrary 
+instance of \textbf{N-Queens} be given by n queens and a $n \times n$ chessboard. 
+We construct a propositional formula %$\psi$ (i.e. an instance of \texbf{SAT}) as follows.\\
+First of all we use the following propositional variables:
+$s_ij$, where $s_ij$ stands for the cell (i,j) of the $n \times n$ chessboard. 
+The variable $s_ij$ is assigned true iff a queen is assigned to the cell (i,j).
+The different constraints of the puzzle can be expressed with this representation in the following way:
+
+Rule to assert that we get at most one queen in a column:
 $$\psi_1 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{i;j} \vee \neg s_{i;k})$$
 
-Rule to assert that we get at most one queen in each row.
+\noindent Rule to assert that we get at most one queen in each row:
 $$\psi_2 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{j;i} \vee \neg s_{k;i})$$
 
-Left-lower to right-upper diagonal
+\noindent Left-lower to right-upper diagonal lines are splitted in two parts:
+The bottom lines are characterized by a numer $d \in {0,...,n-2}$, and each line is compounded by the cells (i,j) such that $i-j=d$.
+Notice that the lines with only one cell (the corners) are removed.\\
+Rule to assert that we get at most one queen in a diagonal line:
 $$\psi_3 \equiv \bigwedge_{d=0}^{n-2}\bigwedge_{j=1}^{n-d}\bigwedge_{k=j+1}^{n-2}(\neg s_{d+j;i} \vee \neg s_{d+k;k})$$
 
-Left-upper to right-lower diagonal
+\noindent The remaining diagonal lines are characterized by $d \in {-(n-2),...,-1}$ and their rule is defined by:
 $$\psi_4 \equiv \bigwedge_{d=2-n)}^{-1}\bigwedge_{j=1}^{n+d}\bigwedge_{k=j+1}^{n+d}(\neg s_{j;j-d} \vee \neg s_{k;k-d})$$
 
+\noindent Analogously the left-upper to right-lower diagonal lines are splitted in two parts: 
+The bottom lines are charactarized by a number $d \in {3,...,n+1}$ and the\\
+rule to assert that we get at most one queen in a diagonal line:
 $$\psi_5 \equiv \bigwedge_{d=3}^{n+1}\bigwedge_{j=1}^{d-1}\bigwedge_{k=j+1}^{d-1}(\neg s_{dj;d-j} \vee \neg s_{k;d-k})$$
 
-
+\noindent The remaining diagonal lines are characterized by $d \in {n+2,...,2n-1}$ and their rule is defined by:
 $$\psi_6 \equiv \bigwedge_{d=n+2}^{2n-1}\bigwedge_{j=d-n}^{n}\bigwedge_{k=j+1}^{d-1}(\neg s_{j;d-j} \vee \neg s_{k;d-k})$$
 
-
+Rule to assert that we get at least one queen in each column:
 $$\psi_7 \equiv \bigwedge_{i=1}^{n}\bigvee_{j=i}^{n}s_{i;j}$$
+wich ensures that there is exactly one queen in each column.
 
-\subsubsection{adsf}
-asf
+So we get the conjunction of these seven formulae:
+$$\psi \equiv \psi_1\bigwedge\psi_2\bigwedge\psi_3\bigwedge\psi_4\bigwedge\psi_5\bigwedge\psi_6\bigwedge\psi_7\bigwedge$$
+is in CNF form and each truth assignment which makes it true represents a solution to the \textbf{N-Queens} problem.
+
+\subsubsection{Proof sketch}

@@ -26,13 +26,13 @@ This is the case if $\sum (S')$ of it's elements ($S'$) is exactly $t$.
 % \newline
 % Since $ R $ is polynomially balanced and polinomial-time decidable, it follows that \textbf{SUBSET SUM} is in NP.
 
-$R_s = \{\langle S,t\rangle\} \| \exists S' \subseteq S s.t. t = \sum_{a \in S}a and t \geq 1\}$
+$R_s = \{\langle S,t\rangle\} \| \exists S' \subseteq S \text{ s.t. } t = \sum_{a \in S}a \text{ and } t \geq 1\}$
 
 \noindent $\Rightarrow$ 
 We argue that $R_s$ is indeed a certificate relation for \textit{SUBS.-SUM} 
 since following holds:
 
-$S$ is a positive instance of \textit{SUBS.-SUM} $\leftrightarrow \exists$ a certificate
+\noindent $S$ is a positive instance of \textit{SUBS.-SUM} $\leftrightarrow \exists$ a certificate
 subset $S' \subseteq S$ of non-negative integers, s.t.
 $$\sum_{a \in S'}a = t \leftrightarrow \exists t \in N^{+}, s.t. \langle S,t\rangle\in R_s$$
 

@@ -5,13 +5,13 @@
 \subsubsection{Reduction}
 Now we have to construct a polynomial-time reduction from \textbf{N-Queens} to SAT. Let an arbitrary 
 instance of \textbf{N-Queens} be given by n queens and a $n \times n$ chessboard. 
-We construct a propositional formula %$\psi$ (i.e. an instance of \texbf{SAT}) as follows.\\
+We construct a propositional formula $\psi$ (i.e. an instance of \textbf{SAT}) as follows.\\
 First of all we use the following propositional variables:
 $s_ij$, where $s_ij$ stands for the cell (i,j) of the $n \times n$ chessboard. 
 The variable $s_ij$ is assigned true iff a queen is assigned to the cell (i,j).
 The different constraints of the puzzle can be expressed with this representation in the following way:
 
-Rule to assert that we get at most one queen in a column:
+\noindent Rule to assert that we get at most one queen in a column:
 $$\psi_1 \equiv \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{i;j} \vee \neg s_{i;k})$$
 
 \noindent Rule to assert that we get at most one queen in each row:

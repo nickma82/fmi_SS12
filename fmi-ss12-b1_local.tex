@@ -25,19 +25,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{latexsym}
 \usepackage{amssymb}
-\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
 \usepackage{enumerate}
+\usepackage[amsmath,amsthm]{ntheorem}
+\usepackage[pagebackref=true,colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{lastpage}
+\usepackage{epsfig}
+\usepackage{float}
 \usepackage{xspace}
 \usepackage{paralist}
+\usepackage{enumerate}
 \usepackage[boxed]{algorithm}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 
+\setcounter{MaxMatrixCols}{10}
 %TCIDATA{OutputFilter=LATEX.DLL}
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Sunday, April 01, 2012 04:24:19}
+%TCIDATA{LastRevised=Sunday, April 01, 2012 16:17:36}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -339,21 +348,24 @@ restricted problem be solved with an algorithm that runs in polynomial time?
 If yes, provide such an algorithm.
 \end{exercise}
 
-\textbf{Argumentation:} The restricted problem of \textsc{Vertex k-Coloring}
-to trees can be solved in polynomial time.
+\noindent \textbf{Argumentation:}
+
+The restricted problem of \textsc{Vertex k-Coloring} to trees can be solved
+in polynomial time.
 
 Let $G_{T}=(V,E)$ be an arbitrary tree with the vertex set $V=\{v_{1},\ldots
 ,v_{n}\}$ and a mapping $c:V(G_{T})\rightarrow \{1,,\ldots ,k\}$ such that $%
 V_{i}=\{v\in V(G_{T})\mid c(v)=i\}$ and $c(u)\neq c(v)$, whenever $u,v\in V$
 are adjacent $\forall (u,v)\in E(G_{T})$. Let us denote $\langle
-V_{i}\rangle $ the subgraph induced by $V_{i}$ in $G_{T}$. Depending on the
-graph property $\Pi _{T\text{ }}$for trees, which can be enforced on each $%
-\langle V_{i}\rangle $, there can be defined different coloring concepts. If
-each $V_{i}$ is an independent set for $1\leq i\leq k$, then the coloring
-function $c$ is a proper $k$-coloring.
+V_{i}\rangle $ the \textit{subgraph induced by }$V_{i}$ in $G_{T}.$ (Note: $%
+\langle V_{i}\rangle $ is possiblely a disconnected subgraph of $G_{T}$.)
+Depending on the graph property $\Pi _{T\text{ }}$for trees, which can be
+enforced on each $\langle V_{i}\rangle $, there can be defined different
+coloring concepts. If each $V_{i}$ is an \textit{independent set} for $1\leq
+i\leq k$, then the coloring function $c$ is a proper $k$-coloring.
 
-Then the maximum independent set of a tree can be found in \textit{linear
-time}, by%
+Then the \textit{maximum independent set of a tree} can be found in \textit{%
+linear time}, by 
 \begin{inparaenum}[\itshape 1\upshape)]
 \item stripping off all the end-vertices (leaf nodes),
 \item adding them to the independent set,
@@ -366,13 +378,15 @@ called a $k$\textit{-tree coloring}. Then every graph has a proper $k$%
 acyclic connected graph, then every vertex $v$ is pairwise different colored
 to its predecessor node $\pi (v)=u$.
 
-\bigskip 
-
 Then the \textit{predecessor subgraph} of a depth-first search, denoted as $%
-G_{\pi }=(V,E_{\pi })(=\langle V_{i}\rangle ?)$ with $E_{\pi }=\{(\pi
-(v),v)\mid v\in V$ and $\pi (v)\neq $ \textsc{Null}$\}$, forms a \textit{%
-depth-first forest} which is composed of serveral \textit{depth-first trees}%
-. The edges in $E_{\pi }$ are also called \textit{tree edges}.
+G_{\pi }=(V,E_{\pi })$ with $E_{\pi }=\{(\pi (v),v)\mid v\in V$ and $\pi
+(v)\neq $ \textsc{Null}$\}$, forms a \textit{depth-first forest} which is
+composed of serveral \textit{depth-first trees}, since the search can be
+repeated from several multiple sources. The edges in $E_{\pi }$ are also
+called \textit{tree edges}.
+
+The following pseudocode (\ref{alg_k-coloring_dfs}) is a modified version of
+the basic depth-first-search algorithm.
 
 %TCIMACRO{%
 %\TeXButton{DFS-Algortim for k-Coloring}{\floatname{algorithm}{Algorithm}
@@ -380,43 +394,38 @@ depth-first forest} which is composed of serveral \textit{depth-first trees}%
 %\algrenewcommand{\algorithmicensure}{\textbf{Output:}}
 %\algrenewcommand{\algorithmicforall}{\textbf{for each}}
 %
-%\begin{algorithm}[ht]
+%\begin{algorithm}[H]
 %\small
 %\begin{algorithmic}[1]
 %	\Require An undirected tree $G_{T} = (V,E)$
-%	\Ensure A $k$-coloring of $G_{T}$.
+%	\Ensure A $k$-coloring for $G_{T}$.
 %	\newline
 %
 %	\Procedure{\textsc{Dfs}}{$G_{T}$}
 %		\ForAll{vertex $u \in V[G_{T}]$}
-%			%\State $c[u] \gets i \in \{1,\ldots, k\} \text{ s.t. } c[u] \neq c[\pi[u]]$
-%			\State $c[u] \gets 1$ \Comment{paint initially all vertices with color $1$.}
+%			\State $c[u] \gets 0$ \Comment{paint initially all vertices with color $0$ s.t. $0 \notin \{1,\ldots, k\}$.}
 %			\State $\pi[u] \gets \text{\textsc{null}}$ \Comment{set initially the predecessor of $u$ to \textsc{null}.}
 %		\EndFor
 %		\State $time \gets 0$ \Comment{initialize the global timestamp variable.}
 %		\ForAll{vertex $u \in V[G_{T}]$}
-%		  %\If{$c[u] = i \in \{1,\ldots ,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$}
-%		  \If{$c[u] = 1$}
-%			\State \textit{call} \textsc{Dfs-Visit}($u$)
-%		  \EndIf
+%						\If{$c[u] = 0$}
+%				\State \textit{call} \textsc{Dfs-Visit}($u$)
+%			\EndIf
 %		\EndFor
 %	\EndProcedure
 %	\newline
 %
 %	\Procedure{\textsc{Dfs-Visit}}{$u$}
-%		%\State $c[u] \gets 0$ \Comment{vertex $u$ with color $i \in \{1,\ldots, k\}$ has been discovered.}
-%		\State $c[u] \gets 0$ \Comment{vertex $u$ with color $1$ has been discovered.}
+%		\Statex\Comment{vertex $u$ with color $0$ has been discovered; then paint vertex $u$ with color $i \in \{1,\ldots,k\}$.}
+%		\State $c[u] \gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$, i.e. $i \in \{1,\ldots,k\}\backslash \{c[\pi[u]]\}$
 %		\State $d[u] \gets time \gets time + 1$ \Comment{update the discovering time.}
-%		\ForAll{$v \in adj[u]$} \Comment{explore edge $(u,v)$.}
-%		   %\If {$c[v] = i \in \{1,\ldots,k\} \text{ s.t. } c[v] \neq c[\pi[v]]$}
-%		   \If {$c[v] = 1$}
-%			   \State $\pi[v] \gets u$
-%			   \State \textit{call} \textsc{DFS-Visit($v$)}
-%		   \EndIf
+%		\ForAll{$v \in Adj[u]$} \Comment{explore edge $(u,v)$.}
+%		   	\If {$c[v] = 0$}
+%				\State $\pi[v] \gets u$
+%				\State \textit{call} \textsc{Dfs-Visit($v$)}
+%			\EndIf
 %		 \EndFor
-%		 \State $c[u] \gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$, i.e. $i \in \{1,\ldots,k\}\backslash \{c[\pi[u]]\}$
-%		 \Statex\Comment{paint vertex $u$ with color $i \in \{1,\ldots,k\}$; $\Rightarrow$ finished.}
-%		 \State $f[u] \gets time \gets time + 1$ \Comment{update the finishing time.}
+%		 \State $f[u] \gets time \gets time + 1$ \Comment{update the finishing time; $\Rightarrow$ search in $Adj[u]$ is finished.}
 %	\EndProcedure	
 %\end{algorithmic}
 %\caption{\small Polynomial time DFS-Algorithm for $k$-Coloring of trees.}
@@ -428,43 +437,38 @@ depth-first forest} which is composed of serveral \textit{depth-first trees}%
 \algrenewcommand{\algorithmicensure}{\textbf{Output:}}
 \algrenewcommand{\algorithmicforall}{\textbf{for each}}
 
-\begin{algorithm}[ht]
+\begin{algorithm}[H]
 \small
 \begin{algorithmic}[1]
 	\Require An undirected tree $G_{T} = (V,E)$
-	\Ensure A $k$-coloring of $G_{T}$.
+	\Ensure A $k$-coloring for $G_{T}$.
 	\newline
 
 	\Procedure{\textsc{Dfs}}{$G_{T}$}
 		\ForAll{vertex $u \in V[G_{T}]$}
-			%\State $c[u] \gets i \in \{1,\ldots, k\} \text{ s.t. } c[u] \neq c[\pi[u]]$
-			\State $c[u] \gets 1$ \Comment{paint initially all vertices with color $1$.}
+			\State $c[u] \gets 0$ \Comment{paint initially all vertices with color $0$ s.t. $0 \notin \{1,\ldots, k\}$.}
 			\State $\pi[u] \gets \text{\textsc{null}}$ \Comment{set initially the predecessor of $u$ to \textsc{null}.}
 		\EndFor
 		\State $time \gets 0$ \Comment{initialize the global timestamp variable.}
 		\ForAll{vertex $u \in V[G_{T}]$}
-		  %\If{$c[u] = i \in \{1,\ldots ,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$}
-		  \If{$c[u] = 1$}
-			\State \textit{call} \textsc{Dfs-Visit}($u$)
-		  \EndIf
+						\If{$c[u] = 0$}
+				\State \textit{call} \textsc{Dfs-Visit}($u$)
+			\EndIf
 		\EndFor
 	\EndProcedure
 	\newline
 
 	\Procedure{\textsc{Dfs-Visit}}{$u$}
-		%\State $c[u] \gets 0$ \Comment{vertex $u$ with color $i \in \{1,\ldots, k\}$ has been discovered.}
-		\State $c[u] \gets 0$ \Comment{vertex $u$ with color $1$ has been discovered.}
+		\Statex\Comment{vertex $u$ with color $0$ has been discovered; then paint vertex $u$ with color $i \in \{1,\ldots,k\}$.}
+		\State $c[u] \gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$, i.e. $i \in \{1,\ldots,k\}\backslash \{c[\pi[u]]\}$
 		\State $d[u] \gets time \gets time + 1$ \Comment{update the discovering time.}
-		\ForAll{$v \in adj[u]$} \Comment{explore edge $(u,v)$.}
-		   %\If {$c[v] = i \in \{1,\ldots,k\} \text{ s.t. } c[v] \neq c[\pi[v]]$}
-		   \If {$c[v] = 1$}
-			   \State $\pi[v] \gets u$
-			   \State \textit{call} \textsc{DFS-Visit($v$)}
-		   \EndIf
+		\ForAll{$v \in Adj[u]$} \Comment{explore edge $(u,v)$.}
+		   	\If {$c[v] = 0$}
+				\State $\pi[v] \gets u$
+				\State \textit{call} \textsc{Dfs-Visit($v$)}
+			\EndIf
 		 \EndFor
-		 \State $c[u] \gets i \in \{1,\ldots,k\} \text{ s.t. } c[u] \neq c[\pi[u]]$, i.e. $i \in \{1,\ldots,k\}\backslash \{c[\pi[u]]\}$
-		 \Statex\Comment{paint vertex $u$ with color $i \in \{1,\ldots,k\}$; $\Rightarrow$ finished.}
-		 \State $f[u] \gets time \gets time + 1$ \Comment{update the finishing time.}
+		 \State $f[u] \gets time \gets time + 1$ \Comment{update the finishing time; $\Rightarrow$ search in $Adj[u]$ is finished.}
 	\EndProcedure	
 \end{algorithmic}
 \caption{\small Polynomial time DFS-Algorithm for $k$-Coloring of trees.}
@@ -472,9 +476,44 @@ depth-first forest} which is composed of serveral \textit{depth-first trees}%
 \end{algorithm}%
 %EndExpansion
 
-The algortihm works as follows. Lines 2--4 paint all vertices with color $1$
-and initialize their predecessor (parent node) to \textsc{Null}. Line 5
-initialize the global time counter with $0$.
+The algorithm (\ref{alg_k-coloring_dfs}) works as follows:
+
+Lines 2--5 paint all vertices with the color $0\notin \{1,,\ldots ,k\}$ and
+initialize their predecessor (parent node) to \textsc{Null}. Line 6
+initializes the global time counter with $0$. The lines 7--11 check each
+vertex in $V$, if a vertex $u$ with color $0$ is found, then this node will
+be visited by calling \textsc{Dfs-Visit}. Every time when \textsc{Dfs-Visit}$%
+(u)$ is called in line 9, vertex $u$ becomes root of a new tree in the
+depth-first forest. Hence, when the procedure \textsc{Dfs} returns, every
+node $u$ has been assigned with a discovery time $d[u]$ and a finishing time 
+$f[u]$.
+
+In \textsc{Dfs-Visit}$(u)$, the vertex $u$ is initially colored with color $%
+0\notin \{1,,\ldots ,k\}$. The line 14 paints node $u$ with a color $i\in
+\{1,\ldots ,k\}\text{ s.t. }c[u]\neq c[\pi \lbrack u]]$, i.e. $i\in
+\{1,\ldots ,k\}\backslash \{c[\pi \lbrack u]]\}$. Afterwards, line 15
+records the discovery time $d[u]$ by incrementing\ and saving the global 
+\textit{time} variable. The lines 16--21 examine each vertex $v$ which is
+adjacent to $u$ and visit $v$ recursively, if $v$ is colored with $0$. Since
+in line 16 each vertex $v\in Adj(u)$ is considered, then each edge $(u,v)$
+will be \textit{explored} by the depth-first search. After every edge
+leaving $u$, with color $i\in \{1,\ldots ,k\}\backslash \{c[\pi \lbrack
+u]]\} $, has been explored, finally the last line 22 update and records the
+finishing time in $f[u]$.
+
+The \textsc{Dfs} procedure takes a run time of $O(|V|)$, exclusive of the
+time to execute the call of the \textsc{Dfs-Visit} procedure. The procedure 
+\textsc{Dfs-Visit} will be called exactely once for each vertex $v\in V$. 
+\textsc{Dfs-Visit} is invoked only on nodes which are colored with $0$ and
+paint them subsequently with a color $i\in \{1,\ldots ,k\}\backslash \{c[\pi
+\lbrack u]]\}$. During the execution of \textsc{Dfs-Visit}$(u)$, the
+for-loop on lines 16--21 is executed $|Adj[v]|$ times and hence%
+\begin{equation*}
+O(|E|)=\dsum\limits_{v\in V}|Adj(v)|. 
+\end{equation*}
+
+Then the total running time of \textsc{Dfs} is $O(|V|+|E|)$ which is in
+polynomial time.
 
 \bigskip
 
@@ -575,11 +614,11 @@ The above procedure can be solved in logarithmic space in the size of the
 input $I$ with $|I|=|L|$.
 
 The procedure needs only one pointer to an element in the list $L$ and one
-count variable of constant size. I.e. the pointer variable $i$ need $\log
-(n) $ bits for its representation. Observe a very large list $L$ of
-non-negative intergers. Since the memory of a program is limited to constant
-many pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits
-of memory.
+count variable of constant size. I.e. the pointer variable $i$ need $\log (n)
+$ bits for its representation. Observe a very large list $L$ of non-negative
+intergers. Since the memory of a program is limited to constant many
+pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits of
+memory.
 
 \bigskip
 

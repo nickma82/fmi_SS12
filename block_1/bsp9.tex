@@ -9,25 +9,26 @@ This can be explained by using a small procedure (see Procedure \ref%
 %\renewcommand{\algorithmicensure}{\textbf{Output:}}
 %\renewcommand{\algorithmicforall}{\textbf{for each}}
 %
-%\begin{algorithm}[h]
+%\begin{algorithm}[ht]
 %\small
-%\caption{N-SORTED-ELEMENTS}
-%\label{Alg-N-Sorted-El}
 %\begin{algorithmic}
-%\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
-%\ENSURE $\mathbf{true}$ or $\mathbf{false}$
-%\STATE $i \leftarrow 1$
-%\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted elements of size $k$} 
-%\FORALL{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
-%	\IF{$\left(e(i) + 1\right) = e(i+1)$}
-%			\STATE $count \leftarrow count + 1$
-%		\IF{$count = k$}
-%			\RETURN \textbf{true}
-%		\ENDIF
-%	\ENDIF
-%\ENDFOR
-%\RETURN \textbf{false}
+%	\Require $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
+%	\Ensure $\mathbf{true}$ if $n$-sorted elements of size $k$ are found, $\mathbf{false}$ otherwise.
+%	\newline
+%	\State $i \leftarrow 1$
+%	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$} 
+%	\ForAll{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
+%		\If{$\left(e(i) + 1\right) = e(i+1)$}
+%				\State $count \leftarrow count + 1$
+%			\If{$count = k$}
+%				\Return \textbf{true}
+%			\EndIf
+%		\EndIf
+%	\EndFor\\
+%	\Return \textbf{false}
 %\end{algorithmic}
+%\caption{\small \textsc{N-Sorted-Elements} procedure.}
+%\label{Alg-N-Sorted-El}
 %\end{algorithm}}}%
 %BeginExpansion
 \floatname{algorithm}{Procedure}
@@ -37,23 +38,24 @@ This can be explained by using a small procedure (see Procedure \ref%
 
 \begin{algorithm}[ht]
 \small
-\caption{N-SORTED-ELEMENTS}
-\label{Alg-N-Sorted-El}
 \begin{algorithmic}
-\REQUIRE $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
-\ENSURE $\mathbf{true}$ or $\mathbf{false}$
-\STATE $i \leftarrow 1$
-\STATE $count \leftarrow 1$ \COMMENT{count variable for finding $n$-sorted elements of size $k$} 
-\FORALL{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
-	\IF{$\left(e(i) + 1\right) = e(i+1)$}
-			\STATE $count \leftarrow count + 1$
-		\IF{$count = k$}
-			\RETURN \textbf{true}
-		\ENDIF
-	\ENDIF
-\ENDFOR
-\RETURN \textbf{false}
+	\Require $L=(e_{1},\ldots , e_{n}), k\in \mathbb{N}^{+}$
+	\Ensure $\mathbf{true}$ if $n$-sorted elements of size $k$ are found, $\mathbf{false}$ otherwise.
+	\newline
+	\State $i \leftarrow 1$
+	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$} 
+	\ForAll{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
+		\If{$\left(e(i) + 1\right) = e(i+1)$}
+				\State $count \leftarrow count + 1$
+			\If{$count = k$}
+				\Return \textbf{true}
+			\EndIf
+		\EndIf
+	\EndFor\\
+	\Return \textbf{false}
 \end{algorithmic}
+\caption{\small \textsc{N-Sorted-Elements} procedure.}
+\label{Alg-N-Sorted-El}
 \end{algorithm}%
 %EndExpansion
 
@@ -61,13 +63,13 @@ The above procedure can be solved in logarithmic space in the size of the
 input $I$ with $|I|=|L|$.
 
 The procedure needs only one pointer to an element in the list $L$ and one
-count variable of constant size. I.e. the pointer variable $i$ need $\log (n)
-$ bits for its representation. Observe a very large list $L$ of non-negative
-intergers. Since the memory of a program is limited to constant many
-pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits of
-memory.
+count variable of constant size. I.e. the pointer variable $i$ need $\log
+(n) $ bits for its representation. Observe a very large list $L$ of
+non-negative intergers. Since the memory of a program is limited to constant
+many pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits
+of memory.
 
-\bigskip 
+\bigskip
 
 
 %%TCIMACRO{%

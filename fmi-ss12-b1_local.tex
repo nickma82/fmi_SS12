@@ -46,7 +46,7 @@
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Sunday, April 01, 2012 16:17:36}
+%TCIDATA{LastRevised=Sunday, April 01, 2012 17:27:49}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -509,7 +509,7 @@ paint them subsequently with a color $i\in \{1,\ldots ,k\}\backslash \{c[\pi
 \lbrack u]]\}$. During the execution of \textsc{Dfs-Visit}$(u)$, the
 for-loop on lines 16--21 is executed $|Adj[v]|$ times and hence%
 \begin{equation*}
-O(|E|)=\dsum\limits_{v\in V}|Adj(v)|. 
+O(|E|)=\dsum\limits_{v\in V}|Adj(v)|.
 \end{equation*}
 
 Then the total running time of \textsc{Dfs} is $O(|V|+|E|)$ which is in
@@ -553,7 +553,6 @@ logarithmic space.
 This can be explained by using a small procedure (see Procedure \ref%
 {Alg-N-Sorted-El}) for this problem.
 
-\bigskip 
 %TCIMACRO{%
 %\TeXButton{Algorithm: N-SORTED-ELEMENTS}{\floatname{algorithm}{Procedure}
 %\renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -567,16 +566,19 @@ This can be explained by using a small procedure (see Procedure \ref%
 %	\Ensure $\mathbf{true}$ if $n$-sorted elements of size $k$ are found, $\mathbf{false}$ otherwise.
 %	\newline
 %	\State $i \leftarrow 1$
-%	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$} 
+%	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$.} 
 %	\ForAll{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
 %		\If{$\left(e(i) + 1\right) = e(i+1)$}
-%				\State $count \leftarrow count + 1$
+%			\State $count \leftarrow count + 1$
+%		\Else
 %			\If{$count = k$}
 %				\Return \textbf{true}
+%			\Else
+%				\State $count \leftarrow 1$ \Comment{the number of sorted elements was $< k$; $\Rightarrow$ reset the count value.}
 %			\EndIf
 %		\EndIf
 %	\EndFor\\
-%	\Return \textbf{false}
+%	\Return \textbf{false}	
 %\end{algorithmic}
 %\caption{\small \textsc{N-Sorted-Elements} procedure.}
 %\label{Alg-N-Sorted-El}
@@ -594,16 +596,19 @@ This can be explained by using a small procedure (see Procedure \ref%
 	\Ensure $\mathbf{true}$ if $n$-sorted elements of size $k$ are found, $\mathbf{false}$ otherwise.
 	\newline
 	\State $i \leftarrow 1$
-	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$} 
+	\State $count \leftarrow 1$ \Comment{count variable for finding $n$-sorted elements of size $k$.} 
 	\ForAll{$i \;$ s.t. $\; 1 \leq i \leq |L| - 1$}
 		\If{$\left(e(i) + 1\right) = e(i+1)$}
-				\State $count \leftarrow count + 1$
+			\State $count \leftarrow count + 1$
+		\Else
 			\If{$count = k$}
 				\Return \textbf{true}
+			\Else
+				\State $count \leftarrow 1$ \Comment{the number of sorted elements was $< k$; $\Rightarrow$ reset the count value.}
 			\EndIf
 		\EndIf
 	\EndFor\\
-	\Return \textbf{false}
+	\Return \textbf{false}	
 \end{algorithmic}
 \caption{\small \textsc{N-Sorted-Elements} procedure.}
 \label{Alg-N-Sorted-El}
@@ -611,14 +616,13 @@ This can be explained by using a small procedure (see Procedure \ref%
 %EndExpansion
 
 The above procedure can be solved in logarithmic space in the size of the
-input $I$ with $|I|=|L|$.
-
-The procedure needs only one pointer to an element in the list $L$ and one
-count variable of constant size. I.e. the pointer variable $i$ need $\log (n)
-$ bits for its representation. Observe a very large list $L$ of non-negative
-intergers. Since the memory of a program is limited to constant many
-pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits of
-memory.
+input $I$ with $|I|=|L|$.\newline
+\noindent The procedure needs only one pointer to an element in the list $L$
+and one count variable of constant size. I.e. the pointer variable $i$ need $%
+\log (n) $ bits for its representation. Observe a very large list $L$ of
+non-negative intergers. Since the memory of a program is limited to constant
+many pointers, the pointer variable $i$ uses at most $O(\log _{2}|L|)$ bits
+of memory.
 
 \bigskip
 

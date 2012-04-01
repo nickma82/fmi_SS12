@@ -1,4 +1,5 @@
 \subsection{solution}
+
 \noindent \textbf{Argumentation:}
 
 The restricted problem of \textsc{Vertex k-Coloring} to trees can be solved
@@ -159,9 +160,9 @@ time to execute the call of the \textsc{Dfs-Visit} procedure. The procedure
 paint them subsequently with a color $i\in \{1,\ldots ,k\}\backslash \{c[\pi
 \lbrack u]]\}$. During the execution of \textsc{Dfs-Visit}$(u)$, the
 for-loop on lines 16--21 is executed $|Adj[v]|$ times and hence%
-\[
-O(|E|)=\dsum\limits_{v\in V}|Adj(v)|. 
-\]
+\begin{equation*}
+O(|E|)=\dsum\limits_{v\in V}|Adj(v)|.
+\end{equation*}
 
 Then the total running time of \textsc{Dfs} is $O(|V|+|E|)$ which is in
 polynomial time.

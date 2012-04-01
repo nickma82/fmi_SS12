@@ -36,12 +36,54 @@ $$\psi_5 \equiv \bigwedge_{d=3}^{n+1}\bigwedge_{j=1}^{d-1}\bigwedge_{k=j+1}^{d-1
 \noindent The remaining diagonal lines are characterized by $d \in {n+2,...,2n-1}$ and their rule is defined by:
 $$\psi_6 \equiv \bigwedge_{d=n+2}^{2n-1}\bigwedge_{j=d-n}^{n}\bigwedge_{k=j+1}^{d-1}(\neg s_{j;d-j} \vee \neg s_{k;d-k})$$
 
-Rule to assert that we get at least one queen in each column:
+\noindent Rule to assert that we get at least one queen in each column:
 $$\psi_7 \equiv \bigwedge_{i=1}^{n}\bigvee_{j=i}^{n}s_{i;j}$$
 wich ensures that there is exactly one queen in each column.
 
-So we get the conjunction of these seven formulae:
+\noindent So we get the conjunction of these seven formulae:
 $$\psi \equiv \psi_1\bigwedge\psi_2\bigwedge\psi_3\bigwedge\psi_4\bigwedge\psi_5\bigwedge\psi_6\bigwedge\psi_7\bigwedge$$
 is in CNF form and each truth assignment which makes it true represents a solution to the \textbf{N-Queens} problem.
 
 \subsubsection{Proof sketch}
+
+$\Rightarrow$ direction:\\
+Suppose that n is a positive instance of \textbf{N-Queens} and now we have to show that
+$\psi$ also is a positive instance of \textbf{SAT}.\\
+The formula $\psi$ eavaluates to true iff all clauses $\psi_i$, $1 \leq i \leq 7$, evaluate to true. 
+Therefore to proof that $\exists$ a thruth assignment T, we have to show that all clauses
+evaluate to true under the truth assignment T. We define:\\
+$$\text{T = true if} 
+\left\{ 
+\begin{array}{cl}
+true & \# \text{ (N-Queens)} = n, \\ 
+false & else.
+\end{array}%
+\right. $$
+$\psi_1$ evaluates to true if for each number $j \in {1,..,n}$ the number 
+has been assigned at most once which is true for a positive instance of \textbf{N-Queens}.
+In this case every number will be assigned, exactly once, therefore this clause evaluates
+to true.\\
+Analogously this works for $\psi_2$.\\
+$\psi_3$ evaluates to true if for each number $d \in {1,..,n-1}$ the number 
+has been assigned at most once which is also true for a positive instance of \textbf{N-Queens}.\\
+Analogously this works for $\psi_4 to \psi_6$.\\
+$\psi_7$ evaluates to true if for each number $j \in {1,..,n}$ the number 
+has been assigned at least once which is true for a positive instance of \textbf{N-Queens}.\\
+
+\noindent $\Leftarrow$ direction:\\
+Suppose we have a positive instance T of \textbf{SAT} that is a truth assignment for the propositional
+formula $\psi$. We have to show that it's possible to derive a poitive instance of 
+\textbf{N-Queens} out of T.\\
+While T is a positive instance of \textbf{SAT}, each clause of $\psi$ will evaluate 
+to true. Thus we can derive a queen set on an $n \times n$ chessboard by using the 
+first 6 clauses. What we now have to show is that we can derive a \textbf{N-Queens}
+out if T and that \textbf{N-Queens} is exactly of size n.\\
+By definition of clauses $\psi_1 to \psi_6$ we already made sure that there can be at
+most 1 queen in each line, each row and each diagonal line. Because of cluase 
+$\psi_7$ there must be at least one queen in each column and therefore we can be sure
+that \textbf{N-Queens} is of size n.
+
+\subsubsection{NP-complete}
+Yes, \textbf{N-Queens} is NP-complete because we have constructed a polynomial-time 
+reduction of \textbf{N-Queens} problem to \textbf{SAT} and \textbf{SAT} is NP-complete, 
+which is a well-known fact.

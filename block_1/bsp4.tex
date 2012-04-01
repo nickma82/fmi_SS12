@@ -1,134 +1,62 @@
-% \documentclass[a4paper,parskip=half]{scrartcl}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{eurosym}
-% \usepackage[utf8]{inputenc}
-% \usepackage[T1]{fontenc}
-% \usepackage{lmodern}
-% \usepackage[english]{babel}
-% \usepackage{graphicx}
-% \usepackage{scrpage2}
-% \usepackage{ifthen}
-% \usepackage[ruled, boxed]{algorithm2e}
-% \usepackage{amsmath}
-% \usepackage{amsthm}
-% \usepackage{amssymb}
-% \usepackage{units}
-% \usepackage{enumerate}
-% 
-% \setcounter{MaxMatrixCols}{10}
-% %TCIDATA{OutputFilter=Latex.dll}
-% %TCIDATA{Version=5.00.0.2606}
-% %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
-% %TCIDATA{BibliographyScheme=Manual}
-% %TCIDATA{LastRevised=Friday, April 01, 2011 07:06:22}
-% %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
-% 
-% \newcounter{exercise}
-% \setcounter{exercise}{1}
-% \newenvironment{exercise}[1]{\large \textsf{\textbf{Problem \arabic{exercise}}} \ifthenelse{#1>0}{(#1 points)}{} \\ \normalsize \addtocounter{exercise}{1}}{\vspace{2ex}}
-% \newenvironment{solution}{\large \textsf{\textbf{Solution:}} \\ \normalsize}{\vspace{2ex}}
-% \newenvironment{remark}{\large \textsf{\textbf{Remark}} \\ \normalsize}{\vspace{2ex}}
-% \newtheorem{claim}{Claim}
-% \newtheorem{lemma}{Lemma}
-% \input{tcilatex}
-% 
-% \begin{document}
-% 
-% 
-% \thispagestyle{scrheadings} ~
-
 \subsection{solution}
-%\hfill \newline
+
 At first we have to check if \textbf{Set-Partition} is a membership of NP.%
 \newline
 This can be shown by using a simple guess \& check procedure:\newline
 
-Guess an arbitrary subset $S_1\subseteq S$ and verify if the sum of the
+\noindent Guess an arbitrary subset $S_1\subseteq S$ and verify if the sum of the
 elements in $S_1$ and in $S\backslash S_1$ are equal. The summing of the
 elements in the subsets takes linear time in the size of $S$.
 
-To show NP-hardness of \textbf{Set-Partition}, we reduce \textbf{Subset-Sum} to \textbf{Set-Partition}.
+\noindent To show NP-hardness of \textbf{Set-Partition}, we reduce \textbf{Subset-Sum} to \textbf{Set-Partition}.\\
 
-Let $$S=\{b_{1},\ldots ,b_{n}\}$$ be a set of integers and an integer $t$ be a target.
-Let $S^{\prime }$ be an instance of 
-\textbf{Set-Partition}, 
-such that $$S^{\prime }=S\cup \{c\}$$ 
-%with $$c=M-2\cdott$$ 
-%and $$M=\tsum\limits_{i\in S}b_{i}$$.
+\noindent For easier reading we define S, the set of finite integer numbers of \textbf{SUBSET SUM}  
+as $S_S$ and $S_P$ as the set of finite integer numbers of \textbf{PARTITION}.\\
 
-We have to show following equation:%
-\begin{equation}
-(S,t)\in 
-%TCIMACRO{\TeXButton{Subset-Sum}{\mbox{\textbf{Subset-Sum}}}}%
-%BeginExpansion
-\mbox{\textbf{Subset-Sum}}%
-%EndExpansion
-\Leftrightarrow S^{\prime }\in 
-%TCIMACRO{\TeXButton{Set-Partition}{\mbox{\textbf{Set-Partition}}}}%
-%BeginExpansion
-\mbox{\textbf{Set-Partition}}%
-%EndExpansion
-\end{equation}
+\noindent Particularly let $S_S=\{a_{1},\ldots ,a_{n}\}$ be a set of integers and an integer $t$ be a target.
+Let $S_P$ be an instance of \textbf{Set-Partition}, such that $S_P=S_S \cup \{c\}$ 
+with $c=M-2.t$ and $M=\tsum\limits_{i\in S_S}a_{i}$.\\
+
+\noindent We have to show the following equation:
+$$(S_S,t)\in \textbf{SUBSET SUM} \Leftrightarrow S_P \in \textbf{PARTITION}$$
 
 \subsubsection{Proof}
 \hfill\newline
-$\Leftarrow :$ Suppose that $S^{\prime }=\{b_{1},\ldots ,b_{n+1}\}$ is a
-positive instance of \textbf{Set-Partition}. Then there exists a subset 
-$S_1\subseteq S^{\prime }$,which specify the partition, such that $S_2=S^{\prime
-}\backslash S_1$ and the sum of the elements in\ $S_1$ and $S_2$ are equal.
+$\Leftarrow$ direction:\\ 
+Suppose that $S_P=\{a_{1},\ldots ,a_{n+1}\}$ is a
+positive instance of \textbf{PARTITION}. Then there exists a subset 
+$S_1\subseteq S_P$,which specifies the partition, such that $S_2=S_P\backslash S_1$ 
+and the sum of the elements in $S_1$ and $S_2$ are equal.
 
-Let $$S^1=\sum\limits_{i\in S_1}b_{i}$$ and $$S^2=\sum\limits_{i\in B}b_{i}$$
+\noindent Let $S_{1sum}=\tsum\limits_{i\in S_1}a_{i}$ and 
+$S_{2sum}=\tsum\limits_{i\in S_2}a_{i}$
 be the sum of the elements in the subsets. Since $c=M-2\cdot t$ 
-and $$c\in S^{\prime }$$, hence $c$ is in one of the two partitions.
+and $c\in S_P$, hence $c$ is in one of the two partitions.
 
-Without loss of generality, suppose that $c\in S_1$. 
-Then $$N=M+c=M+M-2\cdot t=2\cdot M-2\cdot t=\sum \limits_{i\in S^{\prime }} b_{i}$$.
-Since $S^1=S^2$ and $N=S^1+S^2$, it follows 
-that $S^1=S^2=\frac{N}{2}=$ $\frac{2\cdot M-2\cdot t}{2}=M-t$.
+\noindent Without loss of generality, suppose that $c\in S_1$. 
+Then $N=M+c=M+M-2\cdot t=2\cdot M-2\cdot t=\sum \limits_{i\in S_p} a_{i}$.
+Since $S_1=S_2$ and $N=S_1+S_2$, it follows 
+that $S_1=S_2=\frac{N}{2}=$ $\frac{2\cdot M-2\cdot t}{2}=M-t$.
 
-Since $c\in S_1$ and $c=M-2\cdot t$, we can conclude that $S^1=t+c$. If $c$
+\noindent Since $c\in S_1$ and $c=M-2\cdot t$, we can conclude that $S_1=t+c$. If $c$
 is in the fist part of the partition, then $S_1\backslash \{c\}$ is a subset
-of $S$ that sum to $t$, and if $c$ is in the second part of the partition,
-then $S_2\backslash \{c\}$ is a subset of elements of $S$ that sum to $t$.
-Hence, $(S,t)$ is a positive instance of \textbf{Subset-Sum}.
+of $S_P$ that sums to $t$, and if $c$ is in the second part of the partition,
+then $S_2\backslash \{c\}$ is a subset of elements of $S_S$ that sum to $t$.
+Hence, $(S_S,t)$ is a positive instance of \textbf{SUBSET SUM}.\\
 
-$\Rightarrow :$ Suppose that $(S,t)$ is a positive instance of 
-\textbf{Subset-Sum}. Then there exists a subset $T\subseteq S$ such that 
-$$\sum \limits_{i\in T} b_{i}=t$$.
+\noindent $\Rightarrow$ direction:\\
+Suppose that $(S_S,t)$ is a positive instance of 
+\textbf{SUBSET SUM}. Then there exists a subset $T\subseteq S_S$ such that 
+$\sum \limits_{i\in T} a_{i}=t$.
 
-We have to show that $S^{\prime }=S\cup \{c\}$ is a positive instance of 
-\textbf{Set-Partition}. Thus, we have to find two subsets of $S^{\prime }$
-such that $S^1=S^2$. This can be done easily by setting $S_1=T\cup \{c\}$.
-Then $S^1=t+M-2\cdot t=M-t=\frac{N}{2}$, wich is exactly the half of the
-sum of elements in $S^{\prime }$, i.e. $S^1=\frac{N}{2}=S^2$. This
-implies that $S^{\prime }$ is partitionable. Thus, $S^{\prime }$ is a
-positive instance of \textbf{Set-Partition}.
+\noindent We have to show that $S_P=S_S\cup \{c\}$ is a positive instance of 
+\textbf{PARTITION}. Thus, we have to find two subsets of $S_P$
+such that $S_{1sum}=S_{2sum}$. This can be done easily by setting $S_1=T\cup \{c\}$.
+Then $S_{1sum}=t+M-2\cdot t=M-t=\frac{N}{2}$, wich is exactly the half of the
+sum of elements in $S_P$, i.e. $S_{1sum}=\frac{N}{2}=S_{2sum}$. This
+implies that $S_P$ is partitionable. Thus, $S_P$ is a
+positive instance of \textbf{RARTITION}.\\
 
 
-Since \textbf{Set-Partition} $\in $ NP and is NP-hard, it follows that it is
+\noindent Since \textbf{PARTITION} $\in $ NP and is NP-hard, it follows that it is
 NP-complete.
-
-
-\subsubsection{remark}
-To see how algorithms are represented in pseudo-code see how algorithms are
-described in the book  \oe Introduction to Algorithms
-\"{\i}\textquestiondown 
-%TCIMACRO{\U{bd} }%
-%BeginExpansion
-$\frac12$
-%EndExpansion
-by Cormen, Leiserson, Rivest, and Stein. A link to the book (that let\^{a}%
-\texttrademark s you browse the pages of the book) can be found on
-Moodle.
-
-Also recall the $\mathcal{O}$-notation: Let $f$ and $g$ be two functions
-from the natural numbers onto the positive real numbers. If there exist
-constants $c>0$ and $n_{0}\geq 0$ such that for all $n\geq n_{0}$, $f(n)\leq
-c\cdot g(n)$, then we write $f(n)=\mathcal{O}(g(n))$. Let $n$ be the size of
-the cost matrix of a finite game. The running time $T(n)$ of an algorithm
-takes time polynomial in $n$, if there exists an integer constant $d>0$ such
-that $T(n)=\mathcal{O}(n^{d})$. For more details see Chapter 3 in the above
-book.
-
-% \end{document}
-

@@ -1,5 +1,4 @@
 \subsection{solution}
-
 \textbf{Proof:}
 
 To prove that \textsc{Subset-Sum} $\in $ NP, we have to define a
@@ -40,3 +39,40 @@ can be finished at most in polynomial time.
 \end{itemize}
 
 \bigskip 
+
+% %\hfill \newline
+
+% To prove that \textbf{SUBSET SUM} $\in$ \textbf{NP} we have to define a polynomially balanced and 
+% polynomially decidable certificate relation for \textbf{SUBSET SUM}:
+% \newline
+% \newline
+% Let $R=\{S'\subseteq S | S'\}$ be a subset of sum of S. \\
+% This is the case if $\sum (S')$ of it's elements ($S'$) is exactly $t$.
+% \newline\newline
+
+% % $R$ is indeed a certificate relation through the construction: \\
+% % $S'$ is a positive instance of \textbf{SUBSET SUM} $\leftrightarrow$ the 
+% % sum of S' elements is exactly t $\leftrightarrow \exists S' \subseteq \in R$.
+% % \newline
+% % \newline
+% % Now we show that the given relation is polynomially balanced:
+% % \newline
+% % S' is always $\leq$ then S because by definition a subset sum ia a subset or equal the 
+% % original set of integer numbers.
+% % \newline
+% % \newline
+% % Next we have to show that there exists a polynomial time algorithm to sum a given subset. 
+% % For this we can simply sum all elements of S' which is possible in linear time.
+% % \newline
+% % \newline
+% % Since $ R $ is polynomially balanced and polinomial-time decidable, it follows that \textbf{SUBSET SUM} is in NP.
+
+% $R_s = \{\langle S,t\rangle\} \| \exists S' \subseteq S \text{ s.t. } t = \sum_{a \in S}a \text{ and } t \geq 1\}$
+
+% \noindent $\Rightarrow$ 
+% We argue that $R_s$ is indeed a certificate relation for \textit{SUBS.-SUM} 
+% since following holds:
+
+% \noindent $S$ is a positive instance of \textit{SUBS.-SUM} $\leftrightarrow \exists$ a certificate
+% subset $S' \subseteq S$ of non-negative integers, s.t.
+% $$\sum_{a \in S'}a = t \leftrightarrow \exists t \in N^{+}, s.t. \langle S,t\rangle\in R_s$$

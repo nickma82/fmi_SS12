@@ -46,7 +46,7 @@
 %TCIDATA{Version=5.00.0.2606}
 %TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
 %TCIDATA{BibliographyScheme=Manual}
-%TCIDATA{LastRevised=Monday, April 02, 2012 02:17:30}
+%TCIDATA{LastRevised=Monday, April 02, 2012 02:58:56}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 
    \textwidth      15cm
@@ -378,26 +378,27 @@ in NP.
 At first we have to check \ if \textsc{Frequency-Assignment} id a membership
 of NP.
 
-This can be done by a guess \& check procedure:
-
 \begin{definition}
 Let\ $G_{F}=(T,E)$ be an arbitrary undirected graph for \textsc{%
 Frequency-Assignment} with $T=\{t_{1},t_{2},\ldots ,t_{n}\}$ and $E^{\prime
 }=\{(t_{i},t_{j})\mid t_{i},t_{j}\in T(G_{F})$ with $i\neq j$ s.t. $t_{i}$
-and $t_{j}$ are interfering each other$\}\subseteq E=$.$\{(t_{i},t_{j})\mid
+and $t_{j}$ are interfering each other$\}\subseteq E=\{(t_{i},t_{j})\mid
 t_{i},t_{j}\in T(G_{F})$ with $i\neq j\}$. Let $F=\{f_{1},\ldots ,f_{k}\}$
 be an arbitrary set of frequencies and $fr:T(G_{F})\rightarrow F$ a function
 for assigning each transmitter-vertex $t\in T(G_{F})$ to a frequency $f\in F$%
 .
 \end{definition}
 
-Guess an arbitrary set of frequencies $F=\{f_{1},\ldots ,f_{k}\}$ of size $k$%
-. Then for each transmitter-vertex $t\in T(G_{F})$, verify that $t$ has no
-adjacent verteices $u\in T(G_{F})$ with the same frequency $f\in F$, i.e. $%
-\forall t_{i},t_{j}\in T(G_{F})$ with $i\neq j$, s.t. $(t_{i},t_{j})\in E$
-and $fr(t_{i})\neq fr(t_{j})$. The verification of the edges in $G_{F}$
-takes polynomial time in the size of $k=|F|$ and the number of edges $n=|E|$
-in $G_{F}$.
+This can be done by a guess \& check procedure:\newline
+\smallskip
+
+\noindent Guess an arbitrary set of frequencies $F=\{f_{1},\ldots ,f_{k}\}$
+of size $k$. Then for each transmitter-vertex $t\in T(G_{F})$, verify that $%
+t $ has no adjacent verteices $u\in T(G_{F})$ with the same frequency $f\in
+F $, i.e. $\forall t_{i},t_{j}\in T(G_{F})$ with $i\neq j$, s.t. $%
+(t_{i},t_{j})\in E$ and $fr(t_{i})\neq fr(t_{j})$. The verification of the
+edges in $G_{F}$ takes polynomial time in the size of $k=|F|$ and the number
+of edges $n=|E|$ in $G_{F}$.
 
 It remains to show that \textsc{Frequency-Assignment} is NP-hard, by
 reducing \textsc{Frequency-Assignment} to $k$\textsc{-Colorability}.
@@ -405,11 +406,12 @@ reducing \textsc{Frequency-Assignment} to $k$\textsc{-Colorability}.
 Let\ $G_{F}=(T,E)$ be an arbitrary undirected graph for \textsc{%
 Frequency-Assignment} (as defined above). To prove the correctness of the
 reduction, we have to show that following equation holds:%
-\begin{equation*}
+\begin{gather*}
 (G_{F},k)\text{ is a positive instance of \textsc{Frequency-Assignment}}%
-\quad \Leftrightarrow \quad (G_{C},k^{\prime })\text{ is a positive instance
-of }k\text{\textsc{-Colorability}.}
-\end{equation*}
+\quad \Leftrightarrow \\
+(G_{C},k^{\prime })\text{ is a positive instance of }k\text{\textsc{%
+-Colorability}.}
+\end{gather*}
 
 \textbf{Proof:}
 
@@ -490,14 +492,14 @@ entailment is \textit{true}.\newline
 So in case that $\alpha \wedge \lnot \beta $ is true (s.t. $\alpha =true$
 and $\beta =false$), i.e. $\models \lnot \beta $, the \textit{entailment} is
 not valid and therefore it covers all of \textit{co-SAT}. Thus, \textit{%
-co-SAT} is \textit{co-NP}-complete. 
+co-SAT} is \textit{co-NP}-complete.
 
 \subsubsection{NP-hardness}
 
 We try to show a reduction from \textit{co-SAT} to \textit{entailment}%
 \begin{equation*}
 \models (\alpha \wedge \lnot \beta )\text{ is not satisfiable}\quad \iff
-\quad \alpha \models \beta 
+\quad \alpha \models \beta
 \end{equation*}%
 Since \textit{SAT}\ is \textit{NP}-complete and fortunately we already
 proved this reduction, while showing the Membership above.\newline
@@ -505,7 +507,7 @@ proved this reduction, while showing the Membership above.\newline
 \noindent This show's us, that \textit{entailment} is \textit{co-NP}-hard
 and -complete.
 
-\bigskip 
+\bigskip
 
 \begin{exercise}
 \label{ex:Colors} It is well known that the \textbf{k-COLORABILITY} problem
@@ -781,15 +783,29 @@ solution to the \textbf{N-Queens} problem.
 
 \subsubsection{Proof sketch}
 
+We have to show that following equantion holds:%
+\begin{equation*}
+\varphi \text{ is a positive of }\mathbf{N-Queens}\text{ }\quad \iff \quad
+\varphi _{S}\text{ is a positive instance of }\mathbf{SAT}\text{.}
+\end{equation*}%
+(i.e. both formuals $\varphi $ and $\varphi _{S}$ are \textit{%
+equi-satisfiable}.)
+
+\medskip
+
+Then
+
+\medskip
+
 $\Rightarrow $ direction:\newline
 Suppose that $\varphi $ is a positive instance of \textbf{N-Queens} and now
 we have to show that $\varphi _{S}$ also is a positive instance of \textbf{%
 SAT}.\newline
-The formula $\varphi $ eavaluates to \textit{true} iff all clauses $\psi _{i}
-$, $1\leq i\leq 7$, evaluates to \textit{true}. Therefore, we have to show,
-that $\exists $ a truth assignment $T$ such that all clauses in $\varphi $
-evaluates in  to true under the truth assignment $T$. We define as follows:%
-\newline
+The formula $\varphi $ eavaluates to \textit{true} iff all clauses $\psi
+_{i} $, $1\leq i\leq 7$, evaluates to \textit{true}. Therefore, we have to
+show, that $\exists $ a truth assignment $T$ such that all clauses in $%
+\varphi $ evaluates in to true under the truth assignment $T$. We define as
+follows:\newline
 \begin{equation*}
 T(s_{i,j})=\left\{ 
 \begin{array}{cl}
@@ -797,7 +813,7 @@ true & \text{ if }\exists \text{ a Queen }q\text{ on }c(i,j)\text{ and }%
 \#(N-Queens)=n, \\ 
 false & \text{otherwise.}%
 \end{array}%
-\right. 
+\right.
 \end{equation*}
 
 $\psi _{1}$ evaluates to true if for each number $j\in {1,..,n}$ the number
@@ -817,7 +833,7 @@ $\psi _{7}$ evaluates to true if for each number $j\in {1,..,n}$ the number
 has been assigned at least once which is true for a positive instance of 
 \textbf{N-Queens}.
 
-Finally, we have to show that $\varphi $ is equisatisfialbe to \bigskip $%
+Finally, we have to show that $\varphi $ is equisatisfialbe to $%
 \varphi _{S}\in \,$\textbf{SAT} by showing that there exists a function $\mu
 :s_{i,j}\rightarrow v$, $\forall s_{i,j}\in \varphi $ and $\forall v\in
 \varphi _{S}$, such that $\varphi _{S}$ evaluates to true.
@@ -842,10 +858,11 @@ first 6 clauses. Finally, we have to show that we can derive indeed a
 positive instance of \textbf{N-Queens} out of $\mu $ and that the instance
 of \textbf{N-Queens} has an exactly size of $n$.
 
-\newline
+\medskip
+
 By definition of clauses $\psi _{1}$ to $\psi _{6}$ we already made sure
 that there can be at most $1$ queen in each line, each row and each diagonal
-line. Because of cluase $\psi _{7}$ there must be at least one queen in each
+line. Because of clause $\psi _{7}$ there must be at least one queen in each
 column and therefore we can be sure that \textbf{N-Queens} is of size $n$.
 
 \subsubsection{NP-complete}

@@ -6,19 +6,22 @@ in NP.
 \noindent At first we have to check \ if \textsc{Frequency-Assignment} id a membership
 of NP.
 
-\noindent This can be done by a guess \& check procedure:
-
-\subsubsection{definition}
+\begin{definition}
 Let\ $G_{F}=(T,E)$ be an arbitrary undirected graph for \textsc{%
 Frequency-Assignment} with $T=\{t_{1},t_{2},\ldots ,t_{n}\}$ and $E^{\prime
 }=\{(t_{i},t_{j})\mid t_{i},t_{j}\in T(G_{F})$ with $i\neq j$ s.t. $t_{i}$
-and $t_{j}$ are interfering each other$\}\subseteq E=$.$\{(t_{i},t_{j})\mid
+and $t_{j}$ are interfering each other$\}\subseteq E=\{(t_{i},t_{j})\mid
 t_{i},t_{j}\in T(G_{F})$ with $i\neq j\}$. Let $F=\{f_{1},\ldots ,f_{k}\}$
 be an arbitrary set of frequencies and $fr:T(G_{F})\rightarrow F$ a function
 for assigning each transmitter-vertex $t\in T(G_{F})$ to a frequency $f\in F$%
 .
+\end{definition}
 
-Guess an arbitrary set of frequencies $F=\{f_{1},\ldots ,f_{k}\}$ of size $k$%
+\noindent This can be done by a guess \& check procedure:
+
+\medskip
+
+\noindent Guess an arbitrary set of frequencies $F=\{f_{1},\ldots ,f_{k}\}$ of size $k$%
 . Then for each transmitter-vertex $t\in T(G_{F})$, verify that $t$ has no
 adjacent verteices $u\in T(G_{F})$ with the same frequency $f\in F$, i.e. $%
 \forall t_{i},t_{j}\in T(G_{F})$ with $i\neq j$, s.t. $(t_{i},t_{j})\in E$
@@ -26,25 +29,32 @@ and $fr(t_{i})\neq fr(t_{j})$. The verification of the edges in $G_{F}$
 takes polynomial time in the size of $k=|F|$ and the number of edges $n=|E|$
 in $G_{F}$.
 
+\bigskip
+
 It remains to show that \textsc{Frequency-Assignment} is NP-hard, by
 reducing \textsc{Frequency-Assignment} to $k$\textsc{-Colorability}.
+
+\bigskip
 
 Let\ $G_{F}=(T,E)$ be an arbitrary undirected graph for \textsc{%
 Frequency-Assignment} (as defined above). To prove the correctness of the
 reduction, we have to show that following equation holds:%
-\begin{equation*}
+\begin{gather*}
 (G_{F},k)\text{ is a positive instance of \textsc{Frequency-Assignment}}%
-\quad \Leftrightarrow \quad (G_{C},k^{\prime })\text{ is a positive instance
-of }k\text{\textsc{-Colorability}.}
-\end{equation*}
+\quad \Leftrightarrow  \\
+(G_{C},k^{\prime })\text{ is a positive instance of }k\text{\textsc{%
+-Colorability}.}
+\end{gather*}
 
-\textbf{Proof:}
+\noindent\textbf{Proof:}
 
 \noindent Given an arbitrary instance $(G_{F},k)$ of \textsc{Frequency-Assignment}.
 Then an instance of $(G_{C},k^{\prime })$ of $k$\textsc{-Colorability} can
 be produced iff, $k=k^{\prime }$ and there exists a function $%
 c:V(G_{C})\rightarrow C$, where $C=\{1,\ldots ,k^{\prime }\}$ is a set of
 colors of size $k^{\prime }$.
+
+\bigskip
 
 $\Rightarrow :$ Suppose $(G_{F},k)$ is a positive instance of \textsc{%
 Frequency-Assignment}. Then $\forall t_{i},t_{j}\in T(G_{F})$ with $i\neq j$%
@@ -62,6 +72,8 @@ each graph, such that $fr=c$, i.e. there is a \textit{bijection} between the
 vertex sets of $G_{F}$ and $G_{C}$. Thus, both undirected graphs $G_{F}$ and 
 $G_{C}$ are \textit{isomorph}. Hence, $(G_{C},k^{\prime })$ is a positive
 instance of $k$\textsc{-Colorability}$.$
+
+\bigskip
 
 $\Leftarrow :$ Suppose that $(G_{C},k^{\prime })$ is a positive instance of $%
 k$\textsc{-Colorability}. Then there exists an assignment function $\mu $

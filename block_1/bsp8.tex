@@ -211,14 +211,28 @@ solution to the \textbf{N-Queens} problem.
 
 \subsubsection{Proof sketch}
 
-$\Rightarrow $ direction:\newline
+We have to show that following equantion holds:%
+\begin{equation*}
+\varphi \text{ is a positive instance of }\mathbf{N-Queens}\text{ }\quad \iff \quad
+\varphi _{S}\text{ is a positive instance of }\mathbf{SAT}\text{.}
+\end{equation*}
+(i.e. both formuals $\varphi $ and $\varphi _{S}$ are \textit{%
+equi-satisfiable}.)
+
+\bigskip
+
+\noindent Then:
+
+\medskip
+
+\noindent $\Rightarrow $ direction:\newline
 Suppose that $\varphi $ is a positive instance of \textbf{N-Queens} and now
 we have to show that $\varphi _{S}$ also is a positive instance of \textbf{%
 SAT}.\newline
 The formula $\varphi $ eavaluates to \textit{true} iff all clauses $\psi _{i}
 $, $1\leq i\leq 7$, evaluates to \textit{true}. Therefore, we have to show,
 that $\exists $ a truth assignment $T$ such that all clauses in $\varphi $
-evaluates in  to true under the truth assignment $T$. We define as follows:%
+evaluates in  to true under the truth assignment $T$. We define $T$ as follows:%
 \newline
 \begin{equation*}
 T(s_{i,j})=\left\{ 
@@ -245,15 +259,14 @@ Analogously this works for $\psi _{4}$ to $\psi _{6}$.
 
 $\psi _{7}$ evaluates to true if for each number $j\in {1,..,n}$ the number
 has been assigned at least once which is true for a positive instance of 
-\textbf{N-Queens}.
-
-Finally, we have to show that $\varphi $ is equisatisfialbe to \bigskip $%
+\textbf{N-Queens}. Finally, we have to show that $\varphi $ is equisatisfialbe to $%
 \varphi _{S}\in \,$\textbf{SAT} by showing that there exists a function $\mu
 :s_{i,j}\rightarrow v$, $\forall s_{i,j}\in \varphi $ and $\forall v\in
 \varphi _{S}$, such that $\varphi _{S}$ evaluates to true.
 
-$\Leftarrow $ direction:
+\bigskip
 
+\noindent $\Leftarrow $ direction:\newline
 Suppose, we have a positive instance $\varphi _{S}$ of \textbf{SAT.} We have
 to show that it's possible to derive a poitive instance $\varphi \in $ 
 \textbf{N-Queens} out of a truth-assignment $T$.
@@ -272,10 +285,11 @@ first 6 clauses. Finally, we have to show that we can derive indeed a
 positive instance of \textbf{N-Queens} out of $\mu $ and that the instance
 of \textbf{N-Queens} has an exactly size of $n$.
 
-\newline
+\medskip
+
 By definition of clauses $\psi _{1}$ to $\psi _{6}$ we already made sure
 that there can be at most $1$ queen in each line, each row and each diagonal
-line. Because of cluase $\psi _{7}$ there must be at least one queen in each
+line. Because of clause $\psi _{7}$ there must be at least one queen in each
 column and therefore we can be sure that \textbf{N-Queens} is of size $n$.
 
 \subsubsection{NP-complete}

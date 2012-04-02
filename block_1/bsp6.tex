@@ -1,33 +1,55 @@
 \subsection{solution}
 
-By trying to prove that $\vDash$ is \textit{co-NP-complete} we whave to show that
+By trying to prove that $\models $ is \textit{co-NP-complete} we whave to
+show that
+
 \begin{itemize}
- \item entailment is in \textit{co-NP} \dots Membership (through reduction) and
- \item NP-hardness \dots co-NP-complete Problem can be reduced to \textit{entailment}
+\item entailment is in \textit{co-NP} \dots\ Membership (through reduction)
+and
+
+\item \textit{NP}-hardness \dots\ \textit{co-NP}-complete Problem can be
+reduced to \textit{entailment}
 \end{itemize}
 
 \subsubsection{Membership}
-And the counterprove for us that we have to show is that:
-$\alpha \vDash \beta \quad\iff\quad \vDash\alpha \wedge \neg\beta$ isn't satisfiable.
 
-\noindent We try to show membership through a reduction from \textit{entailment} the well known 
-co-NP-complete problem: \textit{co-SAT}.\newline
+And the counterprove for us that we have to show is that:%
+\begin{equation*}
+\alpha \models \beta \quad \iff \quad \models (\alpha \wedge \lnot \beta )%
+\text{ is not satisfiable.}
+\end{equation*}
 
-\noindent Proof $\Rightarrow$:\\
-We take a look at \textbf{every truth assignments} for \textit{entailment} what means 
-that $\alpha \wedge \neg\beta$ isn't satisfied and therefore \textbf{also true}. \\
-The last case - a \textbf{false} \textit{entailment} ($\alpha = true$ and $\beta = false$) 
-followes a satisfied $\alpha \wedge \neg\beta$ which is \textbf{also false}.
+\noindent We try to show membership through a reduction from \textit{%
+entailment} the well known co-NP-complete problem: \textit{co-SAT}.\newline
 
-\noindent Proof $\Leftarrow$:\\
-if $\alpha \wedge \neg\beta$ isn't satisfiable the entailment is true.\\
-So in case $\alpha \wedge \neg\beta$ is true ($\alpha = true$ and $\beta = false$)
-the entailment is not valid too.
+\noindent Proof $\Rightarrow $:\newline
+We take a look at \textbf{every truth assignments}, i.e. all interpretations 
+$I$, which for \textit{entailment} means, that $\forall I$ s.t. $I(\alpha
+\wedge \lnot \beta )$ isn't satisfied and therefore \textbf{also true}.
+
+The last case - a \textbf{false} \textit{entailment} (i.e. $\alpha =true$
+and $\beta =false$) followes a satisfied $\alpha \wedge \lnot \beta $ which
+is \textbf{also false}.
+
+\noindent Proof $\Leftarrow $:\newline
+If $\forall I,$ $I(\alpha \wedge \lnot \beta )$ isn't satisfiable, the
+entailment is \textit{true}.\newline
+So in case that $\alpha \wedge \lnot \beta $ is true (s.t. $\alpha =true$
+and $\beta =false$), i.e. $\models \lnot \beta $, the \textit{entailment} is
+not valid and therefore it covers all of \textit{co-SAT}. Thus, \textit{%
+co-SAT} is \textit{co-NP}-complete. 
 
 \subsubsection{NP-hardness}
-We try to show a reduction from \textit{co-SAT} to \textit{entailment}\\
 
-$\alpha \wedge \neg\beta$ isn't satisfiable $\iff \alpha \vDash \beta$\\
-And fortunately we already proved this reduction while showing Membership above.\\
+We try to show a reduction from \textit{co-SAT} to \textit{entailment}%
+\begin{equation*}
+\models (\alpha \wedge \lnot \beta )\text{ is not satisfiable}\quad \iff
+\quad \alpha \models \beta 
+\end{equation*}%
+Since \textit{SAT}\ is \textit{NP}-complete and fortunately we already
+proved this reduction, while showing the Membership above.\newline
 
-\noindent What show's us that \textit{entailment} is NP-hard and complete.
+\noindent This show's us, that \textit{entailment} is \textit{co-NP}-hard
+and -complete.
+
+\bigskip 

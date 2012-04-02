@@ -1,6 +1,136 @@
 \subsection{solution}
+% %$$F=\bigwedge_{z=1}^{9}\Bigg(\bigvee_{y=1}^{9} v_{1,y,z}\Bigg)$$
 
-%$$F=\bigwedge_{z=1}^{9}\Bigg(\bigvee_{y=1}^{9} v_{1,y,z}\Bigg)$$
+% \subsubsection{Reduction}
+
+% We have to construct a polynomial-time reduction from \textbf{N-Queens} to
+% SAT. Let an arbitrary instance of \textbf{N-Queens} be given by n queens and
+% a $n\times n$ chessboard. We construct a propositional formula $\psi $ (i.e.
+% an instance of \textbf{SAT}) as follows.\newline
+% First of all, we use the following propositional variables: $s_{i,j}$, where 
+% $s_{i,j}$ stands for the cell $(i,j)$ of the $n\times n$ chessboard. The
+% variable $s_{i,j}$ is assigned \textit{true} iff a queen is assigned to the
+% cell $c(i,j)$. The different constraints of the puzzle can be expressed with
+% this representation in the following way:
+
+% \noindent Rule to assert that we get at most one queen in a column: 
+% \begin{equation*}
+% \psi_1 \equiv
+% \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{i;j}
+% \vee \neg s_{i;k})
+% \end{equation*}
+
+% \noindent Rule to assert that we get at most one queen in each row: 
+% \begin{equation*}
+% \psi_2 \equiv
+% \bigwedge_{i=1}^{n}\bigwedge_{j=1}^{n}\bigwedge_{k=j+1}^{n}(\neg s_{j;i}
+% \vee \neg s_{k;i})
+% \end{equation*}
+
+% \noindent Left-lower to right-upper diagonal lines are splitted in two
+% parts: The bottom lines are characterized by a numer $d\in {0,...,n-2}$, and
+% each line is compounded by the cells $c(i,j)$ such that $i-j=d$. Notice that
+% the lines with only one cell (the corners) are removed.\newline
+% Rule to assert that we get at most one queen in a diagonal line: 
+% \begin{equation*}
+% \psi _{3}\equiv
+% \bigwedge_{d=0}^{n-2}\bigwedge_{j=1}^{n-d}\bigwedge_{k=j+1}^{n-2}(\lnot
+% s_{d+j;i}\vee \lnot s_{d+k;k})
+% \end{equation*}
+
+% \noindent The remaining diagonal lines are characterized by $d \in {%
+% -(n-2),...,-1}$ and their rule is defined by: 
+% \begin{equation*}
+% \psi_4 \equiv
+% \bigwedge_{d=2-n)}^{-1}\bigwedge_{j=1}^{n+d}\bigwedge_{k=j+1}^{n+d}(\neg
+% s_{j;j-d} \vee \neg s_{k;k-d})
+% \end{equation*}
+
+% \noindent Analogously the left-upper to right-lower diagonal lines are
+% splitted in two parts: The bottom lines are charactarized by a number $d \in 
+% {3,...,n+1}$ and the\newline
+% rule to assert that we get at most one queen in a diagonal line: 
+% \begin{equation*}
+% \psi_5 \equiv
+% \bigwedge_{d=3}^{n+1}\bigwedge_{j=1}^{d-1}\bigwedge_{k=j+1}^{d-1}(\neg
+% s_{dj;d-j} \vee \neg s_{k;d-k})
+% \end{equation*}
+
+% \noindent The remaining diagonal lines are characterized by $d \in {%
+% n+2,...,2n-1}$ and their rule is defined by: 
+% \begin{equation*}
+% \psi_6 \equiv
+% \bigwedge_{d=n+2}^{2n-1}\bigwedge_{j=d-n}^{n}\bigwedge_{k=j+1}^{d-1}(\neg
+% s_{j;d-j} \vee \neg s_{k;d-k})
+% \end{equation*}
+
+% \noindent Rule to assert that we get at least one queen in each column: 
+% \begin{equation*}
+% \psi_7 \equiv \bigwedge_{i=1}^{n}\bigvee_{j=i}^{n}s_{i;j}
+% \end{equation*}
+% wich ensures that there is exactly one queen in each column.
+
+% \noindent So we get the conjunction of these seven formulae: 
+% \begin{equation*}
+% \varphi \equiv \psi _{1}\bigwedge \psi _{2}\bigwedge \psi _{3}\bigwedge \psi
+% _{4}\bigwedge \psi _{5}\bigwedge \psi _{6}\bigwedge \psi _{7}\bigwedge 
+% \end{equation*}%
+% is in CNF form and each truth assignment which makes it true represents a
+% solution to the \textbf{N-Queens} problem.
+
+% \subsubsection{Proof sketch}
+
+% $\Rightarrow $ direction:\newline
+% Suppose that $n$ is a positive instance of \textbf{N-Queens} and now we have
+% to show that $\varphi $ also is a positive instance of \textbf{SAT}.\newline
+% The formula $\varphi $ eavaluates to \textit{true} iff all clauses $\psi _{i}
+% $, $1\leq i\leq 7$, evaluates to \textit{true}. Therefore, we have to proof
+% that $\exists $ a truth assignment $T$ and we have to show that all clauses
+% evaluates to true under the truth assignment $T$. We define:\newline
+% \begin{equation*}
+% T(s_{i,j})=\left\{ 
+% \begin{array}{cl}
+% true & \text{ if }\exists \text{ a Queen }q\text{ on }c(i,j)\text{ and }%
+% \#(\text{N-Queens})=n, \\ 
+% false & \text{otherwise.}%
+% \end{array}%
+% \right. 
+% \end{equation*}%
+% $\psi _{1}$ evaluates to true if for each number $j\in {1,..,n}$ the number
+% has been assigned at most once which is true for a positive instance of 
+% \textbf{N-Queens}. In this case every number will be assigned, exactly once,
+% therefore this clause evaluates to true.\newline
+% Analogously this works for $\psi _{2}$.\newline
+% $\psi _{3}$ evaluates to true if for each number $d\in {1,..,n-1}$ the
+% number has been assigned at most once which is also true for a positive
+% instance of \textbf{N-Queens}.\newline
+% Analogously this works for $\psi _{4}to\psi _{6}$.\newline
+% $\psi _{7}$ evaluates to true if for each number $j\in {1,..,n}$ the number
+% has been assigned at least once which is true for a positive instance of 
+% \textbf{N-Queens}.\newline
+
+% \noindent $\Leftarrow $ direction:\newline
+% Suppose we have a positive instance T of \textbf{SAT} that is a truth
+% assignment for the propositional formula $\varphi $. We have to show that
+% it's possible to derive a poitive instance of \textbf{N-Queens} out of $T$.%
+% \newline
+% While $T$ is a positive instance of \textbf{SAT}, each clause of $\varphi $
+% will evaluate to \textit{true}. Thus we can derive a queen set on an $%
+% n\times n$ chessboard by using the first 6 clauses. What we now have to show
+% is that we can derive a \textbf{N-Queens} out if $T$ and that \textbf{%
+% N-Queens} is exactly of size $n$.\newline
+% By definition of clauses $\psi _{1}$ to $\psi _{6}$ we already made sure
+% that there can be at most $1$ queen in each line, each row and each diagonal
+% line. Because of cluase $\psi _{7}$ there must be at least one queen in each
+% column and therefore we can be sure that \textbf{N-Queens} is of size $n$.
+
+% \subsubsection{NP-complete}
+
+% Yes, \textbf{N-Queens} is NP-complete because we have constructed a
+% polynomial-time reduction of \textbf{N-Queens} problem to \textbf{SAT} and 
+% \textbf{SAT} is NP-complete, which is a well-known fact.
+
+% \bigskip
 
 \subsubsection{Reduction}
 
@@ -74,7 +204,7 @@ wich ensures that there is exactly one queen in each column.
 \noindent So we get the conjunction of these seven formulae: 
 \begin{equation*}
 \varphi \equiv \psi _{1}\bigwedge \psi _{2}\bigwedge \psi _{3}\bigwedge \psi
-_{4}\bigwedge \psi _{5}\bigwedge \psi _{6}\bigwedge \psi _{7}\bigwedge 
+_{4}\bigwedge \psi _{5}\bigwedge \psi _{6}\bigwedge \psi _{7}\bigwedge
 \end{equation*}%
 is in CNF form and each truth assignment which makes it true represents a
 solution to the \textbf{N-Queens} problem.
@@ -82,44 +212,67 @@ solution to the \textbf{N-Queens} problem.
 \subsubsection{Proof sketch}
 
 $\Rightarrow $ direction:\newline
-Suppose that $n$ is a positive instance of \textbf{N-Queens} and now we have
-to show that $\varphi $ also is a positive instance of \textbf{SAT}.\newline
+Suppose that $\varphi $ is a positive instance of \textbf{N-Queens} and now
+we have to show that $\varphi _{S}$ also is a positive instance of \textbf{%
+SAT}.\newline
 The formula $\varphi $ eavaluates to \textit{true} iff all clauses $\psi _{i}
-$, $1\leq i\leq 7$, evaluates to \textit{true}. Therefore, we have to proof
-that $\exists $ a truth assignment $T$ and we have to show that all clauses
-evaluates to true under the truth assignment $T$. We define:\newline
+$, $1\leq i\leq 7$, evaluates to \textit{true}. Therefore, we have to show,
+that $\exists $ a truth assignment $T$ such that all clauses in $\varphi $
+evaluates in  to true under the truth assignment $T$. We define as follows:%
+\newline
 \begin{equation*}
 T(s_{i,j})=\left\{ 
 \begin{array}{cl}
 true & \text{ if }\exists \text{ a Queen }q\text{ on }c(i,j)\text{ and }%
-\#(\text{N-Queens})=n, \\ 
+\#(N-Queens)=n, \\ 
 false & \text{otherwise.}%
 \end{array}%
 \right. 
-\end{equation*}%
+\end{equation*}
+
 $\psi _{1}$ evaluates to true if for each number $j\in {1,..,n}$ the number
 has been assigned at most once which is true for a positive instance of 
 \textbf{N-Queens}. In this case every number will be assigned, exactly once,
-therefore this clause evaluates to true.\newline
-Analogously this works for $\psi _{2}$.\newline
+therefore this clause evaluates to true.
+
+Analogously this works for $\psi _{2}$.
+
 $\psi _{3}$ evaluates to true if for each number $d\in {1,..,n-1}$ the
 number has been assigned at most once which is also true for a positive
-instance of \textbf{N-Queens}.\newline
-Analogously this works for $\psi _{4}to\psi _{6}$.\newline
+instance of \textbf{N-Queens}.
+
+Analogously this works for $\psi _{4}$ to $\psi _{6}$.
+
 $\psi _{7}$ evaluates to true if for each number $j\in {1,..,n}$ the number
 has been assigned at least once which is true for a positive instance of 
-\textbf{N-Queens}.\newline
+\textbf{N-Queens}.
 
-\noindent $\Leftarrow $ direction:\newline
-Suppose we have a positive instance T of \textbf{SAT} that is a truth
-assignment for the propositional formula $\varphi $. We have to show that
-it's possible to derive a poitive instance of \textbf{N-Queens} out of $T$.%
+Finally, we have to show that $\varphi $ is equisatisfialbe to \bigskip $%
+\varphi _{S}\in \,$\textbf{SAT} by showing that there exists a function $\mu
+:s_{i,j}\rightarrow v$, $\forall s_{i,j}\in \varphi $ and $\forall v\in
+\varphi _{S}$, such that $\varphi _{S}$ evaluates to true.
+
+$\Leftarrow $ direction:
+
+Suppose, we have a positive instance $\varphi _{S}$ of \textbf{SAT.} We have
+to show that it's possible to derive a poitive instance $\varphi \in $ 
+\textbf{N-Queens} out of a truth-assignment $T$.
+
+Similar as above, we have to build here also a truth-assignment function $T$
+such that, $\varphi _{S}$ evaluates to true. Since $\varphi _{S}$ is a
+positive instance of \textbf{SAT}, each clause of $\varphi _{S}$ will
+evaluate to \textit{true}.
+
+Then we have to show that there exists a function $\mu :v\rightarrow s_{i,j}$%
+, $\forall v\in \varphi _{S}$ and $\forall s_{i,j}\in \varphi $, such that $%
+\varphi \in $ \textbf{N-Queens} evaluates to true.
+
+Hence, we can derive a queen set on an $n\times n$ chessboard by using the
+first 6 clauses. Finally, we have to show that we can derive indeed a
+positive instance of \textbf{N-Queens} out of $\mu $ and that the instance
+of \textbf{N-Queens} has an exactly size of $n$.
+
 \newline
-While $T$ is a positive instance of \textbf{SAT}, each clause of $\varphi $
-will evaluate to \textit{true}. Thus we can derive a queen set on an $%
-n\times n$ chessboard by using the first 6 clauses. What we now have to show
-is that we can derive a \textbf{N-Queens} out if $T$ and that \textbf{%
-N-Queens} is exactly of size $n$.\newline
 By definition of clauses $\psi _{1}$ to $\psi _{6}$ we already made sure
 that there can be at most $1$ queen in each line, each row and each diagonal
 line. Because of cluase $\psi _{7}$ there must be at least one queen in each

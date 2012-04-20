@@ -1,0 +1,30 @@
+  \solution{
+Construct the equivalences for the SFOs and translate the labeled
+subformulas to CNF (local constraints):
+
+% use packages: array
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textsl{\small Equivalences} & \multicolumn{3}{c|}{\textsl{\small Associated
+Clauses}} \\ 
+{\small \textsl{for SFOs in} $\phi $} & $C_{1}(\phi )$ & $C_{2}(\phi )$ & $%
+C_{3}(\phi )$ \\ \hline
+$I_{1}\IFF x$ & $\lnot I_{1}\OR x$ & $I_{1}\OR\lnot x$ & \\ 
+$I_{2}\IFF y$ & $\lnot I_{2}\OR y$ & $I_{2}\OR\lnot y$ &  \\ 
+$I_{3}\IFF(I_{1}\AND I_{2})$ & $\lnot I_{3}\OR I_{1}$ & $\lnot I_{3}\OR %
+I_{2} $ & $I_{3}\OR\lnot I_{1}\OR\lnot I_{2}$ \\ 
+$I_{4}\IFF y$ & $\lnot I_{4}\OR y$ & $I_{4}\OR\lnot y$ &  \\ 
+$I_{5}\IFF z$ & $\lnot I_{5}\OR z$ & $I_{5}\OR\lnot z$ &  \\ 
+$I_{6}\IFF(I_{4}\AND I_{5})$ & $\lnot I_{6}\OR I_{4}$ & $\lnot I_{6}\OR %
+I_{5} $ & $I_{6}\OR\lnot I_{4}\OR\lnot I_{5}$ \\ 
+$I_{7}\IFF z$ & $\lnot I_{7}\OR z$ & $I_{7}\OR\lnot z$ &  \\ 
+$I_{8}\IFF\lnot I_{7}$ & $\lnot I_{8}\OR\lnot I_{7}$ & $I_{8}\OR I_{7}$ & 
+\\ 
+$I_{9}\IFF(I_{3}\IMPL I_{6})$ & $\lnot I_{9}\OR\lnot I_{3}\OR I_{6}$ & $I_{9}%
+\OR I_{3}$ & $I_{9}\OR\lnot I_{6}$ \\ 
+$I_{10}\IFF(I_{9}\IMPL I_{8})$ & $\lnot I_{10}\OR\lnot I_{9}\OR I_{8}$ & $%
+I_{10}\OR I_{9}$ & $I_{10}\OR\lnot I_{8}$ \\ \hline
+\end{tabular}
+\label{tab:translation_cnf}
+
+  }

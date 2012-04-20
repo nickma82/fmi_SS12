@@ -6,7 +6,7 @@
 
 \LoadClass{article}
 \RequirePackage{a4wide}
-\RequirePackage{german}
+\RequirePackage[ngerman]{babel}
 
 %%---------------------------- Voreinstellungen ------------------------------
 

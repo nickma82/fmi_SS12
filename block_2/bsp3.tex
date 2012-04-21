@@ -146,18 +146,10 @@ equality formula $\varphi ^{E}$:
 %EndExpansion
 
 The equality graph has two contradictory cycles, $%
-c_{1}=(x_{6},x_{8},x_{7},x_{6})$ and $%
-c_{2}=(x_{4},x_{5},x_{6},x_{8},x_{7},x_{4})$.
+c_{1}=(x_{2},x_{3},x_{4})$ and $%
+c_{2}=(x_{3},x_{4},x_{5},x_{6},x_{7})$.
 
-\item Simplifying the graph $G^{E}(\varphi ^{E})$ by replacing each pure
-literal in $\varphi ^{E}$ whose corresponding edge is not part of a simple
-contradictory cycle with \textsc{True}.
-
-According to the algorithm, $G^{E}(\varphi _{1}^{E})$ can be further
-simplified by replacing literals with \textsc{True}:
-\bigskip
-\end{enumerate}
-
+\item 
 Following strictly the rules of the simplification algorithm, the algorithm
 replace in this case every literal in the equality formula $\varphi ^{E}$
 with \textsc{True}. In order to transform $\varphi ^{E}$ into a
@@ -168,20 +160,122 @@ once with \textsc{True}, which are not in the cycles $c_{1}$ and $c_{2}$. So
 we get:
 
 \begin{eqnarray*}
-\varphi _{1}^{E} &:&(\text{\textsc{True}}\vee \text{\textsc{True}})\wedge (%
-\text{\textsc{True}})\wedge (x_{3}\,{\neq }\,x_{4}\vee x_{5}\,{\neq }%
-\,x_{6})\wedge \\
-(x_{4}\, &{=}&\,x_{5}\vee x_{4}\,{=}\,x_{7}\vee x_{6}\,{\neq }\,x_{7})\wedge
-(x_{6}\,{=}\,x_{8}\vee x_{7}\,{=}\,x_{8})
+\varphi _{1}^{E}:(\text{\textsc{True}}\vee \text{\textsc{True}})\wedge [
+(x_{2}\,{\neq}\,x_{4}\wedge x_{3}\,{=}\,x_{4}\wedge x_{4}\,{=}
+\,x_{5})\vee \\
+(x_{5}\,{\neq}\,x_{6}\wedge x_{6}\,{=}\,x_{7}\wedge x_{3}\,{=}\,x_{7})]
 \end{eqnarray*}
 
 \begin{equation*}
-\Rightarrow \;\;\varphi _{1}^{E}:(x_{3}\,{\neq }\,x_{4}\vee x_{5}\,{\neq }%
-\,x_{6})\wedge (x_{4}\,{=}\,x_{5}\vee x_{4}\,{=}\,x_{7}\vee x_{6}\,{\neq }%
-\,x_{7})\wedge (x_{6}\,{=}\,x_{8}\vee x_{7}\,{=}\,x_{8})
+\Rightarrow \;\;\varphi _{1}^{E}:(x_{2}\,{\neq}\,x_{4}\wedge x_{3}\,{=}\,x_{4}\wedge x_{4}\,{=}
+\,x_{5})\vee \\
+(x_{5}\,{\neq}\,x_{6}\wedge x_{6}\,{=}\,x_{7}\wedge x_{3}\,{=}\,x_{7})
 \end{equation*}
 
 Then the equality graph $G^{E}(\varphi _{1}^{E})$ looks like:
+
+%TCIMACRO{%
+%\TeXButton{Equality graph 1 (variant)}{\begin{tikzpicture}[>=latex',line join=bevel,]
+%\pgfsetlinewidth{1bp}
+%\pgfsetcolor{black}
+% \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
+% \draw [dotted] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
+%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+%\pgfsetstrokecolor{strokecol}
+%\draw (63.513bp,144.81bp) node {$=$};
+% \draw [dotted] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
+%\draw (126.17bp,125.1bp) node {$=$};
+% \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
+% \draw [dotted] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
+%\draw (140.09bp,48.665bp) node {$=$};
+% \draw [dotted] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
+%\draw (63.347bp,39.126bp) node {$=$};
+%\begin{scope}
+%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+%\pgfsetstrokecolor{strokecol}
+%\draw (105bp,168bp) ellipse (14bp and 15bp);
+%\draw (105.36bp,168.38bp) node {$x_8$};
+%\end{scope}
+%\begin{scope}
+%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+%\pgfsetstrokecolor{strokecol}
+%\draw (16bp,139bp) ellipse (14bp and 15bp);
+%\draw (15.5bp,139.18bp) node {$x_6$};
+%\end{scope}
+%\begin{scope}
+%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+%\pgfsetstrokecolor{strokecol}
+%\draw (161bp,92bp) ellipse (14bp and 15bp);
+%\draw (160.9bp,91.939bp) node {$x_7$};
+%\end{scope}
+%\begin{scope}
+%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+%\pgfsetstrokecolor{strokecol}
+%\draw (105bp,15bp) ellipse (14bp and 15bp);
+%\draw (105.36bp,15.5bp) node {$x_4$};
+%\end{scope}
+%\begin{scope}
+%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+%\pgfsetstrokecolor{strokecol}
+%\draw (15bp,45bp) ellipse (14bp and 15bp);
+%\draw (15.5bp,44.697bp) node {$x_5$};
+%\end{scope}
+%\end{tikzpicture}
+%}}%
+%BeginExpansion
+\begin{tikzpicture}[>=latex',line join=bevel,]
+\pgfsetlinewidth{1bp}
+\pgfsetcolor{black}
+ \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
+ \draw [dotted] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
+\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+\pgfsetstrokecolor{strokecol}
+\draw (63.513bp,144.81bp) node {$=$};
+ \draw [dotted] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
+\draw (126.17bp,125.1bp) node {$=$};
+ \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
+ \draw [dotted] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
+\draw (140.09bp,48.665bp) node {$=$};
+ \draw [dotted] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
+\draw (63.347bp,39.126bp) node {$=$};
+\begin{scope}
+\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+\pgfsetstrokecolor{strokecol}
+\draw (105bp,168bp) ellipse (14bp and 15bp);
+\draw (105.36bp,168.38bp) node {$x_8$};
+\end{scope}
+\begin{scope}
+\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+\pgfsetstrokecolor{strokecol}
+\draw (16bp,139bp) ellipse (14bp and 15bp);
+\draw (15.5bp,139.18bp) node {$x_6$};
+\end{scope}
+\begin{scope}
+\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+\pgfsetstrokecolor{strokecol}
+\draw (161bp,92bp) ellipse (14bp and 15bp);
+\draw (160.9bp,91.939bp) node {$x_7$};
+\end{scope}
+\begin{scope}
+\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+\pgfsetstrokecolor{strokecol}
+\draw (105bp,15bp) ellipse (14bp and 15bp);
+\draw (105.36bp,15.5bp) node {$x_4$};
+\end{scope}
+\begin{scope}
+\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+\pgfsetstrokecolor{strokecol}
+\draw (15bp,45bp) ellipse (14bp and 15bp);
+\draw (15.5bp,44.697bp) node {$x_5$};
+\end{scope}
+\end{tikzpicture}
+%
+%EndExpansion
+
+Now we have only the contradictory cycle $c_{2}$, and we can simplify the 
+graph $G^{E}(\varphi _{1}^{E})$ once more by replacing all literals with TRUE, 
+which are not in the cycle $c_{2}$. So we get a new equality graph 
+$G^{E}(\varphi _{2}^{E})$:
 
 %TCIMACRO{%
 %\TeXButton{Equality graph 1 (variant)}{\begin{tikzpicture}[>=latex',line join=bevel,]
@@ -294,16 +388,16 @@ transitivity constraints} (conjunctions of implications).
 So $\varphi ^{P}=e(\varphi ^{E})\AND B_{t}$ is equi-satisfiable to $\varphi
 ^{E}$, iff $\varphi ^{E}$ is satisfiable.
 
-\begin{enumerate}
-\item First we construct the propositional skeleton of $\varphi _{1}^{E}$ by
-replacing each atom of the form $x_{i}=x_{j}$ in $\varphi _{1}^{E}$ with $%
+\bigskip
+\item First we construct the propositional skeleton of $\varphi _{2}^{E}$ by
+replacing each atom of the form $x_{i}=x_{j}$ in $\varphi _{2}^{E}$ with $%
 e_{i,j}$, such that:%
 \begin{equation*}
-e(\varphi _{1}^{E})=(e_{4,5}\OR e_{4,7}\OR\lnot e_{6,7})\AND(e_{6,8}\OR %
-e_{7,8})\AND(\lnot e_{3,4}\OR\lnot e_{5,6})
+e(\varphi _{2}^{E})=(e_{3,4}\AND e_{4,5})\OR(\lnot e_{5,6}\AND e_{1,6} \AND 
+e_{3,7})
 \end{equation*}
 
-\item Construct the nonpolar equality graph $G_{NP}^{E}(\varphi _{1}^{E})$:
+\item Construct the nonpolar equality graph $G_{NP}^{E}(\varphi _{2}^{E})$:
 
 %TCIMACRO{%
 %\TeXButton{Nonpolar equality graph}{\begin{tikzpicture}[>=latex',line join=bevel,]
@@ -391,8 +485,8 @@ e_{7,8})\AND(\lnot e_{3,4}\OR\lnot e_{5,6})
 %
 %EndExpansion
 
-\item Make $G_{NP}^{E}(\varphi _{1}^{E})$ chordal, using elimination
-ordering $(x_{4,}x_{5,}x_{6,}x_{7,}x_{8})$:
+\item Make $G_{NP}^{E}(\varphi _{2}^{E})$ chordal, using elimination
+ordering $(x_{3},x_{4},x_{5},x_{6},x_{7})$:
 
 %TCIMACRO{%
 %\TeXButton{Chordal nonpolar equality graph }{\begin{tikzpicture}[>=latex',line join=bevel,]
@@ -480,26 +574,26 @@ ordering $(x_{4,}x_{5,}x_{6,}x_{7,}x_{8})$:
 %EndExpansion
 
 \item Generate the transitivity constraints in $B_{t}$ for every triangle in
-the chordal graph $G_{NP}^{E}(\varphi _{1}^{E})$:
+the chordal graph $G_{NP}^{E}(\varphi _{2}^{E})$:
 
 \begin{enumerate}
 \item $B_{t}=$ \textsc{True}
 
 \item for each triangle $(e_{i,j},e_{j,k},e_{i,k})$ in $G_{NP}^{E}(\varphi
-_{1}^{E})$:%
+_{2}^{E})$:%
 \begin{eqnarray*}
-B_{t}=((e_{4,5}\AND e_{5,7}\IMPL e_{4,7})\AND && \\
-(e_{4,5}\AND e_{4,7}\IMPL e_{5,7})\AND && \\
-(e_{4,7}\AND e_{5,7}\IMPL e_{4,5})\AND && \\
+B_{t}=((e_{3,4}\AND e_{4,5}\IMPL e_{3,5})\AND && \\
+(e_{3,5}\AND e_{4,5}\IMPL e_{3,4})\AND && \\
+(e_{3,4}\AND e_{3,5}\IMPL e_{4,5})\AND && \\
+(e_{3,5}\AND e_{5,7}\IMPL e_{3,7})\AND && \\
+(e_{3,7}\AND e_{3,5}\IMPL e_{5,7})\AND && \\
+(e_{3,7}\AND e_{5,7}\IMPL e_{3,5})\AND && \\
 (e_{5,6}\AND e_{6,7}\IMPL e_{5,7})\AND && \\
-(e_{5,6}\AND e_{5,7}\IMPL e_{6,7})\AND && \\
-(e_{5,7}\AND e_{6,7}\IMPL e_{5,6})\AND && \\
-(e_{6,7}\AND e_{7,8}\IMPL e_{6,8})\AND && \\
-(e_{6,7}\AND e_{6,8}\IMPL e_{7,8})\AND && \\
-(e_{6,8}\AND e_{7,8}\IMPL e_{6,7})) &&
+(e_{6,7}\AND e_{5,7}\IMPL e_{5,6})\AND && \\
+(e_{5,6}\AND e_{5,7}\IMPL e_{6,7})) &&
 \end{eqnarray*}
 
-Hence, $\varphi ^{E}$ is satisfiable, iff $\varphi ^{P}=e(\varphi _{1}^{E})%
+Hence, $\varphi ^{E}$ is satisfiable, iff $\varphi ^{P}=e(\varphi _{2}^{E})%
 \AND B_{t}$ is satisfiable.
 \end{enumerate}
 \end{enumerate}

@@ -1,0 +1,232 @@
+  \solution{
+The sparse method is a decision procedure for equality logic that computes
+equi-satisfiable formulas in propositional logic.
+
+Consider formula $\varphi ^{E}$ in equation logic:%
+
+\begin{displaymath}
+  \varphi ^{E}: (x_1 \neq x_2 \lor x_2=x_3 ) \land \big[ (x_2 \neq x_4 \land x_3=x_4
+  \land x_4=x_5)
+  \lor (x_6 \neq x_5 \land x_6=x_7 \land x_7=x_3)\big]
+\end{displaymath}
+
+Then the sets of equality literals and disequality literals of $\varphi ^{E}$
+are:
+
+\begin{eqnarray*}
+E_{=}
+&=&%
+\{x_{2}=x_{3,}x_{3}=x_{4},x_{4}=x_{5},x_{6}=x_{7},x_{7}=x_{3}\}
+\\
+E_{\neq } &=&\{x_{1}\neq x_{2},x_{2}\neq x_{4},x_{6}\neq x_{5}\}
+\end{eqnarray*}
+
+It is very often the case, that a given equality logic formula $\varphi ^{E}$
+can be simplified. Before reducing $\varphi ^{E}$ to a propositional formula 
+$\varphi ^{P}$, we have to do some preprocessing for simplifying the
+equality formula $\varphi ^{E}$:
+
+\begin{enumerate}
+\item Construct an equality graph $G^{E}(\varphi ^{E})=(V,E_{=},E_{\neq })$:
+
+%\enlargethispage{100cm}
+% Start of code
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (x2) at (101bp,99.026bp) [draw,circle] {$x_2$};
+  \node (x3) at (149.22bp,182.55bp) [draw,circle] {$x_3$};
+  \node (x1) at (14.5bp,99.026bp) [draw,circle] {$x_1$};
+  \node (x6) at (293.9bp,99.026bp) [draw,circle] {$x_6$};
+  \node (x7) at (245.67bp,182.55bp) [draw,circle] {$x_7$};
+  \node (x4) at (149.22bp,15.5bp) [draw,circle] {$x_4$};
+  \node (x5) at (245.67bp,15.5bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (262.06bp,43.885bp) and (277.41bp,70.467bp)  .. (x6);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (276.75bp,53.203bp) node {$\neq$};
+  \draw [solid] (x2) ..controls (117.39bp,70.641bp) and (132.74bp,44.059bp)  .. (x4);
+  \draw (132.08bp,61.323bp) node {$\neq$};
+  \draw [dashed] (x3) ..controls (149.22bp,136.43bp) and (149.22bp,61.789bp)  .. (x4);
+  \draw (144.22bp,99.069bp) node {=};
+  \draw [solid] (x1) ..controls (45.08bp,99.026bp) and (70.32bp,99.026bp)  .. (x2);
+  \draw (57.714bp,107.03bp) node {$\neq$};
+  \draw [dashed] (x2) ..controls (117.39bp,127.41bp) and (132.74bp,153.99bp)  .. (x3);
+  \draw (132.08bp,136.73bp) node {=};
+  \draw [dashed] (x6) ..controls (277.51bp,127.41bp) and (262.16bp,153.99bp)  .. (x7);
+  \draw (262.82bp,136.73bp) node {=};
+  \draw [dashed] (x4) ..controls (182bp,15.5bp) and (212.69bp,15.5bp)  .. (x5);
+  \draw (197.38bp,7.5bp) node {=};
+  \draw [dashed] (x7) ..controls (212.79bp,182.55bp) and (181.84bp,182.55bp)  .. (x3);
+  \draw (197.36bp,174.55bp) node {=};
+%
+\end{tikzpicture}
+
+The equality graph has two contradictory cycles, $%
+c_{1}=(x_{2},x_{3},x_{4})$ and $%
+c_{2}=(x_{3},x_{4},x_{5},x_{6},x_{7})$.
+
+\item 
+Following strictly the rules of the simplification algorithm, the algorithm
+replace in this case every literal in the equality formula $\varphi ^{E}$
+with \textsc{True}. In order to transform $\varphi ^{E}$ into a
+propositional formula $\varphi ^{P}$, we have to make a little trick to
+enforce the application of the reduction algorithm. In this case we apply
+only one step of the simplification algorithm and replace all literals at
+once with \textsc{True}, which are not in the cycles $c_{1}$ and $c_{2}$. So
+we get:
+
+\begin{eqnarray*}
+\varphi _{1}^{E}:(\text{\textsc{True}}\vee \text{\textsc{True}})\wedge [
+(x_{2}\,{\neq}\,x_{4}\wedge x_{3}\,{=}\,x_{4}\wedge x_{4}\,{=}
+\,x_{5})\vee \\
+(x_{5}\,{\neq}\,x_{6}\wedge x_{6}\,{=}\,x_{7}\wedge x_{3}\,{=}\,x_{7})]
+\end{eqnarray*}
+
+\begin{equation*}
+\Rightarrow \;\;\varphi _{1}^{E}:(x_{2}\,{\neq}\,x_{4}\wedge x_{3}\,{=}\,x_{4}\wedge x_{4}\,{=}
+\,x_{5})\vee \\
+(x_{5}\,{\neq}\,x_{6}\wedge x_{6}\,{=}\,x_{7}\wedge x_{3}\,{=}\,x_{7})
+\end{equation*}
+
+Then the equality graph $G^{E}(\varphi _{1}^{E})$ looks like:
+
+%\enlargethispage{100cm}
+% Start of code
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (x2) at (14.5bp,90.939bp) [draw,circle] {$x_2$};
+  \node (x3) at (206.21bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (206.21bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (261.75bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (116.35bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (116.35bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (147.27bp,148.23bp) and (175.43bp,157.38bp)  .. (x6);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (158.33bp,161.8bp) node {$\neq$};
+  \draw [solid] (x2) ..controls (47.335bp,75.709bp) and (83.51bp,58.93bp)  .. (x4);
+  \draw (69.423bp,75.319bp) node {$\neq$};
+  \draw [dashed] (x3) ..controls (175.19bp,24.579bp) and (146.8bp,33.804bp)  .. (x4);
+  \draw (164.08bp,38.162bp) node {$=$};
+  \draw [dashed] (x6) ..controls (225.32bp,141.07bp) and (242.72bp,117.12bp)  .. (x7);
+  \draw (227.01bp,124.12bp) node {$=$};
+  \draw [dashed] (x4) ..controls (116.35bp,76.211bp) and (116.35bp,105.82bp)  .. (x5);
+  \draw (111.35bp,90.991bp) node {$=$};
+  \draw [dashed] (x7) ..controls (242.64bp,64.635bp) and (225.23bp,40.683bp)  .. (x3);
+  \draw (226.95bp,57.678bp) node {$=$};
+%
+\end{tikzpicture}
+
+Now we have only the contradictory cycle $c_{2}$, and we can simplify the 
+graph $G^{E}(\varphi _{1}^{E})$ once more by replacing all literals with TRUE, 
+which are not in the cycle $c_{2}$. So we get a new equality graph 
+$G^{E}(\varphi _{2}^{E})$:
+
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (x3) at (104.36bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (104.36bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (159.9bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (14.5bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (14.5bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (45.422bp,148.23bp) and (73.58bp,157.38bp)  .. (x6);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (56.479bp,161.8bp) node {$\neq$};
+  \draw [dashed] (x4) ..controls (14.5bp,76.211bp) and (14.5bp,105.82bp)  .. (x5);
+  \draw (9.5bp,90.991bp) node {$=$};
+  \draw [dashed] (x3) ..controls (73.438bp,24.547bp) and (45.28bp,33.696bp)  .. (x4);
+  \draw (62.381bp,38.115bp) node {$=$};
+  \draw [dashed] (x6) ..controls (123.47bp,141.07bp) and (140.87bp,117.12bp)  .. (x7);
+  \draw (125.16bp,124.12bp) node {$=$};
+  \draw [dashed] (x7) ..controls (140.79bp,64.635bp) and (123.38bp,40.683bp)  .. (x3);
+  \draw (125.1bp,57.678bp) node {$=$};
+%
+\end{tikzpicture}
+
+Recall the theorem,%
+\begin{equation*}
+\varphi ^{E}\text{ is satisfiable }\Leftrightarrow e(\varphi ^{E})\AND B_{t}%
+\text{ is satisfiable,}
+\end{equation*}
+
+where $e(\varphi ^{E})$ denotes the \textit{propositional skeleton} of $%
+\varphi ^{E}$and $B_{t}$ is a formula that describes the \textit{%
+transitivity constraints} (conjunctions of implications).
+
+So $\varphi ^{P}=e(\varphi ^{E})\AND B_{t}$ is equi-satisfiable to $\varphi
+^{E}$, iff $\varphi ^{E}$ is satisfiable.
+
+\bigskip
+\item First we construct the propositional skeleton of $\varphi _{2}^{E}$ by
+replacing each atom of the form $x_{i}=x_{j}$ in $\varphi _{2}^{E}$ with $%
+e_{i,j}$, such that:%
+\begin{equation*}
+e(\varphi _{2}^{E})=(e_{3,4}\AND e_{4,5})\OR(\lnot e_{5,6}\AND e_{1,6} \AND 
+e_{3,7})
+\end{equation*}
+
+\item Construct the nonpolar equality graph $G_{NP}^{E}(\varphi _{2}^{E})$:
+
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (x3) at (104.36bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (104.36bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (159.9bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (14.5bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (14.5bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (45.422bp,148.23bp) and (73.58bp,157.38bp)  .. (x6);
+  \draw [solid] (x4) ..controls (14.5bp,76.211bp) and (14.5bp,105.82bp)  .. (x5);
+  \draw [solid] (x3) ..controls (73.438bp,24.547bp) and (45.28bp,33.696bp)  .. (x4);
+  \draw [solid] (x6) ..controls (123.47bp,141.07bp) and (140.87bp,117.12bp)  .. (x7);
+  \draw [solid] (x7) ..controls (140.79bp,64.635bp) and (123.38bp,40.683bp)  .. (x3);
+%
+\end{tikzpicture}
+
+\item Make $G_{NP}^{E}(\varphi _{2}^{E})$ chordal, using elimination
+ordering $(x_{3},x_{4},x_{5},x_{6},x_{7})$:
+
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (x3) at (104.36bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (104.36bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (159.9bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (14.5bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (14.5bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (44.939bp,148.07bp) and (73.303bp,157.29bp)  .. (x6);
+  \draw [solid] (x5) ..controls (55.749bp,124.78bp) and (117.74bp,104.64bp)  .. (x7);
+  \draw [solid] (x3) ..controls (73.438bp,24.547bp) and (45.28bp,33.696bp)  .. (x4);
+  \draw [solid] (x3) ..controls (78.612bp,49.939bp) and (40.44bp,102.48bp)  .. (x5);
+  \draw [solid] (x6) ..controls (123.47bp,141.07bp) and (140.87bp,117.12bp)  .. (x7);
+  \draw [solid] (x4) ..controls (14.5bp,76.211bp) and (14.5bp,105.82bp)  .. (x5);
+  \draw [solid] (x7) ..controls (140.79bp,64.635bp) and (123.38bp,40.683bp)  .. (x3);
+%
+\end{tikzpicture}
+
+\item Generate the transitivity constraints in $B_{t}$ for every triangle in
+the chordal graph $G_{NP}^{E}(\varphi _{2}^{E})$:
+
+\begin{enumerate}
+\item $B_{t}=$ \textsc{True}
+
+\item For each triangle $(e_{i,j},e_{j,k},e_{i,k})$ in $G_{NP}^{E}(\varphi
+_{2}^{E})$:%
+\begin{eqnarray*}
+B_{t}=((e_{3,4}\AND e_{4,5}\IMPL e_{3,5})\AND && \\
+(e_{3,5}\AND e_{4,5}\IMPL e_{3,4})\AND && \\
+(e_{3,4}\AND e_{3,5}\IMPL e_{4,5})\AND && \\
+(e_{3,5}\AND e_{5,7}\IMPL e_{3,7})\AND && \\
+(e_{3,7}\AND e_{3,5}\IMPL e_{5,7})\AND && \\
+(e_{3,7}\AND e_{5,7}\IMPL e_{3,5})\AND && \\
+(e_{5,6}\AND e_{6,7}\IMPL e_{5,7})\AND && \\
+(e_{6,7}\AND e_{5,7}\IMPL e_{5,6})\AND && \\
+(e_{5,6}\AND e_{5,7}\IMPL e_{6,7})) &&
+\end{eqnarray*}
+
+Hence, $\varphi ^{E}$ is satisfiable, iff $\varphi ^{P}=e(\varphi _{2}^{E})%
+\AND B_{t}$ is satisfiable.
+\end{enumerate}
+\end{enumerate}
+
+
+  }

@@ -1,0 +1,170 @@
+\documentclass[11pt,a4paper]{uebung}
+
+%\usepackage[british]{babel}
+%\usepackage{epsfig}
+%\usepackage{rotate}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{color}
+\makeatletter\let\@amsfonts=P\makeatother
+\usepackage{graphicx}
+\usepackage{typearea}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage[nounderscore]{syntax}
+\usepackage{enumitem}
+\usepackage{gn-logic14}
+
+
+\newcommand{\comment}[1]{\marginpar{\small{\bf Comment:} #1}}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,backgrounds,%
+matrix,patterns,arrows,decorations.pathmorphing,decorations.pathreplacing,%
+positioning,fit,calc,decorations.text,shadows%
+}
+
+\newcommand{\solution}[1]{\par {\bf Solution:}\\#1}
+
+
+
+%put your Matrikelnummer here instead of the XXXXXXXX
+% if your group has less than 3 members, just delete the remaining XXXXXXXX
+\newcommand\matrikelnummerA[0]{0015595}
+\newcommand\matrikelnummerB[0]{0608292}
+\newcommand\matrikelnummerC[0]{0726179}
+%put your Matrikelnummer here instead of the XXXXXXXX
+
+
+
+\def\cT{\mathcal{T}}
+
+
+\begin{document}
+\newcommand{\Vorlesung}{Formal Methods in Computer Science}
+\newcommand{\Semester}{SS 2012}
+\newcommand{\Prof}{Uwe Egly}
+\newcommand{\AssisA}{Antonius Weinzierl}
+\newcommand{\AssisB}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Uebungsblatt{2 (10 points)}{
+  \begin{tabular}{rl}
+   Matrikelnummer(n): &\matrikelnummerA \\
+   &\matrikelnummerB \\
+   &\matrikelnummerC
+  \end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\Aufgabe[Tseitin Transformation \hfill \bf (0.5 + 1 + 1.5 points)]
+
+\begin{enumerate}
+\item Extend Tseitin's transformation for the connectives $\leftrightarrow$
+  (equivalence) and $\oplus$ (XOR). Find the necessary clauses for the new schemes
+  $l_i \leftrightarrow (l_{i'} \leftrightarrow l_{i''})$ and $l_k
+  \leftrightarrow (l_{k'} \oplus l_{k''})$.
+  
+\input{bsp1a}
+
+
+
+\item Apply Tseitin's transformation to the following formula $\psi$: $a \rightarrow
+  \big( b \lor \neg (a \leftrightarrow c)\big)$.
+  
+  Hint: You do not need to introduce labels for propositions $a,b,$ and $c$.
+
+\input{bsp1b}
+
+\item Let $\psi$ be a propositional formula and $D^\psi$ the set of clauses
+  resulting from Tseitin's transformation on $\psi$. Prove that the following
+  holds:
+  
+  \centerline{If $\psi$ is satisfiable then $D^\psi$ is satisfiable.}
+
+  You only need to prove this for the connectives $\land$ and $\neg$.
+  %\lor,\neg, \rightarrow$.
+  Use the below clause schemes, which introduce a new label for every boolean
+  variable.
+  \begin{align*}
+    L_a \leftrightarrow a && (\neg L_a \lor a)&& (L_a \lor \neg a)\\
+    L_\phi \leftrightarrow (L_1 \land L_2) && (\neg L_\phi \lor L_1)&& (\neg
+    L_\phi \lor L_2)&& (L_\phi \lor \neg L_1 \lor \neg L_2)\\
+    L_\phi \leftrightarrow \neg L_1 && (\neg L_\phi \lor \neg L_1)&& (L_\phi
+    \lor L_1)
+  \end{align*}
+  
+
+\input{bsp1c}
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\Aufgabe[Implication Graphs \hfill \bf (2+1+1.5 points)]
+\begin{enumerate}
+\item Let $\mathcal{D}$ be the following set of clauses:
+  \begin{align*}
+    c_1:& (A \lor B)\\
+    c_2:& (A \lor G \lor H)\\
+    c_3:& (\neg B \lor \neg D \lor E)\\
+    c_4:& (E \lor F)\\
+    c_5:& (\neg F \lor \neg G \lor D)\\
+    c_6:& (\neg C \lor G \lor J)\\
+    c_7:& (\neg J \lor \neg H)
+  \end{align*}
+  Draw the implication graph resulting from $\mathcal{D}$ with decisions
+  $A=0@1$, $C=1@2$, $E=0@3$. Find the first UIP, and learn a new clause using
+  the first-UIP scheme (use resolution).
+
+\input{bsp2a}
+
+\item Prove that in a conflict graph the first UIP is uniquely defined, i.e.,
+  prove that there is exactly one node in the graph which is a first UIP.
+
+ \input{bsp2b}
+
+\item Let $\mathcal{C}$ be a set of clauses and $G$ a conflict graph with
+  respect to $\mathcal{C}$. Prove: if a clause $C_l$ is learned following the
+  first-UIP scheme, then $C_l$ is a consequence of $\mathcal{C}$.
+
+\input{bsp2c}
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\Aufgabe[Sparse Method \hfill \bf (1.5 points)]
+Apply the Sparse Method including preprocessing on the formula $\varphi^E$
+below to obtain a propositional formula.
+\begin{displaymath}
+  (x_1 \neq x_2 \lor x_2=x_3 ) \land \big[ (x_2 \neq x_4 \land x_3=x_4
+  \land x_4=x_5)
+  \lor (x_6 \neq x_5 \land x_6=x_7 \land x_7=x_3)\big]
+\end{displaymath}
+
+
+\input{bsp3}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\Aufgabe[Ackermann's Reduction \hfill \bf (1 point)]
+Apply Ackermann's reduction on the following EUF-formula $\varphi$ to obtain
+an EU formula:
+\begin{displaymath}
+  f\left(f\left(g\left(a\right),b\right),a\right) = f(g(a),b) \rightarrow \big[ f(x,y) = g(f(g(a),b)) \land
+  g(f(a,y))=d \big]
+\end{displaymath}
+
+\input{bsp4}
+
+
+\end{document}

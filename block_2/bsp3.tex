@@ -29,121 +29,37 @@ equality formula $\varphi ^{E}$:
 \begin{enumerate}
 \item Construct an equality graph $G^{E}(\varphi ^{E})=(V,E_{=},E_{\neq })$:
 
-%TCIMACRO{%
-%\TeXButton{Equality graph}{\begin{tikzpicture}[>=latex',line join=bevel,]
-%\pgfsetlinewidth{1bp}
-%\pgfsetcolor{black}
-% \draw [solid] (229.02bp,163.94bp) .. controls (246.01bp,158.42bp) and (274.84bp,149.06bp)  .. (291.75bp,143.56bp);
-% \draw [dotted] (305.23bp,124.42bp) .. controls (305.23bp,106.67bp) and (305.23bp,77.061bp)  .. (305.23bp,59.357bp);
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (300.23bp,91.888bp) node {$=$};
-% \draw [solid] (102.06bp,91.939bp) .. controls (114.68bp,91.939bp) and (133.03bp,91.939bp)  .. (145.64bp,91.939bp);
-% \draw [dotted] (15.5bp,64.726bp) .. controls (15.5bp,79.963bp) and (15.5bp,103.76bp)  .. (15.5bp,119.04bp);
-%\draw (10.5bp,91.883bp) node {$=$};
-% \draw [dotted] (27.771bp,57.261bp) .. controls (40.992bp,64.894bp) and (61.924bp,76.979bp)  .. (75.262bp,84.68bp);
-%\draw (56.516bp,62.97bp) node {$=$};
-% \draw [dotted] (168.27bp,80.33bp) .. controls (178.71bp,65.963bp) and (196.38bp,41.636bp)  .. (206.86bp,27.219bp);
-%\draw (180.56bp,48.774bp) node {$=$};
-% \draw [dotted] (27.771bp,126.62bp) .. controls (40.992bp,118.98bp) and (61.924bp,106.9bp)  .. (75.262bp,99.199bp);
-%\draw (56.516bp,120.91bp) node {$=$};
-% \draw [solid] (296.62bp,127.32bp) .. controls (279.4bp,103.62bp) and (240.92bp,50.664bp)  .. (223.83bp,27.143bp);
-% \draw [dotted] (168.27bp,103.55bp) .. controls (178.71bp,117.92bp) and (196.38bp,142.24bp)  .. (206.86bp,156.66bp);
-%\draw (194.56bp,125.1bp) node {$=$};
-% \draw [dotted] (229.02bp,19.934bp) .. controls (246.01bp,25.454bp) and (274.84bp,34.822bp)  .. (291.75bp,40.317bp);
-%\draw (263.39bp,21.126bp) node {$=$};
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (305bp,45bp) ellipse (14bp and 15bp);
-%\draw (305.23bp,44.697bp) node {$x_6$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (305bp,139bp) ellipse (14bp and 15bp);
-%\draw (305.23bp,139.18bp) node {$x_7$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (215bp,15bp) ellipse (14bp and 15bp);
-%\draw (215.37bp,15.5bp) node {$x_5$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (160bp,92bp) ellipse (14bp and 15bp);
-%\draw (159.84bp,91.939bp) node {$x_4$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (215bp,168bp) ellipse (14bp and 15bp);
-%\draw (215.37bp,168.38bp) node {$x_3$};
-%\end{scope}
-%\end{tikzpicture}
-%}}%
-%BeginExpansion
+%\enlargethispage{100cm}
+% Start of code
 \begin{tikzpicture}[>=latex',line join=bevel,]
-\pgfsetlinewidth{1bp}
-\pgfsetcolor{black}
-\draw (272.23bp,155.888bp) node {$=$};
- \draw [dotted] (229.02bp,163.94bp) .. controls (246.01bp,158.42bp) and (274.84bp,149.06bp)  .. (291.75bp,143.56bp);
- \draw [dotted] (305.23bp,124.42bp) .. controls (305.23bp,106.67bp) and (305.23bp,77.061bp)  .. (305.23bp,59.357bp);
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (300.23bp,91.888bp) node {$=$};
- \draw [dotted] (168.27bp,80.33bp) .. controls (178.71bp,65.963bp) and (196.38bp,41.636bp)  .. (206.86bp,27.219bp);
-\draw (180.56bp,48.774bp) node {$=$};
- \draw [dotted] (168.27bp,103.55bp) .. controls (178.71bp,117.92bp) and (196.38bp,142.24bp)  .. (206.86bp,156.66bp);
-\draw (194.56bp,125.1bp) node {$=$};
- \draw [solid] (229.02bp,19.934bp) .. controls (246.01bp,25.454bp) and (274.84bp,34.822bp)  .. (291.75bp,40.317bp);
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (305bp,45bp) ellipse (14bp and 15bp);
-\draw (305.23bp,44.697bp) node {$x_6$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (305bp,139bp) ellipse (14bp and 15bp);
-\draw (305.23bp,139.18bp) node {$x_7$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (215bp,15bp) ellipse (14bp and 15bp);
-\draw (215.37bp,15.5bp) node {$x_5$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (160bp,92bp) ellipse (14bp and 15bp);
-\draw (159.84bp,91.939bp) node {$x_4$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (215bp,168bp) ellipse (14bp and 15bp);
-\draw (215.37bp,168.38bp) node {$x_3$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (135bp,160bp) ellipse (14bp and 15bp);
-\draw (135.37bp,160.38bp) node {$x_2$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (60bp,160bp) ellipse (14bp and 15bp);
-\draw (60.37bp,160.38bp) node {$x_1$};
-\end{scope}
-\end{tikzpicture}
+%%
+\node (x2) at (101bp,99.026bp) [draw,circle] {$x_2$};
+  \node (x3) at (149.22bp,182.55bp) [draw,circle] {$x_3$};
+  \node (x1) at (14.5bp,99.026bp) [draw,circle] {$x_1$};
+  \node (x6) at (293.9bp,99.026bp) [draw,circle] {$x_6$};
+  \node (x7) at (245.67bp,182.55bp) [draw,circle] {$x_7$};
+  \node (x4) at (149.22bp,15.5bp) [draw,circle] {$x_4$};
+  \node (x5) at (245.67bp,15.5bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (262.06bp,43.885bp) and (277.41bp,70.467bp)  .. (x6);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (276.75bp,53.203bp) node {$\neq$};
+  \draw [solid] (x2) ..controls (117.39bp,70.641bp) and (132.74bp,44.059bp)  .. (x4);
+  \draw (132.08bp,61.323bp) node {$\neq$};
+  \draw [dashed] (x3) ..controls (149.22bp,136.43bp) and (149.22bp,61.789bp)  .. (x4);
+  \draw (144.22bp,99.069bp) node {=};
+  \draw [solid] (x1) ..controls (45.08bp,99.026bp) and (70.32bp,99.026bp)  .. (x2);
+  \draw (57.714bp,107.03bp) node {$\neq$};
+  \draw [dashed] (x2) ..controls (117.39bp,127.41bp) and (132.74bp,153.99bp)  .. (x3);
+  \draw (132.08bp,136.73bp) node {=};
+  \draw [dashed] (x6) ..controls (277.51bp,127.41bp) and (262.16bp,153.99bp)  .. (x7);
+  \draw (262.82bp,136.73bp) node {=};
+  \draw [dashed] (x4) ..controls (182bp,15.5bp) and (212.69bp,15.5bp)  .. (x5);
+  \draw (197.38bp,7.5bp) node {=};
+  \draw [dashed] (x7) ..controls (212.79bp,182.55bp) and (181.84bp,182.55bp)  .. (x3);
+  \draw (197.36bp,174.55bp) node {=};
 %
-%EndExpansion
+\end{tikzpicture}
 
 The equality graph has two contradictory cycles, $%
 c_{1}=(x_{2},x_{3},x_{4})$ and $%
@@ -174,206 +90,59 @@ we get:
 
 Then the equality graph $G^{E}(\varphi _{1}^{E})$ looks like:
 
-%TCIMACRO{%
-%\TeXButton{Equality graph 1 (variant)}{\begin{tikzpicture}[>=latex',line join=bevel,]
-%\pgfsetlinewidth{1bp}
-%\pgfsetcolor{black}
-% \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
-% \draw [dotted] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (63.513bp,144.81bp) node {$=$};
-% \draw [dotted] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
-%\draw (126.17bp,125.1bp) node {$=$};
-% \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
-% \draw [dotted] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
-%\draw (140.09bp,48.665bp) node {$=$};
-% \draw [dotted] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-%\draw (63.347bp,39.126bp) node {$=$};
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,168bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,168.38bp) node {$x_8$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (16bp,139bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,139.18bp) node {$x_6$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (161bp,92bp) ellipse (14bp and 15bp);
-%\draw (160.9bp,91.939bp) node {$x_7$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,15bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,15.5bp) node {$x_4$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (15bp,45bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,44.697bp) node {$x_5$};
-%\end{scope}
-%\end{tikzpicture}
-%}}%
-%BeginExpansion
+%\enlargethispage{100cm}
+% Start of code
 \begin{tikzpicture}[>=latex',line join=bevel,]
-\pgfsetlinewidth{1bp}
-\pgfsetcolor{black}
- \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
- \draw [dotted] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (63.513bp,144.81bp) node {$=$};
- \draw [dotted] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
-\draw (126.17bp,125.1bp) node {$=$};
- \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
- \draw [dotted] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
-\draw (140.09bp,48.665bp) node {$=$};
- \draw [dotted] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-\draw (63.347bp,39.126bp) node {$=$};
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,168bp) ellipse (14bp and 15bp);
-\draw (105.36bp,168.38bp) node {$x_8$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (16bp,139bp) ellipse (14bp and 15bp);
-\draw (15.5bp,139.18bp) node {$x_6$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (161bp,92bp) ellipse (14bp and 15bp);
-\draw (160.9bp,91.939bp) node {$x_7$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,15bp) ellipse (14bp and 15bp);
-\draw (105.36bp,15.5bp) node {$x_4$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (15bp,45bp) ellipse (14bp and 15bp);
-\draw (15.5bp,44.697bp) node {$x_5$};
-\end{scope}
-\end{tikzpicture}
+%%
+\node (x2) at (14.5bp,90.939bp) [draw,circle] {$x_2$};
+  \node (x3) at (206.21bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (206.21bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (261.75bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (116.35bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (116.35bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (147.27bp,148.23bp) and (175.43bp,157.38bp)  .. (x6);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (158.33bp,161.8bp) node {$\neq$};
+  \draw [solid] (x2) ..controls (47.335bp,75.709bp) and (83.51bp,58.93bp)  .. (x4);
+  \draw (69.423bp,75.319bp) node {$\neq$};
+  \draw [dashed] (x3) ..controls (175.19bp,24.579bp) and (146.8bp,33.804bp)  .. (x4);
+  \draw (164.08bp,38.162bp) node {$=$};
+  \draw [dashed] (x6) ..controls (225.32bp,141.07bp) and (242.72bp,117.12bp)  .. (x7);
+  \draw (227.01bp,124.12bp) node {$=$};
+  \draw [dashed] (x4) ..controls (116.35bp,76.211bp) and (116.35bp,105.82bp)  .. (x5);
+  \draw (111.35bp,90.991bp) node {$=$};
+  \draw [dashed] (x7) ..controls (242.64bp,64.635bp) and (225.23bp,40.683bp)  .. (x3);
+  \draw (226.95bp,57.678bp) node {$=$};
 %
-%EndExpansion
+\end{tikzpicture}
 
 Now we have only the contradictory cycle $c_{2}$, and we can simplify the 
 graph $G^{E}(\varphi _{1}^{E})$ once more by replacing all literals with TRUE, 
 which are not in the cycle $c_{2}$. So we get a new equality graph 
 $G^{E}(\varphi _{2}^{E})$:
 
-%TCIMACRO{%
-%\TeXButton{Equality graph 1 (variant)}{\begin{tikzpicture}[>=latex',line join=bevel,]
-%\pgfsetlinewidth{1bp}
-%\pgfsetcolor{black}
-% \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
-% \draw [dotted] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (63.513bp,144.81bp) node {$=$};
-% \draw [dotted] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
-%\draw (126.17bp,125.1bp) node {$=$};
-% \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
-% \draw [dotted] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
-%\draw (140.09bp,48.665bp) node {$=$};
-% \draw [dotted] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-%\draw (63.347bp,39.126bp) node {$=$};
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,168bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,168.38bp) node {$x_8$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (16bp,139bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,139.18bp) node {$x_6$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (161bp,92bp) ellipse (14bp and 15bp);
-%\draw (160.9bp,91.939bp) node {$x_7$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,15bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,15.5bp) node {$x_4$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (15bp,45bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,44.697bp) node {$x_5$};
-%\end{scope}
-%\end{tikzpicture}
-%}}%
-%BeginExpansion
 \begin{tikzpicture}[>=latex',line join=bevel,]
-\pgfsetlinewidth{1bp}
-\pgfsetcolor{black}
- \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
- \draw [dotted] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (63.513bp,144.81bp) node {$=$};
- \draw [dotted] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
-\draw (126.17bp,125.1bp) node {$=$};
- \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
- \draw [dotted] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
-\draw (140.09bp,48.665bp) node {$=$};
- \draw [dotted] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-\draw (63.347bp,39.126bp) node {$=$};
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,168bp) ellipse (14bp and 15bp);
-\draw (105.36bp,168.38bp) node {$x_8$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (16bp,139bp) ellipse (14bp and 15bp);
-\draw (15.5bp,139.18bp) node {$x_6$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (161bp,92bp) ellipse (14bp and 15bp);
-\draw (160.9bp,91.939bp) node {$x_7$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,15bp) ellipse (14bp and 15bp);
-\draw (105.36bp,15.5bp) node {$x_4$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (15bp,45bp) ellipse (14bp and 15bp);
-\draw (15.5bp,44.697bp) node {$x_5$};
-\end{scope}
-\end{tikzpicture}
+%%
+\node (x3) at (104.36bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (104.36bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (159.9bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (14.5bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (14.5bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (45.422bp,148.23bp) and (73.58bp,157.38bp)  .. (x6);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (56.479bp,161.8bp) node {$\neq$};
+  \draw [dashed] (x4) ..controls (14.5bp,76.211bp) and (14.5bp,105.82bp)  .. (x5);
+  \draw (9.5bp,90.991bp) node {$=$};
+  \draw [dashed] (x3) ..controls (73.438bp,24.547bp) and (45.28bp,33.696bp)  .. (x4);
+  \draw (62.381bp,38.115bp) node {$=$};
+  \draw [dashed] (x6) ..controls (123.47bp,141.07bp) and (140.87bp,117.12bp)  .. (x7);
+  \draw (125.16bp,124.12bp) node {$=$};
+  \draw [dashed] (x7) ..controls (140.79bp,64.635bp) and (123.38bp,40.683bp)  .. (x3);
+  \draw (125.1bp,57.678bp) node {$=$};
 %
-%EndExpansion
+\end{tikzpicture}
 
 Recall the theorem,%
 \begin{equation*}
@@ -399,179 +168,40 @@ e_{3,7})
 
 \item Construct the nonpolar equality graph $G_{NP}^{E}(\varphi _{2}^{E})$:
 
-%TCIMACRO{%
-%\TeXButton{Nonpolar equality graph}{\begin{tikzpicture}[>=latex',line join=bevel,]
-%\pgfsetlinewidth{1bp}
-%\pgfsetcolor{black}
-% \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
-% \draw [solid] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
-% \draw [solid] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
-% \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
-% \draw [solid] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
-% \draw [solid] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,168bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,168.38bp) node {$x_8$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (16bp,139bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,139.18bp) node {$x_6$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (161bp,92bp) ellipse (14bp and 15bp);
-%\draw (160.9bp,91.939bp) node {$x_7$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,15bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,15.5bp) node {$x_4$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (15bp,45bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,44.697bp) node {$x_5$};
-%\end{scope}
-%\end{tikzpicture}
-%}}%
-%BeginExpansion
 \begin{tikzpicture}[>=latex',line join=bevel,]
-\pgfsetlinewidth{1bp}
-\pgfsetcolor{black}
- \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
- \draw [solid] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
- \draw [solid] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
- \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
- \draw [solid] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
- \draw [solid] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,168bp) ellipse (14bp and 15bp);
-\draw (105.36bp,168.38bp) node {$x_8$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (16bp,139bp) ellipse (14bp and 15bp);
-\draw (15.5bp,139.18bp) node {$x_6$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (161bp,92bp) ellipse (14bp and 15bp);
-\draw (160.9bp,91.939bp) node {$x_7$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,15bp) ellipse (14bp and 15bp);
-\draw (105.36bp,15.5bp) node {$x_4$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (15bp,45bp) ellipse (14bp and 15bp);
-\draw (15.5bp,44.697bp) node {$x_5$};
-\end{scope}
-\end{tikzpicture}
+%%
+\node (x3) at (104.36bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (104.36bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (159.9bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (14.5bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (14.5bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (45.422bp,148.23bp) and (73.58bp,157.38bp)  .. (x6);
+  \draw [solid] (x4) ..controls (14.5bp,76.211bp) and (14.5bp,105.82bp)  .. (x5);
+  \draw [solid] (x3) ..controls (73.438bp,24.547bp) and (45.28bp,33.696bp)  .. (x4);
+  \draw [solid] (x6) ..controls (123.47bp,141.07bp) and (140.87bp,117.12bp)  .. (x7);
+  \draw [solid] (x7) ..controls (140.79bp,64.635bp) and (123.38bp,40.683bp)  .. (x3);
 %
-%EndExpansion
+\end{tikzpicture}
 
 \item Make $G_{NP}^{E}(\varphi _{2}^{E})$ chordal, using elimination
 ordering $(x_{3},x_{4},x_{5},x_{6},x_{7})$:
 
-%TCIMACRO{%
-%\TeXButton{Chordal nonpolar equality graph }{\begin{tikzpicture}[>=latex',line join=bevel,]
-%\pgfsetlinewidth{1bp}
-%\pgfsetcolor{black}
-% \draw [solid] (15.5bp,59.46bp) .. controls (15.5bp,77.211bp) and (15.5bp,106.82bp)  .. (15.5bp,124.52bp);
-% \draw [solid] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
-% \draw [solid] (28.918bp,49.057bp) .. controls (56.617bp,58.057bp) and (119.84bp,78.599bp)  .. (147.51bp,87.59bp);
-% \draw [solid] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
-% \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
-% \draw [solid] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
-% \draw [solid] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,168bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,168.38bp) node {$x_8$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (16bp,139bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,139.18bp) node {$x_6$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (161bp,92bp) ellipse (14bp and 15bp);
-%\draw (160.9bp,91.939bp) node {$x_7$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (105bp,15bp) ellipse (14bp and 15bp);
-%\draw (105.36bp,15.5bp) node {$x_4$};
-%\end{scope}
-%\begin{scope}
-%\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-%\pgfsetstrokecolor{strokecol}
-%\draw (15bp,45bp) ellipse (14bp and 15bp);
-%\draw (15.5bp,44.697bp) node {$x_5$};
-%\end{scope}
-%\end{tikzpicture}
-%}}%
-%BeginExpansion
 \begin{tikzpicture}[>=latex',line join=bevel,]
- \draw [solid] (29.148bp,143.62bp) .. controls (46.136bp,149.14bp) and (74.968bp,158.5bp)  .. (91.878bp,164bp);
- \draw [solid] (28.918bp,49.057bp) .. controls (56.617bp,58.057bp) and (119.84bp,78.599bp)  .. (147.51bp,87.59bp);
- \draw [solid] (152.46bp,103.55bp) .. controls (142.02bp,117.92bp) and (124.35bp,142.24bp)  .. (113.87bp,156.66bp);
- \draw [solid] (28.918bp,134.82bp) .. controls (56.617bp,125.82bp) and (119.84bp,105.28bp)  .. (147.51bp,96.289bp);
- \draw [solid] (113.79bp,27.11bp) .. controls (124.23bp,41.477bp) and (141.91bp,65.803bp)  .. (152.38bp,80.221bp);
- \draw [solid] (91.712bp,19.934bp) .. controls (74.724bp,25.454bp) and (45.892bp,34.822bp)  .. (28.982bp,40.317bp);
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,168bp) ellipse (14bp and 15bp);
-\draw (105.36bp,168.38bp) node {$x_8$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (16bp,139bp) ellipse (14bp and 15bp);
-\draw (15.5bp,139.18bp) node {$x_6$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (161bp,92bp) ellipse (14bp and 15bp);
-\draw (160.9bp,91.939bp) node {$x_7$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (105bp,15bp) ellipse (14bp and 15bp);
-\draw (105.36bp,15.5bp) node {$x_4$};
-\end{scope}
-\begin{scope}
-\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-\pgfsetstrokecolor{strokecol}
-\draw (15bp,45bp) ellipse (14bp and 15bp);
-\draw (15.5bp,44.697bp) node {$x_5$};
-\end{scope}
-\end{tikzpicture}
+%%
+\node (x3) at (104.36bp,14.5bp) [draw,circle] {$x_3$};
+  \node (x6) at (104.36bp,167.38bp) [draw,circle] {$x_6$};
+  \node (x7) at (159.9bp,90.939bp) [draw,circle] {$x_7$};
+  \node (x4) at (14.5bp,43.697bp) [draw,circle] {$x_4$};
+  \node (x5) at (14.5bp,138.18bp) [draw,circle] {$x_5$};
+  \draw [solid] (x5) ..controls (44.939bp,148.07bp) and (73.303bp,157.29bp)  .. (x6);
+  \draw [solid] (x5) ..controls (55.749bp,124.78bp) and (117.74bp,104.64bp)  .. (x7);
+  \draw [solid] (x3) ..controls (73.438bp,24.547bp) and (45.28bp,33.696bp)  .. (x4);
+  \draw [solid] (x3) ..controls (78.612bp,49.939bp) and (40.44bp,102.48bp)  .. (x5);
+  \draw [solid] (x6) ..controls (123.47bp,141.07bp) and (140.87bp,117.12bp)  .. (x7);
+  \draw [solid] (x4) ..controls (14.5bp,76.211bp) and (14.5bp,105.82bp)  .. (x5);
+  \draw [solid] (x7) ..controls (140.79bp,64.635bp) and (123.38bp,40.683bp)  .. (x3);
 %
-%EndExpansion
+\end{tikzpicture}
 
 \item Generate the transitivity constraints in $B_{t}$ for every triangle in
 the chordal graph $G_{NP}^{E}(\varphi _{2}^{E})$:
@@ -579,7 +209,7 @@ the chordal graph $G_{NP}^{E}(\varphi _{2}^{E})$:
 \begin{enumerate}
 \item $B_{t}=$ \textsc{True}
 
-\item for each triangle $(e_{i,j},e_{j,k},e_{i,k})$ in $G_{NP}^{E}(\varphi
+\item For each triangle $(e_{i,j},e_{j,k},e_{i,k})$ in $G_{NP}^{E}(\varphi
 _{2}^{E})$:%
 \begin{eqnarray*}
 B_{t}=((e_{3,4}\AND e_{4,5}\IMPL e_{3,5})\AND && \\

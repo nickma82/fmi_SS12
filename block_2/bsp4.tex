@@ -1,2 +1,38 @@
-  \solution{
-  }
+\solution{
+We set the given Equality Uninterpreted Formula (EUF) $\varphi^E$ to
+$$\varphi^{E} := FC^E \Rightarrow flat^E$$
+
+The next two steps are 
+\begin{itemize}
+ \item flattening \\
+while we are loosing information through the flattening 
+we have to 
+ \item replenish it with  functional constrains
+\end{itemize}
+
+\begin{displaymath}
+  \varphi^{EUF} : f_2\left(f_1\left(g_1\left(a\right),b\right),a\right) = f_1(g_1(a),b) 
+  \rightarrow \big[ f_3(x,y) = g_2(f_1(g_1(a),b)) \land  g_3(f_4(a,y))=d \big]
+\end{displaymath}
+
+\textbf{Flattening} of $\varphi^{EUF}$\\
+Calculating $FC^E$
+$$flat^E := f_2 = f_1 \rightarrow \big[ f_3 = g_2 \land g_3 = d\big]$$
+
+$$FC^{E}(\varphi^{EUF}):=\bigwedge_{i=1}^{3} \bigwedge_{j=2}^{4}{ \big(
+    T(arg(F_i)) = T(arg(F_j)) \rightarrow f_i=f_j 
+    \big)}$$
+
+\textbf{F - constrains} \\
+$(g_1=f_1 \land b=a) \rightarrow f_1=f_2 \land$\\
+$(g_1=x   \land b=y) \rightarrow f_1=f_3 \land$\\
+$(g_1=a   \land b=y) \rightarrow f_1=f_4 \land$\\
+$(f_1=x   \land a=y) \rightarrow f_2=f_3 \land$\\
+$(f_1=a   \land a=y) \rightarrow f_2=f_4 \land$\\
+$(x  =a   \land y=y) \rightarrow f_3=f_4$ \\
+$\land$ \textbf{G - constrains}\\
+$(a=f_1) \rightarrow g_1=g_2 \land$\\
+$(a=f_4) \rightarrow g_1=g_3 \land$\\
+$(f_1=f_4) \rightarrow g_2=g_3$
+
+}

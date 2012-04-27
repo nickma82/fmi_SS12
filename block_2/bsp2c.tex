@@ -16,11 +16,20 @@ $\forall \Pi$ s.t. $\Pi \vDash \bigwedge{C_i} \Rightarrow \Pi \vDash C_l$\\
 i.e. $\underbrace{\bigwedge{C_i}}_{C}$ is satisfied:
 
 \begin{itemize}
- \item iff $\bigwedge{C_i} \land C_l$ is satisfied
+ \item iff $\bigwedge{C_i} \land C_l$ is satisfied *
  \item iff $\Pi \nvDash \bigwedge{\neg C_i \rightarrow C_l}, \forall\Pi$ is unsatisfied
  \item iff $\Pi \nvDash \bigwedge{C_i \land \neg C_l}$ is unsatisfied
 \end{itemize}
 
+* $(a \land b) \equiv \neg (a \rightarrow \neg b)$
 
+ iff $Pi \vDash \neg(\bigwedge{C_i} \rightarrow \neg C_l)$ \\
+ iff $Pi \nvDash \bigwedge{C_i} \rightarrow \neg C_l$\\
+ iff $Pi \nvDash \neg(\bigwedge{C_i} \land C_l)$ \\
+ iff $Pi \vDash \bigwedge{C_i} \land C_l$
+
+learned clauses are a logical consequence of the original clauses and 
+it prohibits the same conflict assignement in the further search.\\
+$\Rightarrow$ learned clauses only adds redundancy to the original clauses.
 
 }

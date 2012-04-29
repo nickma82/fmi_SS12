@@ -1,2 +1,109 @@
-  \solution{
-  }
+\solution{
+We get the following tree:\\
+%TCIMACRO{%
+%\TeXButton{Polarity tree}{\tikzstyle{level 1}=[level distance=1.5cm, sibling distance=5.5cm]
+%	\tikzstyle{level 2}=[level distance=1.5cm, sibling distance=4.0cm]
+%	\tikzstyle{level 3}=[level distance=1.5cm, sibling distance=3.0cm]
+%	\tikzstyle{level 4}=[level distance=1.5cm, sibling distance=2.0cm]
+%	\tikzstyle{bag} = [text width=2em, text centered]
+%\begin{center}
+%		\begin{tikzpicture}[grow=down, sloped]
+%			\node[bag] {$l_{4}$}
+%			child {
+%				node[bag] {$a$}
+%				edge from parent
+%			}
+%			child {
+%				node[bag] {$\OR$\\ $l_{3}$}
+%				child {
+%					node[bag] {$a$}
+%					edge from parent
+%				}
+%			child {
+%					node[bag] {$\neg$\\ $l_{2}$}
+%					edge from parent
+%				}
+%				edge from parent
+%				child {
+%					node[bag] {$\leftrightarrow$\\ $l_{1}$}
+%					edge from parent
+%					child {
+%						node[bag] {$a$}
+%						edge from parent
+%					}
+%					child {
+%						node[bag] {$c$}
+%						edge from parent
+%					} }
+%				edge from parent
+%			}
+%			;
+%		\end{tikzpicture}
+%	\end{center}} }%
+%BeginExpansion
+\tikzstyle{level 1}=[level distance=1.5cm, sibling distance=5.5cm]
+	\tikzstyle{level 2}=[level distance=1.5cm, sibling distance=4.0cm]
+	\tikzstyle{level 3}=[level distance=1.5cm, sibling distance=3.0cm]
+	\tikzstyle{level 4}=[level distance=1.5cm, sibling distance=2.0cm]
+	\tikzstyle{bag} = [text width=2em, text centered]
+		\begin{center}
+		\begin{tikzpicture}[grow=down, sloped]
+			\node[bag] {$l_{4}$}
+			child {
+				node[bag] {$a$}
+				edge from parent
+			}
+			child {
+				node[bag] {$\OR$\\ $l_{3}$}
+				child {
+					node[bag] {$a$}
+					edge from parent
+				}
+			child {
+					node[bag] {$\neg$\\ $l_{2}$}
+					edge from parent
+				}
+				edge from parent
+				child {
+					node[bag] {$\leftrightarrow$\\ $l_{1}$}
+					edge from parent
+					child {
+						node[bag] {$a$}
+						edge from parent
+					}
+					child {
+						node[bag] {$c$}
+						edge from parent
+					} }
+				edge from parent
+			}
+			;
+		\end{tikzpicture}
+	\end{center}
+%EndExpansion
+\medskip 
+
+We get the transformation of the labeled subformula to CNF from the tree above:\\
+
+
+% use packages: array
+\begin{tabular}{|l|l|l|l|1|}
+\hline
+\textsl{\small Equivalences} & \multicolumn{4}{c|}{\textsl{\small Associated
+Clauses}} \\ 
+{\small \textsl{for SFOs in} $\psi $} & $C_{1}(\psi )$ & $C_{2}(\psi )$ & $%
+C_{3}(\psi )$  & $C_{4}(\psi )$ \\ \hline
+
+$D_1:$ $l_{1}\IFF (a \IFF c)$ & $\lnot l_{1}\OR \lnot a \OR c$ & $\lnot l_{1} 
+\OR a \OR\lnot c$ & $l_{1} \OR\lnot a \OR\lnot c$ & $l_{1} \OR a \OR c$ &\\ 
+$D_2:$ $l_{2}\IFF\lnot l_{1}$ & $\lnot l_{1}\OR\lnot l_{2}$ & $l_{1}\OR l_{2}$ & & \\ 
+$D_3:$ $l_{3}\IFF (b \OR l_{2})$ & $\lnot l_{3}\OR b \OR l_{2}$ & 
+$l_{3}\OR\lnot b$ & $l_{3}\OR\lnot l_{2}$ &\\  
+$D_4: $ $l_{4}\IFF (a\IMPL l_{3})$ & $\lnot l_{4}\OR\lnot a \OR l_{3}$ & 
+$l_{4}\OR a$ & $l_{4}\OR\lnot l_{3}$ &\\ \hline
+\end{tabular}
+\label{tab:translation_cnf}
+
+$\hat\delta (\psi) = l_{4} \AND (\lnot l_{1} \OR\lnot a \OR c) \AND .... \AND
+l_{4} \OR\lnot l_{3}$
+}

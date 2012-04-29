@@ -1,2 +1,26 @@
-  \solution{
-  }
+\solution{
+
+A formular $\upphi$ is a logical consequence of a formular $\upphi$
+denoted  $\upphi \vDash \upphi'$, 
+
+if $\Pi \vDash \upphi$ implies $\Pi \vDash \upphi'$ for all truth
+assignements $\Pi$.
+
+\textbf{Proof}:\\
+$$C=\{C_1, \dots, C_n \} = \bigwedge_{i=1}^{n}C_i$$
+
+$\overbrace{\bigwedge{Ci}}^{C} \vDash C_l$ iff
+
+$\forall \Pi$ s.t. $\Pi \vDash \bigwedge{C_i} \Rightarrow \Pi \vDash C_l$\\
+
+i.e. $\underbrace{\bigwedge{C_i}}_{C}$ is satisfied:
+
+\begin{itemize}
+ \item iff $\bigwedge{C_i} \land C_l$ is satisfied
+ \item iff $\Pi \nvDash \bigwedge{\neg C_i \rightarrow C_l}, \forall\Pi$ is unsatisfied
+ \item iff $\Pi \nvDash \bigwedge{C_i \land \neg C_l}$ is unsatisfied
+\end{itemize}
+
+
+
+}

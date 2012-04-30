@@ -1,2 +1,17 @@
  \solution{
+There is always at least one unique implication point (UIP), namely the
+decision node. If it is the only UIP, it is of course the first UIP
+(the first UIP is the UIP closest to the conflict node).\\
+If there is more than one UIP, only one of them can be the first UIP.
+Here the proof:\\
+We assume that there are two first UIP's. By definition, they lie on every
+path from the decision node $d$ to the conflict nokde $k$, also on a path
+which is a shortest path from $d$ to $k$.\\
+$p$ consists of the shortest path from $d$ to one of the two UIP's (we
+call it $u_1$), followed by the shortest path $p_1$ from $u_1$ to $u_2$
+(the other UIP), followed by the shortest path $p_2$ from $u_2$ to $k$.
+The shortest path from $u_1$ to $k$ consists of $p_1$ and $p_2$ and is 
+therefore longer than $p_2$. So $u_1$ can't be a first UIP, because 
+$u_2$ is a UIP that is closer to the conflict node. This means that 
+there is only one first UIP.
   }

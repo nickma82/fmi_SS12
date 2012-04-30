@@ -46,7 +46,14 @@ $l_i\OR l_{i'}\OR l_{i''}$ \\ \hline
 
 \bigskip
 \item
-Clauses for the XOR-connective $\IFF$: \\
+Clauses for the XOR-connective $\oplus$: \\
+We replace $\oplus$ by $\IMPL$ using the substitution rule:
+\begin{eqnarray*}
+l_{k'} \oplus l_{k''}\\
+= \neg(l_{k'} \IMPL l_{k''}) \OR \neg (l_{k''} \IMPL l_{k'})\\
+\text{(which is the dual problem of i):)}\\
+= \neg((l_{k'} \IMPL l_{k''}) \AND (l_{k''} \IMPL l_{k'}))\\ 
+\end{eqnarray*}
 
 \end{enumerate}
 

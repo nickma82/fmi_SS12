@@ -16,20 +16,46 @@ $\forall \Pi$ s.t. $\Pi \vDash \bigwedge{C_i} \Rightarrow \Pi \vDash C_l$\\
 i.e. $\underbrace{\bigwedge{C_i}}_{C}$ is satisfied:
 
 \begin{itemize}
- \item iff $\bigwedge{C_i} \land C_l$ is satisfied *
+ \item iff $\bigwedge{C_i} \land C_l$ is satisfied *\\
+Equivalence rule:
+* $(a \land b) \equiv \neg (a \rightarrow \neg b)$
  \item iff $\Pi \nvDash \bigwedge{\neg C_i \rightarrow C_l}, \forall\Pi$ is unsatisfied
  \item iff $\Pi \nvDash \bigwedge{C_i \land \neg C_l}$ is unsatisfied
 \end{itemize}
 
-* $(a \land b) \equiv \neg (a \rightarrow \neg b)$
-
+\textbf{Substitution rule}:\\
+We transform stepwise
+\begin{center}
  iff $Pi \vDash \neg(\bigwedge{C_i} \rightarrow \neg C_l)$ \\
  iff $Pi \nvDash \bigwedge{C_i} \rightarrow \neg C_l$\\
- iff $Pi \nvDash \neg(\bigwedge{C_i} \land C_l)$ \\
+ iff $Pi \nvDash \neg(\bigwedge{C_i} \land C_l)$
+\end{center}
+
+And therefor it follows:
+\begin{center}
  iff $Pi \vDash \bigwedge{C_i} \land C_l$
+\end{center}
 
 learned clauses are a logical consequence of the original clauses and 
 it prohibits the same conflict assignement in the further search.\\
 $\Rightarrow$ learned clauses only adds redundancy to the original clauses.
+
+\textbf{Proof}
+
+$\Rightarrow$ if $C \vdash C_l$ then $\Rightarrow C \nvDash C_l$ the 
+the deductive system is sound.\\
+Suppose that $C$ is a countable set of proposition formulas i.e. 
+set of clauses.
+
+Then $C \cup \{\neg C_l\}$ is inconsistent i.e. $C \nvdash C_l$ for 
+some $C_l$.
+
+By the compactness theorem of propositional clauses there $\exists$
+a finite subset $C_o \subseteq C$ s.t. $C_o \cup \{ \neg C_l\}$ is 
+inconsistent i.e. has no models.\\
+
+Then $C \vDash C_l$\\
+By the existing completeness theorem of propositional calculus $C_o \vdash C_l$
+Hence $C \vdash C_l$.
 
 }

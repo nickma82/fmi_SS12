@@ -1,30 +1,60 @@
   \solution{
-Construct the equivalences for the SFOs and translate the labeled
-subformulas to CNF (local constraints):
+Extension of Tseitin's Transformation:\\
+\begin{enumerate}
+\item
+Clauses for the equivalence-connective $\IFF$: \\
+First we replace $\IFF$ by $\IMPL$ using the rule\\
+\begin{equation*}
+(a \IFF b)=(a \IMPL b)\AND(b \IMPL a)
+\end{equation*}
+
+Thus, the equivalence can be written as follows:\\
+\begin{eqnarray*}
+l_i \IFF (l_{i'} \IFF l_{i''})\\
+= (l_i \IMPL (l_{i'} \IFF l_{i''})) \AND ((l_{i'} \IFF l_{i''}) \IMPL l_{i})\\
+= [l_i \IMPL ((l_{i'} \IFF l_{i''}) \AND (l_{i''} \IMPL l_{i'}))] 
+\AND [((l_{i'} \IMPL l_{i''}) \AND (l_{i''} \IMPL l_{i'})) \IMPL l_i]\\
+= [(l_i \IMPL (l_{i'} \IMPL l_{i''})) \AND (l_i \IMPL (l_{i''} \IMPL l_{i'}))] 
+\AND [((l_{i'} \IMPL l_{i''}) \IMPL l_i) \AND ((l_{i''} \IMPL l_{i'}) \IMPL l_i)]\\
+= [(l_i \IMPL (\neg l_{i'} \OR l_{i''})) \AND (l_i \IMPL (\neg l_{i''} \OR l_{i'}))] 
+\AND [((l_{i'} \AND\neg l_{i''}) \OR l_i) \AND ((l_{i''} \AND\neg l_{i'}) \OR l_i)]\\
+= [(\neg l_i \OR (\neg l_{i'} \OR l_{i''})) \AND (\neg l_i \OR (\neg l_{i''} \OR l_{i'}))] 
+\AND [((l_{i'} \AND\neg l_{i''}) \AND (l_{i''} \AND\neg l_{i'})) \OR l_{i}]\\
+= [(\neg l_i \OR \neg l_{i'} \OR l_{i''}) \AND (\neg l_i \OR \neg l_{i''} \OR l_{i'})] 
+\AND [((l_{i'} \AND l_{i''}) \AND (\neg l_{i'} \AND\neg l_{i''})) \OR l_{i}]\\
+= (\neg l_i \OR \neg l_{i'} \OR l_{i''}) \AND (\neg l_i \OR \neg l_{i''} \OR l_{i'}) 
+\AND [((\neg l_{i'} \OR \neg l_{i''}) \AND (l_{i'} \OR l_{i''})) \OR l_{i}]\\
+= (\neg l_i \OR \neg l_{i'} \OR l_{i''}) \AND (\neg l_i \OR \neg l_{i''} \OR l_{i'}) 
+\AND (l_{i} \OR \neg l_{i'} \OR \neg l_{i''}) \AND (l_{i} \OR l_{i'} \OR l_{i''})\\
+\end{eqnarray*}
+
+Now we can construct the table with the equivalences for the SFOs and the 
+associated clauses in CNF (local constraints):
 
 % use packages: array
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|1|}
 \hline
-\textsl{\small Equivalences} & \multicolumn{3}{c|}{\textsl{\small Associated
+\textsl{\small Equivalences} & \multicolumn{4}{c|}{\textsl{\small Associated
 Clauses}} \\ 
-{\small \textsl{for SFOs in} $\phi $} & $C_{1}(\phi )$ & $C_{2}(\phi )$ & $%
-C_{3}(\phi )$ \\ \hline
-$I_{1}\IFF x$ & $\lnot I_{1}\OR x$ & $I_{1}\OR\lnot x$ & \\ 
-$I_{2}\IFF y$ & $\lnot I_{2}\OR y$ & $I_{2}\OR\lnot y$ &  \\ 
-$I_{3}\IFF(I_{1}\AND I_{2})$ & $\lnot I_{3}\OR I_{1}$ & $\lnot I_{3}\OR %
-I_{2} $ & $I_{3}\OR\lnot I_{1}\OR\lnot I_{2}$ \\ 
-$I_{4}\IFF y$ & $\lnot I_{4}\OR y$ & $I_{4}\OR\lnot y$ &  \\ 
-$I_{5}\IFF z$ & $\lnot I_{5}\OR z$ & $I_{5}\OR\lnot z$ &  \\ 
-$I_{6}\IFF(I_{4}\AND I_{5})$ & $\lnot I_{6}\OR I_{4}$ & $\lnot I_{6}\OR %
-I_{5} $ & $I_{6}\OR\lnot I_{4}\OR\lnot I_{5}$ \\ 
-$I_{7}\IFF z$ & $\lnot I_{7}\OR z$ & $I_{7}\OR\lnot z$ &  \\ 
-$I_{8}\IFF\lnot I_{7}$ & $\lnot I_{8}\OR\lnot I_{7}$ & $I_{8}\OR I_{7}$ & 
-\\ 
-$I_{9}\IFF(I_{3}\IMPL I_{6})$ & $\lnot I_{9}\OR\lnot I_{3}\OR I_{6}$ & $I_{9}%
-\OR I_{3}$ & $I_{9}\OR\lnot I_{6}$ \\ 
-$I_{10}\IFF(I_{9}\IMPL I_{8})$ & $\lnot I_{10}\OR\lnot I_{9}\OR I_{8}$ & $%
-I_{10}\OR I_{9}$ & $I_{10}\OR\lnot I_{8}$ \\ \hline
+{\small \textsl{for SFOs in} $\IFF $} & $C_{1}(\IFF )$ & $C_{2}(\IFF )$ & $%
+C_{3}(\IFF )$ & $C_{4}(\IFF )$ \\ \hline
+$l_{i}\IFF(l_{i'}\IFF l_{i''})$ & $\lnot l_{i}\OR \neg l_{i'}\OR l_{i''}$ & 
+$\lnot l_{i}\OR l_{i'}\OR \neg l_{i''}$ & $l_{i}\OR\neg l_{i'}\OR\neg l_{i''}$ & 
+$l_i\OR l_{i'}\OR l_{i''}$ \\ \hline
 \end{tabular}
 \label{tab:translation_cnf}
+
+\bigskip
+\item
+Clauses for the XOR-connective $\oplus$: \\
+We replace $\oplus$ by $\IMPL$ using the substitution rule:
+\begin{eqnarray*}
+l_{k'} \oplus l_{k''}\\
+= \neg(l_{k'} \IMPL l_{k''}) \OR \neg (l_{k''} \IMPL l_{k'})\\
+\text{(which is the dual problem of i):)}\\
+= \neg((l_{k'} \IMPL l_{k''}) \AND (l_{k''} \IMPL l_{k'}))\\ 
+\end{eqnarray*}
+
+\end{enumerate}
 
   }

@@ -1,60 +1,120 @@
 \solution{
-Extension of Tseitin's Transformation:\\
-\begin{enumerate}
-\item
-Clauses for the equivalence-connective $\IFF$: \\
-First we replace $\IFF$ by $\IMPL$ using the rule\\
-\begin{equation*}
-(a \IFF b)=(a \IMPL b)\AND(b \IMPL a)
-\end{equation*}
+	The Tseitin transformation can be extended with the additional connectives $%
+	\leftrightarrow $ (\textit{equivalence} or also called \textit{circuit
+	equivalence}) and $\oplus $ (\textrm{XOR}) as follows:\newline
 
-Thus, the equivalence can be written as follows:\\
-\begin{eqnarray*}
-l_i \IFF (l_{i'} \IFF l_{i''})\\
-= (l_i \IMPL (l_{i'} \IFF l_{i''})) \AND ((l_{i'} \IFF l_{i''}) \IMPL l_{i})\\
-= [l_i \IMPL ((l_{i'} \IFF l_{i''}) \AND (l_{i''} \IMPL l_{i'}))] 
-\AND [((l_{i'} \IMPL l_{i''}) \AND (l_{i''} \IMPL l_{i'})) \IMPL l_i]\\
-= [(l_i \IMPL (l_{i'} \IMPL l_{i''})) \AND (l_i \IMPL (l_{i''} \IMPL l_{i'}))] 
-\AND [((l_{i'} \IMPL l_{i''}) \IMPL l_i) \AND ((l_{i''} \IMPL l_{i'}) \IMPL l_i)]\\
-= [(l_i \IMPL (\neg l_{i'} \OR l_{i''})) \AND (l_i \IMPL (\neg l_{i''} \OR l_{i'}))] 
-\AND [((l_{i'} \AND\neg l_{i''}) \OR l_i) \AND ((l_{i''} \AND\neg l_{i'}) \OR l_i)]\\
-= [(\neg l_i \OR (\neg l_{i'} \OR l_{i''})) \AND (\neg l_i \OR (\neg l_{i''} \OR l_{i'}))] 
-\AND [((l_{i'} \AND\neg l_{i''}) \AND (l_{i''} \AND\neg l_{i'})) \OR l_{i}]\\
-= [(\neg l_i \OR \neg l_{i'} \OR l_{i''}) \AND (\neg l_i \OR \neg l_{i''} \OR l_{i'})] 
-\AND [((l_{i'} \AND l_{i''}) \AND (\neg l_{i'} \AND\neg l_{i''})) \OR l_{i}]\\
-= (\neg l_i \OR \neg l_{i'} \OR l_{i''}) \AND (\neg l_i \OR \neg l_{i''} \OR l_{i'}) 
-\AND [((\neg l_{i'} \OR \neg l_{i''}) \AND (l_{i'} \OR l_{i''})) \OR l_{i}]\\
-= (\neg l_i \OR \neg l_{i'} \OR l_{i''}) \AND (\neg l_i \OR \neg l_{i''} \OR l_{i'}) 
-\AND (l_{i} \OR \neg l_{i'} \OR \neg l_{i''}) \AND (l_{i} \OR l_{i'} \OR l_{i''})\\
-\end{eqnarray*}
+	\begin{enumerate}
+	\item[\textit{i)}] The derivation of the CNF sub-expression for the circuit
+	equivalence can be shown by replacing $\leftrightarrow $ with $\rightarrow $
+	using the \textit{logical equivalence},
 
-Now we can construct the table with the equivalences for the SFOs and the 
-associated clauses in CNF (local constraints):
+	\begin{equation*}
+	(a\IFF b)\equiv (a\IMPL b)\AND(b\IMPL a).
+	\end{equation*}
 
-% use packages: array
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-\textsl{\small Equivalences} & \multicolumn{4}{c|}{\textsl{\small Associated
-Clauses}} \\ 
-{\small \textsl{for SFOs in} $\IFF $} & $C_{1}(\IFF )$ & $C_{2}(\IFF )$ & $%
-C_{3}(\IFF )$ & $C_{4}(\IFF )$ \\ \hline
-$l_{i}\IFF(l_{i'}\IFF l_{i''})$ & $\lnot l_{i}\OR \neg l_{i'}\OR l_{i''}$ & 
-$\lnot l_{i}\OR l_{i'}\OR \neg l_{i''}$ & $l_{i}\OR\neg l_{i'}\OR\neg l_{i''}$ & 
-$l_i\OR l_{i'}\OR l_{i''}$ \\ \hline
-\end{tabular}
-\label{tab:translation_cnf}
+	Then, the circuit equivalence for Tseitin can be deduced as follows:
 
-\bigskip
-\item
-Clauses for the XOR-connective $\oplus$: \\
-We replace $\oplus$ by $\IMPL$ using the substitution rule:
-\begin{eqnarray*}
-l_{k'} \oplus l_{k''}\\
-= \neg(l_{k'} \IMPL l_{k''}) \OR \neg (l_{k''} \IMPL l_{k'})\\
-\text{(which is the dual problem of i):)}\\
-= \neg((l_{k'} \IMPL l_{k''}) \AND (l_{k''} \IMPL l_{k'}))\\ 
-\end{eqnarray*}
+	\begin{eqnarray*}
+	l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}) &\Longleftrightarrow
+	&(l_{i}\IMPL(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}))\AND((l_{i^{\prime
+	\prime }}\IFF l_{i^{\prime }})\IMPL l_{i}) \\
+	&\Longleftrightarrow &[l_{i}\IMPL((l_{i^{\prime }}\IMPL l_{i^{\prime \prime
+	}})\AND(l_{i^{\prime \prime }}\IMPL l_{i^{\prime }}))]\AND [((l_{i\prime}
+	\IMPL l_{i\prime\prime}) \AND (l_{i\prime\prime} \IMPL l_{i\prime})) \IMPL
+	l_i][((l_{i^{\prime }}\IMPL l_{i^{\prime \prime }})\AND [((l_{i\prime} \IMPL
+	l_{i\prime\prime}) \AND (l_{i\prime\prime} \IMPL l_{i\prime})) \IMPL
+	l_i](l_{i^{^{\prime \prime }}}\IMPL l_{i^{\prime }})\IMPL l_{i}] \\
+	&\Longleftrightarrow &[(l_{i}\IMPL(l_{i^{\prime }}\IMPL l_{i^{\prime \prime
+	}}))\AND(l_{i}\IMPL(l_{i^{\prime \prime }}\IMPL l_{i^{\prime }}))]\AND
+	[((l_{i\prime} \IMPL l_{i\prime\prime}) \IMPL l_i) \AND ((l_{i\prime\prime}
+	\IMPL l_{i\prime}) \IMPL l_i)][((l_{i^{\prime }}\IMPL l_{i^{\prime \prime
+	}})\IMPL l_{i})\AND [((l_{i\prime} \IMPL l_{i\prime\prime}) \IMPL l_i) \AND
+	((l_{i\prime\prime} \IMPL l_{i\prime}) \IMPL l_i)](l_{i^{^{\prime \prime
+	}}}\IMPL l_{i^{\prime }})\IMPL l_{i}] \\
+	&\Longleftrightarrow &[(l_{i}\IMPL(\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }}))\AND(l_{i}\IMPL(\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime }}))]%
+	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR l_i) \AND
+	((l_{i\prime\prime} \AND\neg l_{i\prime}) \OR l_i)][((l_{i^{\prime }}\AND
+	[((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime}
+	\AND\neg l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime \prime }})\OR l_{i})\AND
+	[((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime}
+	\AND\neg l_{i\prime}) \OR l_i)]((l_{i^{\prime \prime }}\AND [((l_{i\prime}
+	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
+	l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime }})\OR l_{i})] \\
+	&\Longleftrightarrow &(\lnot l_{i}\OR(\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }}))\AND(\lnot l_{i}\OR(\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime
+	}}))\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
+	\AND\neg l_{i\prime})) \OR l_{i}][((l_{i^{\prime }}\AND [((l_{i\prime}
+	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
+	l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime \prime }})\AND [((l_{i\prime}
+	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
+	l_{i\prime}) \OR l_i)](l_{i^{\prime \prime }}\AND [((l_{i\prime} \AND\neg
+	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime})
+	\OR l_i)]\lnot l_{i^{\prime }}))\OR l_{i}] \\
+	&\Longleftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }})\AND(\lnot l_{i}\OR\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime }})%
+	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
+	\AND\neg l_{i\prime})) \OR l_{i}][((l_{i^{\prime }}\AND [((l_{i\prime}
+	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
+	l_{i\prime}) \OR l_i)]l_{i^{\prime \prime }})\AND [((l_{i\prime} \AND\neg
+	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime})
+	\OR l_i)](\lnot l_{i^{\prime }}\AND [((l_{i\prime} \AND\neg
+	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime})
+	\OR l_i)]\lnot l_{i^{\prime \prime }}))\OR l_{i}] \\
+	&\Longleftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }})\AND(\lnot l_{i}\OR\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime }})%
+	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
+	\AND\neg l_{i\prime})) \OR l_{i}][((\lnot l_{i^{\prime }}\OR\lnot
+	l_{i^{\prime \prime }})\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR
+	l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime}) \OR l_i)](l_{i^{\prime
+	}}\OR l_{i^{\prime \prime }}))\OR l_{i}] \\
+	&\Longleftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }})\AND(\lnot l_{i}\OR l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }})%
+	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
+	\AND\neg l_{i\prime})) \OR l_{i}](l_{i}\OR\lnot l_{i^{\prime }}\OR\lnot
+	l_{i^{\prime \prime }})\AND(l_{i}\OR l_{i^{\prime }}\OR l_{i^{\prime \prime
+	}})
+	\end{eqnarray*}
 
-\end{enumerate}
+	\item[\textit{ii)}] Since the \textrm{XOR}-connective $\oplus $ is the dual
+	of circuit equivalence, we can deduce the set of clauses for the Tseitin
+	transformation by using following substitution:%
+	\begin{eqnarray*}
+	(a\oplus b) &\equiv &\lnot ((a\IMPL b)\AND (b\IMPL a)) \\
+	&\equiv &\lnot (a\IMPL b)\OR\lnot (b\IMPL a)
+	\end{eqnarray*}
 
+	Thus, we receive the follwing CNF-subexpression for \textrm{XOR} by
+	dualizing the CNF-clauses of circuit equivalence:%
+	\begin{eqnarray*}
+	l_{i}\IFF(l_{k^{\prime }}\oplus l_{k^{\prime \prime }}) &\Longleftrightarrow
+	&(l_{i}\IMPL\lnot (l_{k^{\prime }}\IMPL l_{k^{\prime \prime }}))\OR(\lnot
+	(l_{k^{\prime \prime }}\IMPL l_{k^{\prime }})\IMPL l_{i}) \\
+	&\Longleftrightarrow &(l_{i}\OR l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime
+	}})\AND(l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime \prime }})\AND
+	[((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime} \AND\neg
+	l_{i\prime})) \OR l_{i}](\lnot l_{i}\OR l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }})\AND(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR\lnot l_{i^{\prime
+	\prime }})
+	\end{eqnarray*}
+	\end{enumerate}
+
+	Now we can construct the table with the equivalences for the SFOs and the
+	associated clauses in CNF (local constraints):
+
+	\begin{tabular}{|l|l|l|l|l|}
+	\hline
+	\textsl{\small Equivalences} & \multicolumn{4}{c|}{\textsl{\small Associated
+	Clauses}} \\ 
+	{\small \textsl{for SFOs in} $\IFF$} & $C_{1}(\IFF)$ & $C_{2}(\IFF)$ & $%
+	C_{3}(\IFF)$ & $C_{4}(\IFF)$ \\ \hline
+	$l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }})$ & $\lnot l_{i}\OR%
+	\lnot l_{i^{\prime }}\OR l_{i^{\prime \prime }}$ & $\lnot l_{i}\OR %
+	l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }}$ & $l_{i}\OR\lnot
+	l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }}$ & $l_{i}\OR l_{i^{\prime }}%
+	\OR l_{i^{\prime \prime }}$ \\ \hline
+	\end{tabular}
+	\label{tab:translation_cnf}
+
+	\bigskip 
 }

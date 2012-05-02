@@ -1,61 +1,73 @@
 \solution{
+	In general, a formula $\psi $ is a \textit{logical consequence} of a formula 
+	$\varphi $, denoted $\varphi \models \psi $, if for all truth assignments $%
+	\pi $, $\pi \models \varphi $ implies $\pi \models \psi $.
 
-A formular $\upphi$ is a logical consequence of a formular $\upphi$
-denoted  $\upphi \vDash \upphi'$, 
+	\medskip
 
-if $\Pi \vDash \upphi$ implies $\Pi \vDash \upphi'$ for all truth
-assignements $\Pi$.
+	The learned clauses in an implication graph are a \textit{logical consequence%
+	} of the original clauses and it prohibits the same conflict assignement in
+	the further search. Thus, the learned clauses only adds redundancy to the
+	original clauses.
 
-\textbf{Proof}:\\
-$$C=\{C_1, \dots, C_n \} = \bigwedge_{i=1}^{n}C_i$$
+	\textbf{Proof}:
 
-$\overbrace{\bigwedge{Ci}}^{C} \vDash C_l$ iff
+	Let $\mathcal{C}=\{C_{1},\dots ,C_{n}\}$ be a countable set of clauses and
+	let $C_{l}$ be the learnt clause derived from the set of clauses $\mathcal{C}
+	$ using resolution.
 
-$\forall \Pi$ s.t. $\Pi \vDash \bigwedge{C_i} \Rightarrow \Pi \vDash C_l$\\
+	As usual a set of clauses $\mathcal{C}=\{C_{1},\dots ,C_{n}\}$ can be
+	interpreted as the formula $\varphi =\bigwedge_{i=1}^{n}C_{i}$. Then, 
+	\begin{eqnarray*}
+	\mathcal{C} &\models &C_{l}\text{\quad \textit{iff\quad }}\Forall\pi \text{,
+	s.t. }\pi \models \mathcal{C}\Rightarrow \,\pi \models C_{l}\,, \\
+	&&\text{i.e. }\bigwedge\nolimits_{i=1}^{n}C_{i}\text{ is satisfiable\quad 
+	\textit{iff\quad }}
+	\end{eqnarray*}
 
-i.e. $\underbrace{\bigwedge{C_i}}_{C}$ is satisfied:
+	Using following equivalence, $(a\AND b)\equiv \lnot (a\IMPL\lnot b)$,%
+	\begin{eqnarray*}
+	\text{\textit{iff}\quad }\Forall\pi \text{, }\pi &\vDash &\lnot
+	(\bigwedge\nolimits_{i=1}^{n}C_{i}\IMPL\lnot C_{l})\text{ is satisfiable,} \\
+	\text{\textit{iff}\quad }\Forall\pi \text{, }\pi &\nvDash
+	&\bigwedge\nolimits_{i=1}^{n}C_{i}\IMPL\lnot C_{l}\text{ is not satisfiable,}
+	\\
+	\text{\textit{iff}\quad }\Forall\pi \text{, }\pi &\nvDash &\lnot
+	(\bigwedge\nolimits_{i=1}^{n}C_{i}\AND C_{l})\text{ is not satisfiable,} \\
+	\text{\textit{iff}\quad }\Forall\pi \text{, }\pi &\vDash
+	&\bigwedge\nolimits_{i=1}^{n}C_{i}\AND C_{l}\text{ is satisfiable,} \\
+	\text{\textit{iff}\quad }\Forall\pi \text{, }\pi &\nvDash
+	&\bigwedge\nolimits_{i=1}^{n}C_{i}\AND\lnot C_{l}\text{ is \textit{%
+	unsatisfiable}.}
+	\end{eqnarray*}
 
-\begin{itemize}
- \item iff $\bigwedge{C_i} \land C_l$ is satisfied *\\
-Equivalence rule:
-* $(a \land b) \equiv \neg (a \rightarrow \neg b)$
- \item iff $\Pi \nvDash \bigwedge{\neg C_i \rightarrow C_l}, \forall\Pi$ is unsatisfied
- \item iff $\Pi \nvDash \bigwedge{C_i \land \neg C_l}$ is unsatisfied
-\end{itemize}
+	Moreover, if $\mathcal{C}\vdash C_{l}\,\Rightarrow \,\mathcal{C}\models
+	C_{l} $, then the deductive system is \textit{sound}.
 
-\textbf{Substitution rule}:\\
-We transform stepwise
-\begin{center}
- iff $Pi \vDash \neg(\bigwedge{C_i} \rightarrow \neg C_l)$ \\
- iff $Pi \nvDash \bigwedge{C_i} \rightarrow \neg C_l$\\
- iff $Pi \nvDash \neg(\bigwedge{C_i} \land C_l)$
-\end{center}
+	Thus, if $\mathcal{C}\models C_{l}$ then $\mathcal{C}\cup \{\lnot C_{l}\}$
+	is not satisfiable (\textit{inconsistent}), i.e. $\mathcal{C}\nvdash \lnot
+	C_{l}$ for some $C_{l}$ such that,%
+	\begin{equation*}
+	\mathcal{C}\models C_{l}\text{\quad \textit{iff\quad }}\mathcal{C}%
+	_{o}\models C_{l}\text{ \ for some finite set }\mathcal{C}_{o}\subseteq 
+	\mathcal{C}.
+	\end{equation*}
 
-And therefor it follows:
-\begin{center}
- iff $Pi \vDash \bigwedge{C_i} \land C_l$
-\end{center}
+	Recalling the \textit{compactness theorem} of propositional calculus:
 
-learned clauses are a logical consequence of the original clauses and 
-it prohibits the same conflict assignement in the further search.\\
-$\Rightarrow$ learned clauses only adds redundancy to the original clauses.
+	\begin{definition}
+	Let $S$ be a countable infinite set of formulas. If every finite subset of $S$ is satisfiable,
+	then $S$ is satisfiable.
+	\label{def:compact_thm}
+	\end{definition}
 
-\textbf{Proof}
+	Then by the compactness theorem there exists a finite subset $\mathcal{C}%
+	_{o}\subseteq \mathcal{C}$ such that $\mathcal{C}_{o}\cup \{\lnot C_{l}\}$
+	is inconsistent, i.e. it has no models. Then $\mathcal{C}_{o}\models C_{l}$,
+	since we have a unsatisfiable set of the form $\mathcal{C}_{o}\cup \{\lnot
+	C_{l}\}$, where $\mathcal{C}_{o}\subseteq \mathcal{C}$. Thus, by the \textit{%
+	extended completeness theorem} of propositional calculus $\mathcal{C}%
+	_{o}\vdash C_{l}$ and hence $\mathcal{C}\vdash C_{l}$.
 
-$\Rightarrow$ if $C \vdash C_l$ then $\Rightarrow C \nvDash C_l$ the 
-the deductive system is sound.\\
-Suppose that $C$ is a countable set of proposition formulas i.e. 
-set of clauses.
-
-Then $C \cup \{\neg C_l\}$ is inconsistent i.e. $C \nvdash C_l$ for 
-some $C_l$.
-
-By the compactness theorem of propositional clauses there $\exists$
-a finite subset $C_o \subseteq C$ s.t. $C_o \cup \{ \neg C_l\}$ is 
-inconsistent i.e. has no models.\\
-
-Then $C \vDash C_l$\\
-By the existing completeness theorem of propositional calculus $C_o \vdash C_l$
-Hence $C \vdash C_l$.
-
+	\bigskip
 }

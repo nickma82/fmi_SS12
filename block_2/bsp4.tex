@@ -1,38 +1,84 @@
 \solution{
-We set the given Equality Uninterpreted Formula (EUF) $\varphi^E$ to
-$$\varphi^{E} := FC^E \Rightarrow flat^E$$
+	The algorithm for Ackermann reduction reads the given equality uninterpreted
+	formula (EUF) $\varphi $ and transforms it to an equality logic formula $%
+	\varphi ^{E}$ such that: 
+	\begin{equation*}
+	\varphi ^{E}:FC^{E}\IMPL flat^{E},
+	\end{equation*}
 
-The next two steps are 
-\begin{itemize}
- \item flattening \\
-while we are loosing information through the flattening 
-we have to 
- \item replenish it with  functional constrains
-\end{itemize}
+	where $FC^{E}$ is a conjunction of functional-consistency constraints and $%
+	flat^{E}$ is a flattening of $\varphi $.
 
-\begin{displaymath}
-  \varphi^{EUF} : f_2\left(f_1\left(g_1\left(a\right),b\right),a\right) = f_1(g_1(a),b) 
-  \rightarrow \big[ f_3(x,y) = g_2(f_1(g_1(a),b)) \land  g_3(f_4(a,y))=d \big]
-\end{displaymath}
+	Then the next three steps are:
 
-\textbf{Flattening} of $\varphi^{EUF}$\\
-Calculating $FC^E$
-$$flat^E := f_2 = f_1 \rightarrow \big[ f_3 = g_2 \land g_3 = d\big]$$
+	\begin{enumerate}
+	\item[\textit{i)}] numbering the function instances of $\varphi $, s.t.%
+	\begin{equation*}
+	\varphi :F_{2}\left( F_{1}\left( G_{1}\left( a\right) ,b\right) ,a\right)
+	=F_{1}(G_{1}(a),b)\rightarrow \big[F_{3}(x,y)=G_{2}(F_{1}(G_{1}(a),b))\wedge
+	G_{3}(F_{4}(a,y))=d\big]
+	\end{equation*}
 
-$$FC^{E}(\varphi^{EUF}):=\bigwedge_{i=1}^{3} \bigwedge_{j=2}^{4}{ \big(
-    T(arg(F_i)) = T(arg(F_j)) \rightarrow f_i=f_j 
-    \big)}$$
+	\item[\textit{ii)}] \textit{flattening} of $\varphi $, s.t.%
+	\begin{equation*}
+	flat^{E}:f_{2}=f_{1}\rightarrow \big[f_{3}=g_{2}\wedge g_{3}=d\big]
+	\end{equation*}
 
-\textbf{F - constrains} \\
-$(g_1=f_1 \land b=a) \rightarrow f_1=f_2 \land$\\
-$(g_1=x   \land b=y) \rightarrow f_1=f_3 \land$\\
-$(g_1=a   \land b=y) \rightarrow f_1=f_4 \land$\\
-$(f_1=x   \land a=y) \rightarrow f_2=f_3 \land$\\
-$(f_1=a   \land a=y) \rightarrow f_2=f_4 \land$\\
-$(x  =a   \land y=y) \rightarrow f_3=f_4$ \\
-$\land$ \textbf{G - constrains}\\
-$(a=f_1) \rightarrow g_1=g_2 \land$\\
-$(a=f_4) \rightarrow g_1=g_3 \land$\\
-$(f_1=f_4) \rightarrow g_2=g_3$
+	While we are loosing information through the flattening we have to
 
+	\item[\textit{iii)}] replenish it with functional constrains $FC^{E}$:%
+	\begin{equation*}
+	FC^{E}(\varphi ):=\bigwedge_{i=1}^{3}\bigwedge_{j=2}^{4}{\ \big(%
+	T(arg(F_{i}))=T(arg(F_{j}))\rightarrow f_{i}=f_{j}\big)}
+	\end{equation*}
+
+	Calculating the constraints of $F_{i\in \{1,2,3,4\}}$:%
+	\begin{equation*}
+	\begin{array}{ll}
+	i,j: &  \\ 
+	1,2: & (g_{1}=f_{1}\wedge b=a)\rightarrow f_{1}=f_{2} \\ 
+	1,3: & (g_{1}=x\wedge b=y)\rightarrow f_{1}=f_{3}\newline
+	\\ 
+	1,4: & (g_{1}=a\wedge b=y)\rightarrow f_{1}=f_{4} \\ 
+	2,3: & (f_{1}=x\wedge a=y)\rightarrow f_{2}=f_{3} \\ 
+	2,4: & (f_{1}=a\wedge a=y)\rightarrow f_{2}=f_{4} \\ 
+	3,4: & (x=a\wedge y=y)\rightarrow f_{3}=f_{4}\newline
+	\end{array}%
+	\end{equation*}
+
+	Calculating the constraints of $G_{i\in \{1,2,3\}}$:%
+	\begin{equation*}
+	\begin{array}{ll}
+	i,j: &  \\ 
+	1,2: & (a=f_{1})\rightarrow g_{1}=g_{2} \\ 
+	1,3: & (a=f_{4})\rightarrow g_{1}=g_{3} \\ 
+	2,3: & (f_{1}=f_{4})\rightarrow g_{2}=g_{3}%
+	\end{array}%
+	\end{equation*}
+
+	Build $FC^{E}$ by conjoining the above results:%
+	\begin{eqnarray*}
+	FC^{E} &:&(g_{1}=f_{1}\wedge b=a)\rightarrow f_{1}=f_{2}\wedge \newline
+	\\
+	(g_{1} &=&x\wedge b=y)\rightarrow f_{1}=f_{3}\wedge \newline
+	\\
+	(g_{1} &=&a\wedge b=y)\rightarrow f_{1}=f_{4}\wedge \newline
+	\\
+	(f_{1} &=&x\wedge a=y)\rightarrow f_{2}=f_{3}\wedge \newline
+	\\
+	(f_{1} &=&a\wedge a=y)\rightarrow f_{2}=f_{4}\wedge  \\
+	(x &=&a\wedge y=y)\rightarrow f_{3}=f_{4}\newline
+	\newline
+	\wedge  \\
+	(a &=&f_{1})\rightarrow g_{1}=g_{2}\wedge \newline
+	\\
+	(a &=&f_{4})\rightarrow g_{1}=g_{3}\wedge \newline
+	\\
+	(f_{1} &=&f_{4})\rightarrow g_{2}=g_{3}
+	\end{eqnarray*}
+
+	$\Rightarrow \quad \varphi $ is valid iff the resulting equaltity formula $%
+	\varphi ^{E}=FC^{E}\IMPL flat^{E}$ is valid.
+	
+	\end{enumerate}
 }

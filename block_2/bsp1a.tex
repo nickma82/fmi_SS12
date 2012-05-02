@@ -14,65 +14,75 @@
 
 	Then, the circuit equivalence for Tseitin can be derived as follows:%
 	\begin{eqnarray*}
-	l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}) &\Longleftrightarrow
+	l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}) &\Leftrightarrow
 	&(l_{i}\IMPL(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}))\AND((l_{i^{\prime
 	\prime }}\IFF l_{i^{\prime }})\IMPL l_{i}) \\
-	&\Longleftrightarrow &[l_{i}\IMPL((l_{i^{\prime }}\IMPL l_{i^{\prime \prime
-	}})\AND(l_{i^{\prime \prime }}\IMPL l_{i^{\prime }}))]\AND [((l_{i\prime}
-	\IMPL l_{i\prime\prime}) \AND (l_{i\prime\prime} \IMPL l_{i\prime})) \IMPL
-	l_i][((l_{i^{\prime }}\IMPL l_{i^{\prime \prime }})\AND [((l_{i\prime} \IMPL
-	l_{i\prime\prime}) \AND (l_{i\prime\prime} \IMPL l_{i\prime})) \IMPL
-	l_i](l_{i^{^{\prime \prime }}}\IMPL l_{i^{\prime }})\IMPL l_{i}] \\
-	&\Longleftrightarrow &[(l_{i}\IMPL(l_{i^{\prime }}\IMPL l_{i^{\prime \prime
-	}}))\AND(l_{i}\IMPL(l_{i^{\prime \prime }}\IMPL l_{i^{\prime }}))]\AND
-	[((l_{i\prime} \IMPL l_{i\prime\prime}) \IMPL l_i) \AND ((l_{i\prime\prime}
-	\IMPL l_{i\prime}) \IMPL l_i)][((l_{i^{\prime }}\IMPL l_{i^{\prime \prime
-	}})\IMPL l_{i})\AND [((l_{i\prime} \IMPL l_{i\prime\prime}) \IMPL l_i) \AND
-	((l_{i\prime\prime} \IMPL l_{i\prime}) \IMPL l_i)](l_{i^{^{\prime \prime
-	}}}\IMPL l_{i^{\prime }})\IMPL l_{i}] \\
-	&\Longleftrightarrow &[(l_{i}\IMPL(\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	&\Leftrightarrow &[l_{i}\IMPL((l_{i^{\prime }}\IMPL l_{i^{\prime \prime
+	}})\AND(l_{i^{\prime \prime }}\IMPL l_{i^{\prime }}))]\AND \\
+	&&[((l_{i^{\prime }}
+	\IMPL l_{i^{\prime\prime }}) \AND (l_{i^{\prime\prime }} \IMPL l_{i^{\prime }})) \IMPL
+	l_{i}] \\
+%	[((l_{i^{\prime }}\IMPL l_{i^{\prime \prime }})\AND [((l_{i\prime} \IMPL
+%	l_{i\prime\prime}) \AND (l_{i\prime\prime} \IMPL l_{i\prime})) \IMPL
+%	l_i](l_{i^{^{\prime \prime }}}\IMPL l_{i^{\prime }})\IMPL l_{i}] \\
+	&\Leftrightarrow &[(l_{i}\IMPL(l_{i^{\prime }}\IMPL l_{i^{\prime \prime
+	}}))\AND(l_{i}\IMPL(l_{i^{\prime \prime }}\IMPL l_{i^{\prime }}))]\AND \\
+	&&[((l_{i^{\prime }} \IMPL l_{i^{\prime\prime }}) \IMPL l_{i}) \AND ((l_{i^{\prime\prime }}
+	\IMPL l_{i^{\prime }}) \IMPL l_{i})] \\
+%	[((l_{i^{\prime }}\IMPL l_{i^{\prime \prime
+%	}})\IMPL l_{i})\AND [((l_{i\prime} \IMPL l_{i\prime\prime}) \IMPL l_i) \AND
+%	((l_{i\prime\prime} \IMPL l_{i\prime}) \IMPL l_i)](l_{i^{^{\prime \prime
+%	}}}\IMPL l_{i^{\prime }})\IMPL l_{i}] \\
+	&\Leftrightarrow &[(l_{i}\IMPL(\lnot l_{i^{\prime }}\OR l_{i^{\prime
 	\prime }}))\AND(l_{i}\IMPL(\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime }}))]%
-	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR l_i) \AND
-	((l_{i\prime\prime} \AND\neg l_{i\prime}) \OR l_i)][((l_{i^{\prime }}\AND
-	[((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime}
-	\AND\neg l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime \prime }})\OR l_{i})\AND
-	[((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime}
-	\AND\neg l_{i\prime}) \OR l_i)]((l_{i^{\prime \prime }}\AND [((l_{i\prime}
-	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
-	l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime }})\OR l_{i})] \\
-	&\Longleftrightarrow &(\lnot l_{i}\OR(\lnot l_{i^{\prime }}\OR l_{i^{\prime
-	\prime }}))\AND(\lnot l_{i}\OR(\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime
-	}}))\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
-	\AND\neg l_{i\prime})) \OR l_{i}][((l_{i^{\prime }}\AND [((l_{i\prime}
-	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
-	l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime \prime }})\AND [((l_{i\prime}
-	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
-	l_{i\prime}) \OR l_i)](l_{i^{\prime \prime }}\AND [((l_{i\prime} \AND\neg
-	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime})
-	\OR l_i)]\lnot l_{i^{\prime }}))\OR l_{i}] \\
-	&\Longleftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\AND \\
+	&&[((l_{i^{\prime }} \AND\lnot l_{i^{\prime\prime }}) \OR l_{i}) \AND
+	((l_{i^{\prime\prime }} \AND\lnot l_{i^{\prime }}) \OR l_{i})] \\
+%	[((l_{i^{\prime }}\AND
+%	[((l_{i\prime} \AND\lnot l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime}
+%	\AND\lnot l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime \prime }})\OR l_{i})\AND
+%	[((l_{i\prime} \AND\lnot l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime}
+%	\AND\lnot l_{i\prime}) \OR l_i)]((l_{i^{\prime \prime }}\AND [((l_{i\prime}
+%	\AND\lnot l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot
+%	l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime }})\OR l_{i})] \\
+	&\Leftrightarrow &(\lnot l_{i}\OR(\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\prime }}))\AND (\lnot l_{i}\OR(\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime
+	}}))\AND \\
+	&&[((l_{i^{\prime }} \AND\lnot l_{i^{\prime\prime }}) \AND (l_{i^{\prime\prime }}
+	\AND\lnot l_{i^{\prime }})) \OR l_{i}] \\
+%	[((l_{i^{\prime }}\AND [((l_{i\prime}
+%	\AND\lnot l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot
+%	l_{i\prime}) \OR l_i)]\lnot l_{i^{\prime \prime }})\AND [((l_{i\prime}
+%	\AND\lnot l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot
+%	l_{i\prime}) \OR l_i)](l_{i^{\prime \prime }}\AND [((l_{i\prime} \AND\lnot
+%	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot l_{i\prime})
+%	\OR l_i)]\lnot l_{i^{\prime }}))\OR l_{i}] \\
+	&\Leftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
 	\prime }})\AND(\lnot l_{i}\OR\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime }})%
-	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
-	\AND\neg l_{i\prime})) \OR l_{i}][((l_{i^{\prime }}\AND [((l_{i\prime}
-	\AND\neg l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg
-	l_{i\prime}) \OR l_i)]l_{i^{\prime \prime }})\AND [((l_{i\prime} \AND\neg
-	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime})
-	\OR l_i)](\lnot l_{i^{\prime }}\AND [((l_{i\prime} \AND\neg
-	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime})
-	\OR l_i)]\lnot l_{i^{\prime \prime }}))\OR l_{i}] \\
-	&\Longleftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\AND \\
+	&&[((l_{i^{\prime }} \AND l_{i^{\prime\prime }}) \AND (\lnot l_{i^{\prime }}\AND
+	\lnot l_{i^{\prime\prime }})) \OR l_{i}] \\
+%	[((l_{i^{\prime }}\AND [((l_{i\prime}
+%	\AND\lnot l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot
+%	l_{i\prime}) \OR l_i)]l_{i^{\prime \prime }})\AND [((l_{i\prime} \AND\lnot
+%	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot l_{i\prime})
+%	\OR l_i)](\lnot l_{i^{\prime }}\AND [((l_{i\prime} \AND\lnot
+%	l_{i\prime\prime}) \OR l_i) \AND ((l_{i\prime\prime} \AND\lnot l_{i\prime})
+%	\OR l_i)]\lnot l_{i^{\prime \prime }}))\OR l_{i}] \\
+	&\Leftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
 	\prime }})\AND(\lnot l_{i}\OR\lnot l_{i^{\prime \prime }}\OR l_{i^{\prime }})%
-	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
-	\AND\neg l_{i\prime})) \OR l_{i}][((\lnot l_{i^{\prime }}\OR\lnot
-	l_{i^{\prime \prime }})\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \OR
-	l_i) \AND ((l_{i\prime\prime} \AND\neg l_{i\prime}) \OR l_i)](l_{i^{\prime
-	}}\OR l_{i^{\prime \prime }}))\OR l_{i}] \\
-	&\Longleftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
+	\AND \\
+	&&[((\lnot l_{i^{\prime }} \OR\lnot l_{i^{\prime\prime }}) \AND (l_{i^{\prime }}
+	\OR l_{i^{\prime\prime }})) \OR l_{i}] \\
+%	 [((\lnot l_{i^{\prime }}\OR\lnot
+%	 l_{i^{\prime \prime }})\AND [((l_{i\prime} \AND\lnot l_{i\prime\prime}) \OR
+%	 l_i) \AND ((l_{i\prime\prime} \AND\lnot l_{i\prime}) \OR l_i)](l_{i^{\prime
+%	 }}\OR l_{i^{\prime \prime }}))\OR l_{i}] \\
+	&\Leftrightarrow &(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime
 	\prime }})\AND(\lnot l_{i}\OR l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }})%
-	\AND [((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime}
-	\AND\neg l_{i\prime})) \OR l_{i}](l_{i}\OR\lnot l_{i^{\prime }}\OR\lnot
-	l_{i^{\prime \prime }})\AND(l_{i}\OR l_{i^{\prime }}\OR l_{i^{\prime \prime
-	}})
+	\AND \\
+	&&(l_{i} \OR\lnot l_{i^{\prime }} \OR\lnot l_{i^{\prime\prime }})\AND
+	(l_{i}\OR l_{i^{\prime }}\OR l_{i^{\prime \prime }})
 	\end{eqnarray*}
 
 	\item[\textit{ii)}] Since the \textrm{XOR}-connective $\oplus $ is the dual
@@ -86,34 +96,35 @@
 	Thus, we receive the follwing CNF-subexpression for \textrm{XOR} by
 	dualizing the CNF-clauses of circuit equivalence:%
 	\begin{eqnarray*}
-	l_{i}\IFF(l_{k^{\prime }}\oplus l_{k^{\prime \prime }}) &\Longleftrightarrow
+	l_{i}\IFF(l_{k^{\prime }}\oplus l_{k^{\prime \prime }}) &\Leftrightarrow
 	&(l_{i}\IMPL\lnot (l_{k^{\prime }}\IMPL l_{k^{\prime \prime }}))\OR(\lnot
 	(l_{k^{\prime \prime }}\IMPL l_{k^{\prime }})\IMPL l_{i}) \\
-	&\Longleftrightarrow &(l_{i}\OR l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime
-	}})\AND(l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime \prime }})\AND
-	[((l_{i\prime} \AND\neg l_{i\prime\prime}) \AND (l_{i\prime\prime} \AND\neg
-	l_{i\prime})) \OR l_{i}](\lnot l_{i}\OR l_{i^{\prime }}\OR l_{i^{\prime
-	\prime }})\AND(\lnot l_{i}\OR\lnot l_{i^{\prime }}\OR\lnot l_{i^{\prime
-	\prime }})
+	&\Leftrightarrow &(l_{i}\OR l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime
+	}})\AND(l_{i}\OR\lnot l_{i^{\prime }}\OR l_{i^{\prime \prime }})\AND \\
+	&&(\lnot l_{i}\OR l_{i^{\prime }}\OR l_{i^{\prime \prime }})\AND(\lnot 
+	l_{i}\OR\lnot l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }})
 	\end{eqnarray*}
 	\end{enumerate}
 
-	Now we can construct the table with the equivalences for the SFOs and the
-	associated clauses in CNF (local constraints):
-
-	\begin{tabular}{|l|l|l|l|l|}
-	\hline
-	\textsl{\small Equivalences} & \multicolumn{4}{c|}{\textsl{\small Associated
-	Clauses}} \\ 
-	{\small \textsl{for SFOs in} $\IFF$} & $C_{1}(\IFF)$ & $C_{2}(\IFF)$ & $%
-	C_{3}(\IFF)$ & $C_{4}(\IFF)$ \\ \hline
-	$l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }})$ & $\lnot l_{i}\OR%
-	\lnot l_{i^{\prime }}\OR l_{i^{\prime \prime }}$ & $\lnot l_{i}\OR %
-	l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }}$ & $l_{i}\OR\lnot
-	l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }}$ & $l_{i}\OR l_{i^{\prime }}%
-	\OR l_{i^{\prime \prime }}$ \\ \hline
-	\end{tabular}
-	\label{tab:translation_cnf}
+	According to the derived CNF-subexpressions for $\leftrightarrow$ and $\oplus$, we can now
+	construct the table with the equivalences for the SFOs and the associated clauses in CNF.
+		
+%	Now we can construct the table with the equivalences for the SFOs and the
+%	associated clauses in CNF (local constraints):
+%
+%	\begin{tabular}{|l|l|l|l|l|}
+%	\hline
+%	\textsl{\small Equivalences} & \multicolumn{4}{c|}{\textsl{\small Associated
+%	Clauses}} \\ 
+%	{\small \textsl{for SFOs in} $\IFF$} & $C_{1}(\IFF)$ & $C_{2}(\IFF)$ & $%
+%	C_{3}(\IFF)$ & $C_{4}(\IFF)$ \\ \hline
+%	$l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }})$ & $\lnot l_{i}\OR%
+%	\lnot l_{i^{\prime }}\OR l_{i^{\prime \prime }}$ & $\lnot l_{i}\OR %
+%	l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }}$ & $l_{i}\OR\lnot
+%	l_{i^{\prime }}\OR\lnot l_{i^{\prime \prime }}$ & $l_{i}\OR l_{i^{\prime }}%
+%	\OR l_{i^{\prime \prime }}$ \\ \hline
+%	\end{tabular}
+%	\label{tab:translation_cnf}
 
 	\bigskip
 }

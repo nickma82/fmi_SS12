@@ -1,17 +1,50 @@
- \solution{
-There is always at least one unique implication point (UIP), namely the
-decision node. If it is the only UIP, it is of course the first UIP
-(the first UIP is the UIP closest to the conflict node).\\
-If there is more than one UIP, only one of them can be the first UIP.
-Here the proof:\\
-We assume that there are two first UIP's. By definition, they lie on every
-path from the decision node $d$ to the conflict nokde $k$, also on a path
-which is a shortest path from $d$ to $k$.\\
-$p$ consists of the shortest path from $d$ to one of the two UIP's (we
-call it $u_1$), followed by the shortest path $p_1$ from $u_1$ to $u_2$
-(the other UIP), followed by the shortest path $p_2$ from $u_2$ to $k$.
-The shortest path from $u_1$ to $k$ consists of $p_1$ and $p_2$ and is 
-therefore longer than $p_2$. So $u_1$ can't be a first UIP, because 
-$u_2$ is a UIP that is closer to the conflict node. This means that 
-there is only one first UIP.
-  }
+\solution{
+	In graph theory, i.e. in \textit{control flow graphs} a dominator node is
+	defined as follows:
+
+	\begin{definition}
+	Let $G=(V,E, n_{0})$ be a directed control flow graph (CFG) with the start node $n_0 \in V(G)$.
+	A node $u \in V(G)$ dominates a node $x \in V(G)$, if every path from $x$ to a node $\kappa$ must go through $u$.
+	I.e. all path from $x$ to $\kappa$ contains vertex $u$.\\
+	This is written as $u \mathrm{dom} x$ (or $u \gg x$).
+	\label{def:dominator_node}
+	\end{definition}
+
+	\begin{lemma}
+	By definition, every node $n \in V(G)$ dominates itself.
+	\end{lemma}
+
+	Then in an implication graph $\mathrm{IG}$, a UIP $u$ dominates the decision
+	node $x$ with respect to the conflict node $\kappa $, i.e. a UIP\ is a 
+	\textit{dominator} in $\mathrm{IG}$, and represents an alternative decision
+	assignment at the current decision level that results in the same conflict.
+	An implication graph can have more than one implication point (UIP), but
+	there is always at least one unique UIP, namely the \textit{decision node}.
+	The main goal for searching UIPs is to reduce the number of learnt clauses.
+	If the decision node is the only UIP at decision level $d$, then of course
+	it is the first UIP which is closest to the conflict node. If in an
+	implication graph $\mathrm{IG}$ are more than one UIP, then only one of them
+	can be the first UIP at decision level $d$. This can be proven als follows:
+
+	\smallskip
+
+	Assume in an implication graph $\mathrm{IG}$ that there are existing more
+	than one UIP. By definition (\ref{def:dominator_node}), the UIPs (dominator
+	nodes) lie on every path $p$ from the decision node $x$ to the conflict node 
+	$\kappa $, including the shortest path $p_{i}$ from $x$ to $\kappa $. Then
+	only one of the UIPs can be a dominator node. Assume that there is a
+	implication graph $\mathrm{IG}$ with two UIPs and there is a path $p_{0}$ in 
+	$\mathrm{IG}$ which is the shortest path from $x$ to one of the two UIPs,
+	called $u_{1}$. Then $p_{0}$ is followed by the shortest path $p_{1}$ from $%
+	u_{1}$ to the next UIP\ $u_{2}$ (s.t. $u_{1}\neq u_{2}$), followed by the
+	shortest path $p_{2}$ from $u_{2}$ to the conflict node $\kappa $. Then the
+	shortest path $p$ from $u_{1}$ to $\kappa $ consists of the path $p_{1}$ and 
+	$p_{2}$ which is longer than the path $p_{2}$ only. Hence, $u_{1}$ can not
+	be the first UIP, since $u_{2}$ is closer to the conflict node $\kappa $.
+	Thus, there is only one first UIP.
+
+	(In addition the proof can be extended in a more general form with $i$ paths
+	instead of two.)
+
+	\bigskip
+}

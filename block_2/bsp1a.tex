@@ -12,8 +12,7 @@
 	(a\IFF b)\equiv (a\IMPL b)\AND(b\IMPL a).
 	\end{equation*}
 
-	Then, the circuit equivalence for Tseitin can be deduced as follows:
-
+	Then, the circuit equivalence for Tseitin can be derived as follows:%
 	\begin{eqnarray*}
 	l_{i}\IFF(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}) &\Longleftrightarrow
 	&(l_{i}\IMPL(l_{i^{\prime }}\IFF l_{i^{\prime \prime }}))\AND((l_{i^{\prime
@@ -77,10 +76,10 @@
 	\end{eqnarray*}
 
 	\item[\textit{ii)}] Since the \textrm{XOR}-connective $\oplus $ is the dual
-	of circuit equivalence, we can deduce the set of clauses for the Tseitin
+	of circuit equivalence, we can derive the set of clauses for the Tseitin
 	transformation by using following substitution:%
 	\begin{eqnarray*}
-	(a\oplus b) &\equiv &\lnot ((a\IMPL b)\AND (b\IMPL a)) \\
+	(a\oplus b) &\equiv &\lnot ((a\IMPL b)\AND(b\IMPL a)) \\
 	&\equiv &\lnot (a\IMPL b)\OR\lnot (b\IMPL a)
 	\end{eqnarray*}
 
@@ -116,5 +115,5 @@
 	\end{tabular}
 	\label{tab:translation_cnf}
 
-	\bigskip 
+	\bigskip
 }

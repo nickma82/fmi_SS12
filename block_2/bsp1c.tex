@@ -1,2 +1,139 @@
-  \solution{
-  }
+\solution{
+	The implication 
+	\begin{equation*}
+	\text{if }\psi \text{ is satisfiable }\Rightarrow \text{ }D^{\psi }\text{ is
+	satisfiable,}
+	\end{equation*}
+	
+	can be proven by using \textit{structural induction} on the structure of the
+	given clauses above.
+	
+	\textbf{Proof:}
+	
+	Assume that $\psi $ is satisfiable, i.e. there exists an interpretation $%
+	I\in Mod(\psi )$, such that $I\models \psi $.
+	
+	\medskip
+	
+	\textbf{Induction base:}
+	
+	\smallskip
+	
+	\begin{enumerate}
+	\item[\textit{i)}] \textsl{Atomic formula:}
+	
+	Take an arbitrary formula $\psi $ and a boolean (two-valued) constant $a$,
+	such that $\psi =a$, i.e. $\psi $ is an atomic formula. Since $I\models \psi $,
+	it implies also that $I$ $\models a$.
+	
+	Thus, we get following clause scheme $D^{\psi }$ for the equivalence of the
+	atomic subformula occurence $L_{a}\IFF a$, such that%
+	\begin{equation*}
+	D^{\psi }=(\lnot L_{a}\OR a)\AND(L_{a}\OR\lnot a).
+	\end{equation*}
+	
+	To prove the equivalence $L_{a}\IFF a$, we have to introduce an additional
+	interpretation $I^{\prime }\in Mod(\psi )$ for $L_{a}$, such that $I^{\prime
+	}(L_{a})=I(a)$ and $I^{\prime }(a)=I(a)$. Obviously, $L_{a}\IFF a$ is valid
+	since,%
+	\begin{eqnarray*}
+	D^{\psi } &=&(\lnot I^{\prime }(L_{a})\OR I^{\prime }(a))\AND(I^{\prime
+	}(L_{a})\OR\lnot I^{\prime }(a)) \\
+	&=&(\lnot a\OR a)\AND(a\OR\lnot a),
+	\end{eqnarray*}%
+	is a tautology, which is always true.
+	
+	\item[\textit{ii)}] \textsl{Negation:}
+	
+	In general, if a propositional formula $\psi $does have the property $Q$,
+	then so does $\lnot \psi $. Thus, by applying the clause scheme of $L_{\phi }%
+	\IFF\lnot L_{1}$ to an atomic formula $\psi $and a constant $a$ s.t. $\psi
+	=\lnot a$, we get%
+	\begin{equation*}
+	D^{\psi }=(\lnot L_{a}\OR\lnot a)\AND(L_{a}\OR a).
+	\end{equation*}
+	
+	Similar as above, we have to introduce a new interpretation $I^{\prime }$
+	for $L_{a}$, such that $I^{\prime }(L_{a})=\lnot I(a)$ and $I^{\prime
+	}(a)=I(a)$. Thus, we get%
+	\begin{eqnarray*}
+	D^{\psi } &=&(\lnot I^{\prime }(L_{a})\OR\lnot I^{\prime }(a))\AND(I^{\prime
+	}(L_{a})\OR I^{\prime }(a)) \\
+	&=&(\lnot \lnot a\OR\lnot a)\AND(\lnot a\OR a),
+	\end{eqnarray*}%
+	which in turn is again a tautology. Hence, the equivalence $L_{\phi }\IFF%
+	\lnot L_{1}$ for negation is also valid.
+	
+	\item[\textit{iii)}] \textsl{Conjunction:}
+	
+	Let $\psi =a_{1}\AND a_{2}$, where $a_{1}$ and $a_{2}$ are two arbitrary
+	two-valued constants. Then by applying the clause schemes for the $\wedge $%
+	-connective, we get%
+	\begin{equation*}
+	D^{\psi }=(\lnot L_{a}\OR\lnot a_{1})\AND(\lnot L_{a}\OR a_{2})\AND(L_{a}\OR%
+	\lnot a_{1}\OR\lnot a_{2}).
+	\end{equation*}
+	
+	Again, by extending the interpretation $I\in Mod(\psi )$ with $I^{\prime }$,
+	such that $I^{\prime }(L_{a})=I(a_{1})\AND I(a_{2})$ and $I^{\prime
+	}(a_{i})=I(a_{i})$ with $i\in \{1,2\}$, then%
+	\begin{eqnarray*}
+	D^{\psi } &=&(\lnot I^{\prime }(L_{a})\OR I^{\prime }(a_{1}))\AND(\lnot
+	I^{\prime }(L_{a})\OR I^{\prime }(a_{2}))\AND(I^{\prime }(L_{a})\OR\lnot
+	I^{\prime }(a_{1})\OR\lnot I^{\prime }(a_{2})) \\
+	&=&(\lnot a_{1}\OR\lnot a_{2}\OR a_{1})\AND(\lnot a_{1}\OR\lnot a_{2}\OR %
+	a_{2})\AND(a_{1}\OR a_{2}\OR\lnot a_{1}\OR\lnot a_{2}),
+	\end{eqnarray*}
+	
+	which is valid. Hence, the equivalence $L_{\phi }\IFF(L_{1}\AND L_{2})$ is
+	also valid and the base case of the structural induction is proven.
+	\end{enumerate}
+	
+	\medskip
+	
+	\textbf{Induction hypothesis:}
+	
+	\medskip
+	
+	We have to show that for any $n\geq 1$,%
+	\begin{equation*}
+	\text{if }\psi _{n}\text{ is satisfiable\quad }\Rightarrow \text{\quad }%
+	D^{\psi _{n}}\text{ is satisfiable.}
+	\end{equation*}
+	
+	\newpage
+	
+	\textbf{Induction step:}
+	
+	\medskip
+	
+	Then for $n\geq 0$,%
+	\begin{equation*}
+	\text{if }\psi _{n+1}\text{ is satisfiable\quad }\Rightarrow \text{\quad }%
+	D^{\psi _{n+1}}\text{ is satisfiable.}
+	\end{equation*}
+	
+	There are two possebilities how the structure of the formula $\psi _{n+1}$
+	does look like:
+	
+	\begin{description}
+	\item[\textsl{Case 1:}] $\psi _{n+1}=\lnot \psi _{1}$. By the induction
+	hypothesis, for any propositional formula $\psi _{n}$ labelled by $L_{\psi
+	_{n}}$, the set of clauses $D^{\psi _{n}}$ is satisfiable if $\psi _{n}$ is
+	satisfiable. Then there exists for the equivalence $L_{\psi _{n+1}}\IFF\lnot
+	L_{1}$ an interpretation $I^{\prime }\in Mod(\psi _{n+1})$, such that $%
+	I^{\prime }\models L_{1}$ which also implies that $I^{\prime }\models \lnot
+	L_{\psi _{n+1}}$. Thus,\ the set of clauses in $D^{\psi _{n+1}}$ evaluates
+	to true.
+	
+	\item[\textsl{Case 2:}] $\psi _{n+1}=\psi _{1}\AND\psi _{2}$. Then by
+	induction hypothesis, there are existing for the equivalence $L_{\psi _{n+1}}%
+	\IFF(L_{1}\AND L_{2})$ two interpretations $I^{\prime },I^{\prime \prime
+	}\in Mod(\psi _{n+1})$, such that $I^{\prime }\models L_{1}$ and $I^{\prime
+	\prime }\models \underbrace{L_{2}\IMPL L_{\psi _{n+1}}}_{\lnot (L_{2}\AND\lnot%
+	{L}_{\psi _{n+1}})}$. Hence, the set of clauses in $D^{\psi _{n+1}}$
+	evaluates to true.
+	\end{description}
+	
+	\bigskip
+}

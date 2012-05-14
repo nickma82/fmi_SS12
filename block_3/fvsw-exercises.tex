@@ -1,0 +1,181 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage{amsmath,amssymb,fvsw}
+\newtheorem{ex}{Exercise}
+\newenvironment{exercise}[1]%
+   {\def\tmp{}%
+    \def\points{#1}%
+    \ifx\points\tmp
+      \begin{ex}
+    \else
+      \def\tmp{1}%
+    \begin{ex}[#1 point\ifx\points\tmp\else s\fi]
+    \fi
+    \normalfont
+   }%
+   {\end{ex}%
+   }
+
+\usepackage{enumerate}
+\newenvironment{subexercises}%
+   {\begin{enumerate}[(a)]}%
+   {\end{enumerate}}
+
+\renewcommand\paragraph[1]{\medskip\par\noindent\textit{#1}}
+
+\begin{document}
+\title{Formal Verification of Software~-- Exercises}
+\date{May 2012}
+\author{First Author\and Second Author\and Third Author}
+\maketitle
+
+\begin{exercise}{1}\label{ex:syntax}
+  Show that the \TPL\ program given in exercise~\ref{ex:ifabort}
+  is syntactically correct.
+\end{exercise}
+
+\input{bsp1}
+
+\begin{exercise}{1}
+  Let $\sigma$ be a state satisfying $\sigma(x)=\sigma(y)=1$, and let
+  $p$ be the program given in exercise~\ref{ex:ifabort}.
+  Compute $\M p\sigma$, using
+  \begin{subexercises}
+    \item the structural operational semantics
+    \item the natural semantics
+  \end{subexercises}
+  of \TPL.
+\end{exercise}
+
+\input{bsp2a}
+
+\input{bsp2b}
+
+\begin{exercise}{1}\label{ex:ifabort}
+  Let $p$ be the following program:
+  \begin{center}
+  \begin{ALG}
+    \ASS x{x+y};\\
+    \IF\ $x<0$ \THEN\\
+    \>\ABORT\\
+    \ELSE\\
+    \>\WHILE\ $x\neq y$ \DO\\
+    \>\>\ASS x{x+1};\\
+    \>\>\ASS y{y+2}\\
+    \>\OD\\
+    \FI
+  \end{ALG}
+  \end{center}
+  Show that $\CA{x=2y\land y>2}p{x=y}$ is totally correct by computing the
+  weakest precondition of the program.
+\end{exercise}
+
+\input{bsp3}
+
+
+\begin{exercise}{1}
+  Let $p$ be the program given in exercise~\ref{ex:ifabort}.
+  Use the Hoare calculus to show that
+  \[\CA{x=2y\land y>2}p{x=y}\]
+  is totally correct.
+\end{exercise}
+
+\input{bsp4}
+
+\begin{exercise}{1}
+  Extend our toy language by statements of the form ``$\kw{assert}\
+  e$''. When the condition~$e$ evaluates to true, the program
+  continues, otherwise the program aborts.
+
+  Specify the syntax and semantics of the extended language.
+  Determine the weakest precondition, the weakest liberal
+  precondition, the strongest postcondition, and Hoare rules
+  (partial and total correctness) for \kw{assert}-statements.
+  Show that they are correct.
+
+  Treat the \kw{assert}-statement as a first-class citizen, i.e., do
+  not refer to other program statements in the final result.  However,
+  you may use other statements as intermediate steps when deriving the
+  rules.
+\end{exercise}
+
+\input{bsp5}
+
+\begin{exercise}{1}
+  Verify that the following program doubles the value of~$x$.
+  For which inputs does it terminate? Choose appropriate pre-
+  and postconditions and show that the assertion is totally correct.
+  Use $y=2x_0+x$ as a starting point for the invariant,
+  where $x_0$ denotes the initial value of~$x$.
+\begin{center}
+  \begin{ALG}
+    \ASS y{3x};\\
+    \WHILE\ $2x\neq y$\ \DO\\
+    \>\ASS x{x+1};\\
+    \>\ASS y{y+1};\\
+    \OD
+  \end{ALG}
+\end{center}    
+\end{exercise}
+
+\input{bsp6}
+
+\begin{exercise}{1}
+    Show that the following correctness assertion is totally correct.
+    Describe the function computed by the program if we consider $a$
+    as its input and $c$ as its output.
+\begin{center}
+  \begin{ALG}
+    \ASSERTN1{a\geq0}\\
+    \ASS b1;\\
+    \ASS c0;\\
+    \ASSERTN\INV{b=(c+1)^3\land 0\leq c^3\leq a}\\
+    \WHILE\ $b\leq a$\ \DO\\
+    \>\ASS d{3*c+6};\\
+    \>\ASS c{c+1};\\
+    \>\ASS b{b+c*d+1}\\
+    \OD\\
+    \ASSERTN2{c^3\leq a<(c+1)^3}
+  \end{ALG}
+\end{center}    
+\end{exercise}
+
+\input{bsp7}
+
+\begin{exercise}{1}
+  Prove that the rule
+\[
+\begin{array}{c}
+\WH{\CA{\INV}{\WHILE\ e\ \DO\ p\ \OD}{\INV\land\lnot e}}%
+   {\CA{\INV\land e}{p}{\INV}}
+\end{array}
+\]
+is correct regarding partial correctness, i.e., show that
+$\CA{\INV}{\WHILE\ e\ \DO\ p\ \OD}{\INV\land\lnot e}$ is partially correct
+whenever $\CA{\INV\land e}{p}{\INV}$ is partially correct.
+\end{exercise}
+
+\input{bsp8}
+
+
+\begin{exercise}{2}
+  Determine the weakest liberal precondition of \WHILE-loops, i.e.,
+  find a formula equivalent to $\WLP(\WHILE\ e\ \DO\ p\ \OD, G)$
+  similar to the weakest precondition in the course.
+
+  Use your formula to compute the weakest liberal precondition of
+  the program 
+  \begin{center}
+     \ASS z0;
+     \WHILE\ $y\neq0$ \DO
+       \ASS z{z+x};
+       \ASS y{y-1}
+     \OD
+  \end{center}
+  with respect to the postcondition $z=x*y_0$. Compare the result
+  to the weakest precondition computed in the course and explain
+  the differences.
+\end{exercise}
+
+\input{bsp9}
+
+\end{document}

@@ -6,8 +6,9 @@
 %\newcommand\Ic[3]{\infer[\text{\tiny(if$''$)}]{#1}{#2&#3}}
 \newcommand\ASa[2]{\infer[\text{\tiny(as)}]{#1}{#2}}
 
-\begin{small}
 \begin{center}
+\begin{footnotesize}
+
 $
 \La{ CONTINUED }
 {5 \Rightarrow \INV}
@@ -23,16 +24,19 @@ $
 			\Lb{ \CA{8}{y:=y+2}{7} }
 			{%
 				\ASa{ \CA{8}{y:=y+2}{9} }
-				{ \CA{8[y|y+2]}{y:=y+2}{\overbrace{\INV\ \land\ x+1\neq y+2\ \land\ t=t_0}^{9}} }
+				{ \CA{8[y|y+2]}{y:=y+2}{\overbrace{\INV \land x+1\neq y+2 \land\ t=t_0}^{9}} }
 			}
 			{ (9)\Rightarrow 7 }
 		}
 	}
 	{}
 }
-{(\INV\ \land\ x=y)\Rightarrow 2}
+{(\INV \land x=y)\Rightarrow 2}
 $
 
+\end{footnotesize}
+
+\begin{small}
 \vspace{20mm}
 
 $
@@ -62,6 +66,7 @@ $
 $S\ :=\ [x:=x+1;\ y:=y+2;]$
 
 
-\end{center}
 \end{small}
+\end{center}
+
 \end{landscape}

@@ -1,0 +1,73 @@
+\textbf{Solution:}\newline
+
+The syntax of the TPL-language can be extended as follows:%
+\begin{equation*}
+\mathcal{P}::=\mathsf{skip}\mid \mathsf{abort}\mid \mathcal{V}:=\mathcal{E}%
+\mid \mathcal{P};\mathcal{P}\mid \mathsf{if}\;\mathcal{E}\;\mathsf{then}\;%
+\mathcal{P}\;\mathsf{else}\;\mathsf{P}\;\mathsf{fi}\mid \mathsf{while}\;%
+\mathcal{E}\;\mathsf{do}\;\mathcal{P}\;\mathsf{od}\mid \kw{assert}\ \mathcal{%
+E}
+\end{equation*}
+
+where,%
+\begin{eqnarray*}
+\mathcal{E} &:&:=\mathcal{V}\mid \mathcal{N}\mid \mathcal{UE}\mid (\mathcal{%
+EBE}) \\
+\mathcal{V} &:&:=x\mid y\mid z\mid \ldots \mid x_{0}\mid x_{1}\mid \ldots  \\
+\mathcal{N} &:&:=0\mid 1\mid 2\mid 3\mid \ldots  \\
+\mathcal{U} &:&:=+\mid -\mid \lnot \mid \ldots  \\
+\mathcal{B} &:&:=+\mid -\mid \ast \mid /\mid <\mid \ldots 
+\end{eqnarray*}
+
+Beside the syntax extension of TPL, the semantics for $\kw{assert}\ e$ can
+be defined as a first member citizen (this means that no other
+program-statements will be used), as follows:
+
+\begin{enumerate}
+\item Natural Semantics:%
+\begin{equation*}
+\lbrack \kw{assert}\ e\rbrack\sigma =\sigma \;\text{if }[e]\sigma \neq 0
+\end{equation*}
+
+\item Structural Operational Semantics:%
+\begin{equation*}
+(\kw{assert}\ e,\sigma )\,\Rightarrow \,\sigma \;\text{if }[e]\sigma \neq 0
+\end{equation*}
+
+\item Hoare Calculus Rules:
+	\begin{itemize}
+	\item for \textit{partial correctnes}:
+	
+\infer[\text{}]{
+		\deduce{
+			\{F\}\kw{assert}\ e \{G\}
+		}{
+		}
+	}{
+		\infer[\text{\small (if)}]{
+			\{F\}\;\stmtif e \stmtthen \mathsf{skip} \stmtelse \mathsf{abort} \stmtfi\;\{G\}
+		}{
+			\infer[\text{\small (lc)}]{
+				\{F\AND e\}\;\mathsf{skip}\;\{G\}
+			}{
+				\deduce[\text{\small}]{
+					(F\AND e)\IMPL F^{\prime}\quad \{F^{\prime}\}\;\SK{\mathsf{skip}}\;\{F^{\prime}\}\quad F^{\prime}\IMPL G
+				}{
+					\infer[]{
+					}{
+						\text{--}
+					}
+				}
+			}
+			&&
+			\infer[\text{\small (lc)}]{
+				\{F\}\;\mathsf{abort}\;\{G\}
+			}{
+			}
+		}
+	}
+
+
+	\item for \textit{total correctness}:
+	\end{itemize}
+\end{enumerate}

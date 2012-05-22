@@ -1,3 +1,7 @@
+\newcommand\Ext[2]{\infer[]{#1}{#2}}
+\newcommand\PC[2]{\infer[\text{\tiny(pc)}]{#1}{#2}}
+\newcommand\TC[2]{\infer[\text{\tiny(tc)}]{#1}{#2}}
+
 \textbf{Solution:}\newline
 
 The syntax of the TPL-language can be extended as follows:%
@@ -34,40 +38,79 @@ program-statements will be used), as follows:
 (\kw{assert}\ e,\sigma )\,\Rightarrow \,\sigma \;\text{if }[e]\sigma \neq 0
 \end{equation*}
 
+
 \item Hoare Calculus Rules:
 	\begin{itemize}
 	\item for \textit{partial correctnes}:
-	
-\infer[\text{}]{
-		\deduce{
-			\{F\}\kw{assert}\ e \{G\}
-		}{
-		}
-	}{
-		\infer[\text{\small (if)}]{
-			\{F\}\;\stmtif e \stmtthen \mathsf{skip} \stmtelse \mathsf{abort} \stmtfi\;\{G\}
-		}{
-			\infer[\text{\small (lc)}]{
-				\{F\AND e\}\;\mathsf{skip}\;\{G\}
-			}{
-				\deduce[\text{\small}]{
-					(F\AND e)\IMPL F^{\prime}\quad \{F^{\prime}\}\;\SK{\mathsf{skip}}\;\{F^{\prime}\}\quad F^{\prime}\IMPL G
-				}{
-					\infer[]{
-					}{
-						\text{--}
-					}
-				}
-			}
-			&&
-			\infer[\text{\small (lc)}]{
-				\{F\}\;\mathsf{abort}\;\{G\}
-			}{
-			}
-		}
-	}
 
+\begin{small}
+$
+\Ext{ \CA{F}{\kw{assert}\ e}{G} }
+{
+	  \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\ \ABORT\ \FI}{G} }
+	  {
+		\La{ \CA{F\land c}{\SKIP}{G} }
+		{(F\land e)\Rightarrow F'}
+		{
+			\Ext{ \CA{F'}{\SKIP}{F'} }
+			{-}
+		}
+		{F'\Rightarrow G}
+	  }
+	  { 
+		\Lb{ \CA{F\land \neg e}{\ABORT}{G} }
+		{(F\land\neg e) \Rightarrow F' }
+		{
+			\Ext{ \CA{F'}{\ABORT}{G} }
+			{-}
+		}
+	  }
+}
+$
+\end{small}
+
+$$
+\PC { \CA{F}{\kw{assert}\ e}{G} }
+{ F\Rightarrow (e\Rightarrow G)}
+$$
 
 	\item for \textit{total correctness}:
+
+\begin{small}
+$
+\Ext{ \CA{F}{\kw{assert}\ e}{G} }
+{
+	  \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\ \ABORT\ \FI}{G} }
+	  {
+		\La{ \CA{F\land c}{\SKIP}{G} }
+		{(F\land e)\Rightarrow F'}
+		{
+			\Ext{ \CA{F'}{\SKIP}{F'} }
+			{-}
+		}
+		{F'\Rightarrow G}
+	  }
+	  { 
+		\Lb{ \CA{F\land \neg e}{\ABORT}{G} }
+		{(F\land\neg e) \Rightarrow F' }
+		{
+			\Lb{ \CA{F'}{\ABORT}{G} }
+			{F'\Rightarrow \FALSE}
+			{
+				\Ext{ \CA{\FALSE}{\ABORT}{G} }
+				{-}
+			}
+		}
+	  }
+}
+$
+\end{small}
+
+thus\\
+$$
+\PC { \CA{F}{\kw{assert}\ e}{G} }
+{ F\Rightarrow (e\land G)}
+$$
+
 	\end{itemize}
 \end{enumerate}

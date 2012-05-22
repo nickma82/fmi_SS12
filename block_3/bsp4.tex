@@ -36,12 +36,11 @@ $
 \vspace{20mm}
 
 $
-\La{\CA {x=2y \land y>2}{x:=x+y;\ \IF\ x<0\ \THEN\ \ABORT\ \ELSE\ \WHILE\ x\neq\ y\ \DO\ S\ \OD\ \FI}{x=y}}%
+\SC{\CA {\underbrace{x=2y \land y>2}_{\{1\}}}{x:=x+y;\ \IF\ x<0\ \THEN\ \ABORT\ \ELSE\ \WHILE\ x\neq\ y\ \DO\ S\ \OD\ \FI}{\underbrace{x=y}_{\{2\}}} }%
    {%
 	\ASa{\CA {1}{x:=x+y}{3}}%
-	{\CA {1[x|x+y]}{x:=x+y}{\overbrace{x+y\ =\ 2y\ \land\ y>2}^{ \overbrace{x=y\ \land y>2}^{3} }}}%
+	{\CA {1[x|x+y]}{x:=x+y}{\overbrace{x+y\ =\ 2y\ \land\ y>2}^{ \overbrace{x=y\ \land y>2}^{\{3\}} }}}%
    }
-   {-}
    {%
 	\Ia{\CA {3}{\IF\ x<0\ \THEN\ \ABORT\ \ELSE\ \WHILE\ ...\ \OD\ \FI}{2}}
 	{%
@@ -61,6 +60,7 @@ $
 \vspace{20mm}
 
 $S\ :=\ [x:=x+1;\ y:=y+2;]$
+
 
 \end{center}
 \end{small}

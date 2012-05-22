@@ -1,4 +1,21 @@
 \textbf{Solution a):}\newline
 \\
-$\sigma(x)=\sigma(y)$\\
+\ For better reading we define the following notation:\\
+$\sigma_{a,b}: \equiv \sigma\langle x \mapsto a, y \mapsto b \rangle$\\
+and so $\sigma(x) = \sigma(y) = 1 \equiv \sigma_{1,1}$.\\
+
 \bigskip
+$[p]\sigma)=$\\
+\indent$(p,\sigma_{1,1}) =  (x:=x+y; \text{ if } x<0 \text{ then } ... \text{ fi}, \sigma_{1,1})\\
+\indent(x:=x+y, \sigma_{1,1}) \Rightarrow \sigma\langle x \mapsto \underbrace{[x+y]\sigma_{1,1}}_{\equiv[2]\sigma_{1,1}} \rangle = \sigma_{2,1}\\
+\Rightarrow (\text{if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ } ... \text{} od \text{ fi},\sigma_{2,1})\\
+\Rightarrow (\text{while } x \neq y \text{ do } x:=x+1; y;=y+2; \text{ od},\sigma_{2,1})[x<0]=0$ (false)\\
+$\Rightarrow (x:=x+1; y:=y+2; \text{while } x \neq y \text{ do } x:=x+1; y;=y+2; \text{ od},\sigma_{2,1})\\
+\Rightarrow (x:=x+1; y:=y+2,\sigma_{2,1})\\
+\text{ }\hspace{2cm} (x:=x+1, \sigma_{2,1}) \Rightarrow \sigma(x \mapsto \underbrace{[x+1]\sigma_{2,1}}_{\equiv[3]\sigma_{2,1}})= \sigma_{3,1}\\
+\Rightarrow (\text{while } x \neq y \text{ do } x:=x+1; y;=y+2; \text{ od},\sigma_{3,1})\\
+\text{ }\hspace{2cm} (y:=y+2, \sigma_{3,1}) \Rightarrow \sigma(y \mapsto \underbrace{[y+2]\sigma_{3,1}}_{\equiv[3]\sigma_{3,1}})= \sigma_{3,3}\\
+\Rightarrow (\text{while } x \neq y \text{ do } x:=x+1; y;=y+2; \text{ od},\sigma_{3,3})\\
+\Rightarrow \sigma_{3,3} [x \neq y]\sigma_{3,3}=0$ (false)
+$\Rightarrow \sigma_{3,3}$
+\bigskip\\

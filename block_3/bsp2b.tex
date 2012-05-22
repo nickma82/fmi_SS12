@@ -1,8 +1,9 @@
 %\solution{
 \textbf{Solution b):}\newline
 \\
-$[p]\sigma = [x:=x+y; \text{ if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ }... \text{ } od]\sigma 
-\hspace{0.6 cm} \sigma: x \mapsto 1, y \mapsto 1\\
+\indent $[p]\sigma =$\\
+\indent $[x:=x+y; \text{ if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ }... \text{ } od]\sigma 
+\hspace{1.6 cm} \sigma: x \mapsto 1, y \mapsto 1\\
 = [\text{if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ }... \text{ } od][x:=x+y]\sigma_1
 \hspace{1 cm} \sigma_1: x \mapsto [x+y]\sigma = 2\\
 \text{} \hspace{12 cm} y \mapsto 1\\

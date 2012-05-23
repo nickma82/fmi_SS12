@@ -2,6 +2,20 @@
 \usepackage{amsmath,amssymb,fvsw,ulem,color}
 %\usepackage{gmeometric}
 \usepackage{lscape}
+\usepackage{cancel}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=Latex.dll}
+%TCIDATA{Version=5.00.0.2606}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{LastRevised=Wednesday, May 23, 2012 07:06:57}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
 
 \newtheorem{ex}{Exercise}
 \newenvironment{exercise}[1]%
@@ -24,6 +38,7 @@
    {\end{enumerate}}
 
 \renewcommand\paragraph[1]{\medskip\par\noindent\textit{#1}}
+\input{tcilatex}
 
 \begin{document}
 \title{Formal Verification of Software~-- Exercises}

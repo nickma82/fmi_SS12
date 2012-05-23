@@ -1,0 +1,157 @@
+\textbf{Solution:}\newline
+
+The weakest precondition (\textit{wp}) guarantees termination and
+corresponds to the total correctness of Hoare triples. The computation of
+the \textit{wp} is defined as follows:%
+\begin{equation*}
+wp(\kw{while}\ e\ \kw{do}\ p\ \kw{od},G)=F_{0}(G)\,\vee \,F_{1}(G)\,\vee
+\,F_{2}(G)\,\vee \ldots =\exists i\,(i\geq 0\,\wedge \,F_{i}(G)),\,
+\end{equation*}
+
+where%
+\begin{eqnarray*}
+F_{0}(G) &=&\lnot e\,\wedge \,G \\
+F_{i+1}(G) &=&e\,\wedge \,wp(p,F_{i}(G))\quad \text{(for }i\geq 0\text{).}
+\end{eqnarray*}
+
+These computation steps ensures, that the loop terminates in a state that
+satisfies $G$.
+
+In addition, there exists a variant for the computation steps of estimating
+the weakest precondition,
+
+\begin{eqnarray*}
+F_{0}(G) &=&false \\
+F_{i+1}(G) &=&e\,\wedge \,wp(p,F_{i}(G))= \\
+&=&(\lnot e\,\Rightarrow \,G)\,\wedge \,(e\,\Rightarrow \,wp(p,F_{i}(G))) \\
+&=&(\lnot e\,\wedge \,G)\,\vee \,(e\,\wedge \,wp(p,F_{i}(G)))\quad \text{%
+(for }i\geq 0\text{).}
+\end{eqnarray*}
+
+The computation of the weakest liberal precondition which does not guarantee
+the termination of the loop can be done by a similar way:
+
+\begin{eqnarray*}
+wlp(\kw{while}\ e\ \kw{do}\ p\ \kw{od},G) &=&wp(\kw{while}\ e\ \kw{do}\ p\ %
+\kw{od},G)= \\
+&=&F_{0}(G)\,\vee \,F_{1}(G)\,\vee \,F_{2}(G)\,\vee \ldots =\forall
+i\,(i\geq 0\,\wedge \,F_{i}(G)),\,
+\end{eqnarray*}
+
+where%
+\begin{eqnarray*}
+F_{0}(G) &=&\lnot e\,\Rightarrow \,G \\
+F_{i+1}(G) &=&e\,\Rightarrow \,wp(p,F_{i}(G))\quad \text{(for }i\geq 0\text{%
+),}
+\end{eqnarray*}
+
+or alternatively,
+\begin{eqnarray}
+F_{0}(G) &=&true  \label{wlp_step_1} \\
+F_{i+1}(G) &=&(\lnot e\,\Rightarrow \,G)\,\wedge \,(e\,\Rightarrow
+\,wp(p,F_{i}(G)))\quad \text{(for }i\geq 0\text{).}  \label{wlp_step_2}
+\end{eqnarray}
+
+This ensures that the $\kw{while}$-loop terminates in a state that
+satisfies $G$ or runs forever.
+
+Then the weakest liberal precondition (\textit{wlp}) for the given
+formula \ASS z0;\WHILE\ $y\neq0$ \DO \ASS z{z+x};\ASS y{y-1}\OD can be
+calculated as follows, which works similiar as the computation of the 
+\textit{wp} for the same formula that was shown in the lecture slides. To
+compute the \textit{wlp}, we use the alternative computation steps (\ref%
+{wlp_step_1}) and (\ref{wlp_step_2}), then%
+\begin{eqnarray*}
+F_{0}(G) &=&true \\
+F_{1}(G) &=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y\neq 0\,\Rightarrow
+\,wlp(z:=z=x;y:=y-1,true)) \\
+&=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,true \\
+&=&(y=0\,\Rightarrow \,z=xy_{0}) \\
+F_{2}(G) &=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y\neq 0\,\Rightarrow
+\,wlp(z:=z+x;y:=y-1,F_{1}(G))) \\
+&=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y\neq 0\,\Rightarrow
+\,wlp(z:=z+x,wlp(y:=y-1,\lnot (y=0)\,\vee \,\,z=xy_{0})) \\
+&=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y\neq 0\,\Rightarrow
+\,wlp(z:=z+x,\lnot (y-1=0)\,\vee \,\,z=xy_{0}) \\
+&=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y\neq 0\,\Rightarrow \,\lnot
+(y=1)\,\vee \,\,z+x=xy_{0}) \\
+&=&(\lnot (y=0)\,\vee \,\,z=xy_{0})\,\wedge \,(\lnot (y\neq 0)\,\vee
+\,\,y\neq 1\,\vee \,\,z=x(y_{0}-1)) \\
+&=&(y\neq 0\,\vee \,\,z=xy_{0})\,\wedge \,(y=0\,\vee \,y\neq 1\,\vee
+\,\,z=x(y_{0}-1)) \\
+&=&(\underbrace{y\neq 0\,\vee \,y=0\,}_{true}\vee \,y\neq 1\,\vee
+\,\,z=x(y_{0}-1))\,\wedge \\
+&&(z=xy_{0}\,\vee \,\cancel{y=0}\,\vee \,\,y\neq 1\,\vee \,\,z=x(y_{0}-1)) \\
+&=&(\,y\neq 1\,\vee \,\cancelto{y_{0}=y_{0}-1}{xy_{0}=x(y_{0}-1)}) \\
+F_{3}(G) &=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y\neq 0\,\Rightarrow
+\,wlp(z:=z+x;y:=y-1,F_{2}(G))) \\
+&=&(y=0\,\Rightarrow \,z=xy_{0})\,\wedge \,(y=0\,\vee
+\,wlp(z:=z+x,wlp(y:=y-1,\,\,y\neq 1\,\vee \,y_{0}=y_{0}-1)) \\
+&=&(y\neq 0\,\vee \,\,z=xy_{0})\,\wedge \,(y=0\,\vee \,\cancelto{y\neq
+2}{y-1\neq 1}\,\vee \,y_{0}=y_{0}-1)\, \\
+&=^{\ast }&(y\neq 2\,\vee \,z=x(y_{0}-2))
+\end{eqnarray*}
+
+\textit{Guess:}\\%
+\begin{equation*}
+F_{i}(G)=(y\neq i\,\vee \,z=x(y_{0}-i)),\forall i\geq 0
+\end{equation*}
+
+Since $y\neq (i\geq 0)\,\Rightarrow \,y\neq 0\leq i\,\Rightarrow \,y<i$
+thus,%
+\begin{equation*}
+F_{i}(G)=(y<i\,\vee \,z=x(y_{0}-i)),\forall i\geq 0.
+\end{equation*}
+
+\textit{Inductive proof:}%
+\begin{equation*}
+F_{0}(G)=(\lnot e\,\Rightarrow \,G),\quad F_{i+1}(G)=\,(e\,\Rightarrow
+\,wlp(p,F_{i}(G))
+\end{equation*}
+
+\textit{Base case:}%
+\begin{equation*}
+F_{0}(G)=(y<0\,\vee \,z=x(y_{0}-0))=(y<0\,\vee \,z=xy_{0})
+\end{equation*}
+
+\textit{Induction step:}%
+\begin{eqnarray*}
+F_{i+1}(G) &=&\,(e\,\Rightarrow \,wlp(p,F_{i}(G))= \\
+&=&^{\ast }(\lnot (y\neq 0)\,\vee \,wlp(z:=z+x,wlp(y=y-1,y<i\,\vee
+\,z=x(y_{0}-i)))) \\
+&=&^{\ast }(\cancel{y=0}\,\vee \,\cancelto{y<i+1}{y-1<i}\,\vee \,%
+\cancelto{z=x(y_{0}-(i+1))}{z+x=x(y_{0}-i))}) \\
+&=&(y<i+1\,\vee \,z=x(y_{0}-(i+1)))
+\end{eqnarray*}
+
+$\Rightarrow \quad wp(\ASS z0;\WHILE\ y\neq 0\DO\ASS z{z+x};\ASS y{y-1}%
+\OD)=$%
+\begin{eqnarray*}
+&=&\forall i\,(i\geq 0\,\wedge \,F_{i}(G))= \\
+&=&\forall i\,(i\geq 0\,\wedge \,(y<i\,\vee \,z=x(y_{0}-i))) \\
+&=&\forall i\,(i\geq 0\,\wedge \,(y<(i\geq 0)\,\vee \,z=x(y_{0}-i))) \\
+&=&\forall i\,(i\geq 0\,\wedge \,(\cancelto{\equiv y<0}{y<0\leq i}\,\vee
+\,z=x(y_{0}-\underbrace{i}_{\text{since }y<0\leq i\;\Rightarrow \;[i/y]\text{
+??}}))) \\
+&=&\underbrace{\forall i\,(i\geq 0)}_{true}\,\wedge \,(y<0\,\vee
+\,z=x(y_{0}-y)) \\
+&=&y<0\,\vee \,z=x(y_{0}-y)
+\end{eqnarray*}
+
+$\Rightarrow \quad wlp(\ASS z0;\WHILE\ y\neq 0\DO\ASS z{z+x};\ASS y{y-1%
+}\OD)=$%
+\begin{eqnarray}
+&=&wlp(z:=0,y<0\,\vee \,z=x(y_{0}-y))  \notag \\
+&=&(y<0\,\vee \,0=x(y_{0}-y))=(y<0\,\vee \,x=0\,\vee \,%
+\cancelto{y_{0}=y}{0=(y_{0}-y)})  \label{wlp_rule}
+\end{eqnarray}
+
+Thus,%
+\begin{equation*}
+\underbrace{(y<0\,\vee \,y_{0}=y)}_{\text{\textit{wlp}}}\,\Rightarrow
+\,(y<0\,\vee \,x=0\,\vee \,y_{0}=y).
+\end{equation*}
+
+Another possebility to get the \textit{wlp} is, to calculate the 
+\textit{wp} as normal and compute a weaker approximation of $F_{i}(G)$ by
+using the derived rule (\ref{wlp_rule}) above.

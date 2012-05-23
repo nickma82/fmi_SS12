@@ -1,0 +1,119 @@
+\textbf{Solution:}\newline
+
+To prove the $\kw{while}$-rule for partial correctnes we have to consider
+following definition: 
+\begin{definition}
+	Let $\{F\}\, p\, \{G\}$ be an arbitrary partial correctness assertion. Then $\{F\}\, p\, \{G\}$ is
+	sound if
+	\begin{equation*}
+		\vdash_{par} \{F\}\, p\, \{G\}\quad \text{ then } \vDash_{par} \{F\}\, p\, \{G\}.
+	\end{equation*}
+\end{definition}
+
+Then let $I$ be an arbitrary interpretation and assume that $\vDash _{%
+\mathrm{par}}^{I}\{\mathrm{Inv}\,\wedge \,e\}\,p\,\{\mathrm{Inv}\}$, i.e. is
+partially correct. Then for some fixed state $\tau $ which satisfies the
+invariant $\mathrm{Inv}$ and $e$ in the precondition, there $\exists \tau
+^{\prime }\in \mathcal{S}$ such that $[p]\tau =\tau ^{\prime }$ is defined
+and $\tau ^{\prime }$ satisfies $\mathrm{Inv}$ in the postcondition. To
+prove that $\vDash _{\mathrm{par}}^{I}\{\mathrm{Inv}\}\,\kw{while}\ e\ %
+\kw{do}\ p\ \kw{od}\,\{\mathrm{Inv}\,\wedge \,\lnot e\}$ is valid, we have
+to show for all states $\sigma \in \mathcal{S}$, such that%
+\begin{equation*}
+\mathrm{Inv}\,\Rightarrow \,F\quad \lbrack F]\sigma \text{ is true, then }[%
+\kw{while}\ e\ \kw{do}\ p\ \kw{od}]\sigma \text{ is true with }%
+G\,\Rightarrow \,(\mathrm{Inv}\,\wedge \,\lnot e).
+\end{equation*}
+
+The proof can be done by using structural induction on the given axiom rule.
+
+We shall show by induction that $P(n),n\in \mathbb{N}$ holds, where%
+\begin{eqnarray*}
+P(n)\quad \overset{defined}{\Longleftrightarrow }\quad \forall \sigma
+,\sigma ^{\prime \prime } &\in &\mathcal{S}\text{ such that }(\sigma ,\sigma
+^{\prime \prime })\in \Theta _{n}\text{ and} \\
+\sigma &\vDash &_{\mathrm{par}}^{I}\mathrm{Inv}\;\Rightarrow \;\sigma
+^{\prime \prime }\vDash _{\mathrm{par}}^{I}(\in \mathcal{S}),
+\end{eqnarray*}
+
+for all $n$ iteration-steps of $\kw{while}\ e\ \kw{do}\ p\ \kw{od}$. ( $%
+(\sigma ,\sigma ^{\prime \prime })\in \Theta _{n}$ denotes a partial
+function.)
+
+\bigskip
+
+\textit{Base case:}
+
+If $n=0$, then the induction hypothesis $P(0)$ is vacuosly true.
+
+\bigskip
+
+\textit{Induction step:}
+
+We assume that the induction hypothesis $P(n)$ for $n\geq 0$ holds and try
+to prove $P(n+1)$.
+
+Let $w\equiv \kw{while}\ e\ \kw{do}\ p\ \kw{od}$, and consider some
+arbitrary states $\sigma ,\sigma ^{\prime },\sigma ^{\prime \prime }\in 
+\mathcal{S}$ with $[\mathrm{Inv}]\sigma =true$ (in the precondition).
+
+We have to show that $\sigma ^{\prime \prime }\vDash _{\mathrm{par}}^{I}(%
+\mathrm{Inv}\,\wedge \,\lnot e)$, i.e. $[\mathrm{Inv}\,\wedge \,\lnot
+e]\sigma ^{\prime \prime }=true$. Then there are existing two cases for any $%
+\tau \in \mathcal{S}$:
+
+\bigskip
+
+\begin{description}
+\item[\textbf{case} \textit{i)}] $[e]\tau =true$. Since by assumption $%
+\vDash _{\mathrm{par}}^{I}\{\mathrm{Inv}\,\wedge \,e\}\,p\,\{\mathrm{Inv}\}$
+is partially correct, i.e.%
+\begin{eqnarray*}
+\forall \sigma  &\in &\mathcal{S}, \\
+&&\text{if }[\mathrm{Inv}\,\wedge \,e]\sigma =true\;\Rightarrow \;[p]\sigma 
+\text{ is defined and }[\mathrm{Inv}][p]\sigma =true.
+\end{eqnarray*}
+
+\item Then we have $\sigma \vDash _{\mathrm{par}}^{I}e$ and hence $\sigma
+\vDash _{\mathrm{par}}^{I}(\mathrm{Inv}\,\wedge \,e)$.
+
+\item Thus,%
+\begin{equation*}
+(w,\sigma )\,\Rightarrow \,(p;w,\sigma )\,\Rightarrow ^{\ast }\,\sigma
+^{\prime \prime }.
+\end{equation*}
+
+\item Hence, $[w]\sigma =\sigma ^{\prime \prime }$ is defined and satisfies $%
+\mathrm{Inv}$ in the postcondition.
+
+\item From the induction hypothesis $P(n)$ we obtain $\sigma ^{\prime \prime
+}\vDash _{\mathrm{par}}^{I}(\mathrm{Inv}\,\wedge \,\lnot e)$, since for $%
+[e]\sigma \neq 0$,%
+\begin{equation*}
+(p,\sigma )\,\Rightarrow \,\sigma ^{\prime }\quad \text{and\quad }(w,\sigma
+^{\prime })\,\Rightarrow ^{\ast }\,\sigma ^{\prime \prime }.\,
+\end{equation*}
+
+\item Since $[\mathrm{Inv}\,\wedge \,e]\sigma =true$, $[p]\sigma $ is
+defined and we obtain $\sigma ^{\prime }\vDash _{\mathrm{par}}^{I}\mathrm{Inv%
+}$, as $\vDash \{\mathrm{Inv}\,\wedge \,\lnot e\}\,p\,\{\mathrm{Inv}\}$.
+
+\item Then the induction hypothesis can be applied to $[w]\sigma ^{\prime
+}=\sigma ^{\prime \prime }$ which gives us $[\mathrm{Inv}\,\wedge \,\lnot
+e]\sigma ^{\prime \prime }=true$.
+
+\item[\textbf{case} \textit{ii)}] $[e]\tau =false$. Then we have $\sigma
+\vDash _{\mathrm{par}}^{I}\lnot e$ and \ hence $\sigma \vDash _{\mathrm{par}%
+}^{I}(\mathrm{Inv}\,\wedge \,\lnot e)$, i.e. $[\mathrm{Inv}\,\wedge \,\lnot
+e]\sigma =true$. Then according to%
+\begin{equation*}
+(w,\sigma ^{\prime \prime })\,\Rightarrow \,\sigma \quad \text{if }[e]\sigma
+^{\prime \prime }=0,
+\end{equation*}
+
+\item i.e. $[w]\sigma ^{\prime \prime }=\sigma $. This establishes the
+induction hypothesis $P(n+1)$.$\quad \Rightarrow \,P(n)$ holds for all $n$
+and the rule for $\kw{while}$ is \textit{sound}.
+
+\item 
+\end{description}

@@ -17,100 +17,283 @@ where,%
 \begin{eqnarray*}
 \mathcal{E} &:&:=\mathcal{V}\mid \mathcal{N}\mid \mathcal{UE}\mid (\mathcal{%
 EBE}) \\
-\mathcal{V} &:&:=x\mid y\mid z\mid \ldots \mid x_{0}\mid x_{1}\mid \ldots  \\
-\mathcal{N} &:&:=0\mid 1\mid 2\mid 3\mid \ldots  \\
-\mathcal{U} &:&:=+\mid -\mid \lnot \mid \ldots  \\
-\mathcal{B} &:&:=+\mid -\mid \ast \mid /\mid <\mid \ldots 
+\mathcal{V} &:&:=x\mid y\mid z\mid \ldots \mid x_{0}\mid x_{1}\mid \ldots \\
+\mathcal{N} &:&:=0\mid 1\mid 2\mid 3\mid \ldots \\
+\mathcal{U} &:&:=+\mid -\mid \lnot \mid \ldots \\
+\mathcal{B} &:&:=+\mid -\mid \ast \mid /\mid <\mid \ldots
 \end{eqnarray*}
 
-Beside the syntax extension of TPL, the semantics for $\kw{assert}\ e$ can
-be defined as a first member citizen (this means that no other
-program-statements will be used), as follows:
+Beside the syntax extension of \textrm{TPL}, the semantics for $\kw{assert}\
+e$ can be defined as a \textsl{first-class citizen} (this means that no
+other program-statements are used), as follows:
 
 \begin{enumerate}
-\item Natural Semantics:%
+\item \textit{Natural Semantics (NS):}%
 \begin{equation*}
-\lbrack \kw{assert}\ e\rbrack\sigma =\sigma \;\text{if }[e]\sigma \neq 0
+\lbrack \kw{assert}\ e]\sigma =\sigma \;\text{if }[e]\sigma \neq 0
 \end{equation*}
 
-\item Structural Operational Semantics:%
+\item \textit{Structural Operational Semantics (SOS):}%
 \begin{equation*}
 (\kw{assert}\ e,\sigma )\,\Rightarrow \,\sigma \;\text{if }[e]\sigma \neq 0
 \end{equation*}
 
+The transition relation for \textrm{SOS} and also for the rule of \textrm{NS}
+are only \textit{defined} for $[e]\sigma \neq 0$. If $[e]\sigma =0$, then
+the transition of the rule in \textrm{SOS}\ and \textrm{NS} is \textit{%
+undefined}, since $\kw{assert}\ $\textit{false} get stuck in any state $%
+\sigma \in \mathcal{S}$.
 
-\item Hoare Calculus Rules:
-	\begin{itemize}
-	\item for \textit{partial correctnes}:
+\item \textit{Hoare Calculus Rules:}
 
-\begin{small}
-$
-\Ext{ \CA{F}{\kw{assert}\ e}{G} }
-{
-	  \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\ \ABORT\ \FI}{G} }
-	  {
-		\La{ \CA{F\land c}{\SKIP}{G} }
-		{(F\land e)\Rightarrow F'}
-		{
-			\Ext{ \CA{F'}{\SKIP}{F'} }
-			{-}
-		}
-		{F'\Rightarrow G}
-	  }
-	  { 
-		\Lb{ \CA{F\land \neg e}{\ABORT}{G} }
-		{(F\land\neg e) \Rightarrow F' }
-		{
-			\Ext{ \CA{F'}{\ABORT}{G} }
-			{-}
-		}
-	  }
+\begin{itemize}
+\item \textsl{partial correctness:}{\small \ 
+\begin{equation*}
+\infer[]{ \CA{F}{\kw{assert}\ e}{G} }{ \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\
+\ELSE\ \ABORT\ \FI}{G} } { \La{ \CA{F\land c}{\SKIP}{G} } {(F\land
+e)\Rightarrow F^{\prime}} { \Ext{ \CA{F^{\prime}}{\SKIP}{F^{\prime}} } {-} }
+{F^{\prime}\Rightarrow G} } { \Lb{ \CA{F\land \neg e}{\ABORT}{G} }
+{(F\land\neg e) \Rightarrow F^{\prime} } { \Ext{ \CA{F^{\prime}}{\ABORT}{G}
+} {-} } } }
+\end{equation*}%
 }
-$
-\end{small}
 
-$$
-\PC { \CA{F}{\kw{assert}\ e}{G} }
-{ F\Rightarrow (e\Rightarrow G)}
-$$
+Additionally it is to mention that on the right side of the above derivation
+tree the postcondition $G$ will be never reached, since for the $\kw{abort}$%
+-statement no state-transition is defined.
 
-	\item for \textit{total correctness}:
+Moreover, $\kw{assert}\ $\textit{false} is not semantically equivalent to $%
+\kw{while}\ \text{\textit{true}}\ \kw{do}\ \kw{skip}\ \kw{od}$ (which is
+semantically equiv. to $\kw{abort}$), since the derivation sequence of $%
+\kw{while}\ $\textit{true}$\ \kw{do}\ \kw{skip}\ \kw{od}$ is \textit{infinite%
+} from any state $\sigma \in \mathcal{S}$ and in contrast, $\kw{assert}\ $%
+\textit{false} gets \textsc{stuck} in any state $\sigma $. Additionally, $%
+\kw{assert}\ $\textit{false} is also not semantically equivalent to $%
+\kw{skip}$, since with $\kw{skip}$ for any state $\sigma $, a terminal
+configuration will be reached. \bigskip
 
-\begin{small}
-$
-\Ext{ \CA{F}{\kw{assert}\ e}{G} }
-{
-	  \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\ \ABORT\ \FI}{G} }
-	  {
-		\La{ \CA{F\land c}{\SKIP}{G} }
-		{(F\land e)\Rightarrow F'}
-		{
-			\Ext{ \CA{F'}{\SKIP}{F'} }
-			{-}
-		}
-		{F'\Rightarrow G}
-	  }
-	  { 
-		\Lb{ \CA{F\land \neg e}{\ABORT}{G} }
-		{(F\land\neg e) \Rightarrow F' }
-		{
-			\Lb{ \CA{F'}{\ABORT}{G} }
-			{F'\Rightarrow \FALSE}
-			{
-				\Ext{ \CA{\FALSE}{\ABORT}{G} }
-				{-}
-			}
-		}
-	  }
+Then from the above tree we have following implication forumlas:%
+\begin{eqnarray*}
+\left. 
+\begin{array}{l}
+(F\,\wedge \,e)\,\Rightarrow \,F^{\prime } \\ 
+(F\,\wedge \,\lnot e)\,\Rightarrow \,F^{\prime }%
+\end{array}%
+\right\} &&((F\,\wedge \,e)\,\vee \,(F\,\wedge \,\lnot e))\,\Rightarrow
+\,F^{\prime } \\
+&\equiv &\lnot ((F\,\wedge \,e)\,\vee \,(F\,\wedge \,\lnot e))\,\vee
+\,F^{\prime } \\
+&\equiv &\lnot ((F\,\wedge \,e)\,\vee \,(F\,\wedge \,\lnot e))\,\vee
+\,F^{\prime } \\
+&\equiv &((\lnot F\,\vee \,\lnot e)\,\wedge \,(\lnot F\,\vee \,e))\,\vee
+\,F^{\prime } \\
+&\equiv &(\lnot F\,\vee \,\lnot e\,\vee \,F^{\prime })\,\wedge \,(\lnot
+F\,\vee \,e\,\vee \,F^{\prime }) \\
+&\equiv &(F\,\Rightarrow \,(\lnot e\,\vee \,F^{\prime }))\,\wedge \,%
+\underbrace{(F\,\Rightarrow \,(e\,\vee \,F^{\prime }))}_{true} \\
+&\equiv &(F\,\Rightarrow \,(e\,\Rightarrow \,F^{\prime }))
+\end{eqnarray*}
+
+Since $F^{\prime }\,\Rightarrow \,G$, it follows that%
+\begin{equation*}
+F\,\Rightarrow \,(e\,\Rightarrow \,G).
+\end{equation*}
+
+Then the Hoare rule for partial correctness of $\kw{assert}\ e$ is%
+\begin{equation*}
+\PC { \CA{F}{\kw{assert}\ e}{G} } { F\Rightarrow (e\Rightarrow G)}
+\end{equation*}
+
+From this we can derive the weakest liberal precondition (\textit{wlp}) for
+partial correctness, which guarantees that the post condition is met if the
+program terminates, i.e. is the same as the weakest precondition (\textit{wp}%
+), except the program may not terminate. The inference rules for the weakest
+liberal precondition are the same as for the \textit{wp} except for:%
+\begin{equation*}
+wlp(\kw{assert}\ e,G)=\lnot e\,\vee \,G\equiv e\,\Rightarrow \,G.
+\end{equation*}
+
+\item \textsl{total correctness:}
+
+The derivation of the total correctness rule for $\kw{assert}\ e$ can be
+done as following by using the $\kw{abort}$-rule for total correctness: 
+{\small 
+\begin{equation*}
+\Ext{ \CA{F}{\kw{assert}\ e}{G} } { \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\
+\ABORT\ \FI}{G} } { \La{ \CA{F\land c}{\SKIP}{G} } {(F\land e)\Rightarrow
+F'} { \Ext{ \CA{F'}{\SKIP}{F'} } {-} } {F'\Rightarrow G} } { \Lb{ \CA{F\land
+\neg e}{\ABORT}{G} } {(F\land\neg e) \Rightarrow F' } { \Lb{
+\CA{F'}{\ABORT}{G} } {F'\Rightarrow \FALSE} { \Ext{ \CA{\FALSE}{\ABORT}{G} }
+{-} } } } }
+\end{equation*}%
 }
-$
-\end{small}
 
-thus\\
-$$
-\TC { \CA{F}{\kw{assert}\ e}{G} }
-{ F\Rightarrow (e\land G)}
-$$
+From this derivation tree we get following implication formulas, such that:%
+\begin{eqnarray*}
+\left. 
+\begin{array}{l}
+(F\,\wedge \,e)\,\Rightarrow \,F^{\prime } \\ 
+(F\,\wedge \,\lnot e)\,\Rightarrow \,F^{\prime }%
+\end{array}%
+\right\} &&((F\,\wedge \,e)\,\vee \,(F\,\wedge \,\lnot e))\,\Rightarrow
+\,F^{\prime } \\
+&\equiv &(\lnot F\,\vee \,\lnot e\,\vee \,F^{\prime })\,\wedge \,(\lnot
+F\,\vee \,e\,\vee \,F^{\prime })
+\end{eqnarray*}
 
-	\end{itemize}
+and since $F^{\prime }\,\Rightarrow \,false$ and $F^{\prime }\,\Rightarrow
+\,G$,%
+\begin{eqnarray*}
+&\equiv &(\lnot F\,\vee \,\lnot e\,\vee \,G)\,\wedge \,(\lnot F\,\vee
+\,e\,\vee \,false) \\
+&\equiv &\lnot F\,\vee \,((\lnot e\,\vee \,G)\,\wedge \,(e\,\vee \,false)) \\
+&\equiv &\lnot F\,\vee \,((\lnot e\,\vee \,G)\,\wedge \,e) \\
+&\equiv &\lnot F\,\vee \,(\underbrace{(\lnot e\,\wedge \,e)}_{false}\,\vee
+(e\,\wedge G)) \\
+&\equiv &\lnot F\,\vee \,(e\,\wedge \,G)\equiv F\,\Rightarrow \,(e\,\wedge
+\,G).
+\end{eqnarray*}
+
+Finally we get following rule of $\kw{assert}\ e$ for total correctness:%
+\begin{equation*}
+\TC { \CA{F}{\kw{assert}\ e}{G} } { F\Rightarrow (e\land G)}
+\end{equation*}
+
+From the total correctness rule of $\kw{assert}\ e$, we can derive the
+weakest precondition (\textit{wp}) and the strongest postcondition (\textit{%
+sp}), such that%
+\begin{eqnarray*}
+wp(\kw{assert}\ e,G) &=&e\,\wedge \,G\;\text{and} \\
+sp(F,\kw{assert}\ e) &=&\left\{ 
+\begin{array}{l}
+F\,\wedge \,e\;\text{if }[e]\sigma \neq 0 \\ 
+F\,\wedge \,\lnot e\;\text{if }[e]\sigma =0%
+\end{array}%
+\right. 
+\end{eqnarray*}
+
+The strongest postcodition of $\kw{assert}\ e$ has two possebilities.
+Especially if $\kw{assert}\ e$ fails, then we know that $\lnot e$ is true
+and $sp(F,\kw{assert}\ e)=F\,\wedge \,\lnot e$.
+\end{itemize}
 \end{enumerate}
+
+
+
+
+% \newcommand\Ext[2]{\infer[]{#1}{#2}}
+% \newcommand\PC[2]{\infer[\text{\tiny(pc)}]{#1}{#2}}
+% \newcommand\TC[2]{\infer[\text{\tiny(tc)}]{#1}{#2}}
+
+% \textbf{Solution:}\newline
+
+% The syntax of the TPL-language can be extended as follows:%
+% \begin{equation*}
+% \mathcal{P}::=\mathsf{skip}\mid \mathsf{abort}\mid \mathcal{V}:=\mathcal{E}%
+% \mid \mathcal{P};\mathcal{P}\mid \mathsf{if}\;\mathcal{E}\;\mathsf{then}\;%
+% \mathcal{P}\;\mathsf{else}\;\mathsf{P}\;\mathsf{fi}\mid \mathsf{while}\;%
+% \mathcal{E}\;\mathsf{do}\;\mathcal{P}\;\mathsf{od}\mid \kw{assert}\ \mathcal{%
+% E}
+% \end{equation*}
+
+% where,%
+% \begin{eqnarray*}
+% \mathcal{E} &:&:=\mathcal{V}\mid \mathcal{N}\mid \mathcal{UE}\mid (\mathcal{%
+% EBE}) \\
+% \mathcal{V} &:&:=x\mid y\mid z\mid \ldots \mid x_{0}\mid x_{1}\mid \ldots  \\
+% \mathcal{N} &:&:=0\mid 1\mid 2\mid 3\mid \ldots  \\
+% \mathcal{U} &:&:=+\mid -\mid \lnot \mid \ldots  \\
+% \mathcal{B} &:&:=+\mid -\mid \ast \mid /\mid <\mid \ldots 
+% \end{eqnarray*}
+
+% Beside the syntax extension of TPL, the semantics for $\kw{assert}\ e$ can
+% be defined as a first member citizen (this means that no other
+% program-statements will be used), as follows:
+
+% \begin{enumerate}
+% \item Natural Semantics:%
+% \begin{equation*}
+% \lbrack \kw{assert}\ e\rbrack\sigma =\sigma \;\text{if }[e]\sigma \neq 0
+% \end{equation*}
+
+% \item Structural Operational Semantics:%
+% \begin{equation*}
+% (\kw{assert}\ e,\sigma )\,\Rightarrow \,\sigma \;\text{if }[e]\sigma \neq 0
+% \end{equation*}
+
+
+% \item Hoare Calculus Rules:
+	% \begin{itemize}
+	% \item for \textit{partial correctnes}:
+
+% \begin{small}
+% $
+% \Ext{ \CA{F}{\kw{assert}\ e}{G} }
+% {
+	  % \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\ \ABORT\ \FI}{G} }
+	  % {
+		% \La{ \CA{F\land c}{\SKIP}{G} }
+		% {(F\land e)\Rightarrow F'}
+		% {
+			% \Ext{ \CA{F'}{\SKIP}{F'} }
+			% {-}
+		% }
+		% {F'\Rightarrow G}
+	  % }
+	  % { 
+		% \Lb{ \CA{F\land \neg e}{\ABORT}{G} }
+		% {(F\land\neg e) \Rightarrow F' }
+		% {
+			% \Ext{ \CA{F'}{\ABORT}{G} }
+			% {-}
+		% }
+	  % }
+% }
+% $
+% \end{small}
+
+% $$
+% \PC { \CA{F}{\kw{assert}\ e}{G} }
+% { F\Rightarrow (e\Rightarrow G)}
+% $$
+
+	% \item for \textit{total correctness}:
+
+% \begin{small}
+% $
+% \Ext{ \CA{F}{\kw{assert}\ e}{G} }
+% {
+	  % \Ia{ \CA{F}{\IF\ e\ \THEN\ \SKIP\ \ELSE\ \ABORT\ \FI}{G} }
+	  % {
+		% \La{ \CA{F\land c}{\SKIP}{G} }
+		% {(F\land e)\Rightarrow F'}
+		% {
+			% \Ext{ \CA{F'}{\SKIP}{F'} }
+			% {-}
+		% }
+		% {F'\Rightarrow G}
+	  % }
+	  % { 
+		% \Lb{ \CA{F\land \neg e}{\ABORT}{G} }
+		% {(F\land\neg e) \Rightarrow F' }
+		% {
+			% \Lb{ \CA{F'}{\ABORT}{G} }
+			% {F'\Rightarrow \FALSE}
+			% {
+				% \Ext{ \CA{\FALSE}{\ABORT}{G} }
+				% {-}
+			% }
+		% }
+	  % }
+% }
+% $
+% \end{small}
+
+% thus\\
+% $$
+% \TC { \CA{F}{\kw{assert}\ e}{G} }
+% { F\Rightarrow (e\land G)}
+% $$
+
+	% \end{itemize}
+% \end{enumerate}

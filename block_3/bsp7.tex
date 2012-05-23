@@ -86,3 +86,68 @@ So the correctness asertion above is totally correct.\\
 \textbf{Description}\\
 The function computes $\lfloor \sqrt[3]{a} \rfloor$.
 %}
+\bigskip
+
+Variant:
+
+\bigskip
+
+Alternatively, an other bound function can be used to proof the total
+corrctness of program $p$, i.e. $t=a-c^{3}$. Then,
+
+$1\,\Rightarrow \,5:$\\
+
+\begin{eqnarray*}
+(a &\geq &0)\Rightarrow \,\mathrm{Inv}[c/0][b/1]\equiv \\
+&\equiv &(a\geq 0)\Rightarrow \,(b=(c+1)^{3}\,\wedge \,0\leq c^{3}\leq
+a)[c/0][b/1] \\
+&\equiv &(a\geq 0)\Rightarrow \,\underbrace{(b=(c+1)^{3}\,\wedge \,0\leq
+0^{3}\leq a)[b/1]}_{1=1\,\wedge \,0\leq 0\leq a} \\
+&\equiv &(a\geq 0)\Rightarrow \,\underbrace{true\,\wedge \,0\leq a}_{a\geq 0}
+\end{eqnarray*}
+
+$8\,\Rightarrow \,11:$\\
+
+\begin{enumerate}
+\item[\textit{partial correctness:}] 
+\begin{eqnarray*}
+(\mathrm{Inv}\,\wedge \,b &\leq &a)\Rightarrow \,\mathrm{Inv}%
+[b/b+cd+1][c/c+1][d/3c+6]\equiv \\
+&\equiv &(b=(c+1)^{3}\,\wedge \,0\leq c^{3}\leq a\,\wedge \,b\leq
+a)\Rightarrow \, \\
+(b &=&(c+1)^{3}\,\wedge \,0\leq c^{3}\leq a\,)[b/b+cd+1][c/c+1][d/3c+6] \\
+&\equiv &(b=(c+1)^{3}\,\wedge \,0\leq c^{3}\leq a\,\wedge \,b\leq
+a)\Rightarrow \\
+(b+cd+1 &=&(c+1)^{3}\,\wedge \,0\leq c^{3}\leq a)[c/c+1][d/3c+6]= \\
+&=&(b+(c+1)d+1=(c+2)^{3}\,\wedge \,0\leq (c+1)^{3}\leq a)[d/3c+6] \\
+&=&(b+(c+1)(3c+6)+1=(c+2)^{3}\,\wedge \,0\leq (c+1)^{3}\leq a) \\
+&=&^{\ast }(b-3c^{2}-3c-1=c^{3}\,\wedge \,0\leq c^{3}+3c^{2}+3c+1\leq a) \\
+&=&(0\leq b\leq a). \\
+&\equiv &(b=(c+1)^{3}\,\wedge \,0\leq c^{3}\leq a\,\wedge \,b\leq
+a)\Rightarrow \,(0\leq b\leq a) \\
+&\equiv &\underbrace{(0\leq c^{3}\leq a\,\wedge \,(c+1)^{3}\leq a)}%
+_{0\leq(c+1)^{3}\leq a}\Rightarrow \,(0\leq (c+1)^{3}\leq a)
+\end{eqnarray*}
+
+\item[\textit{termination:}] 
+\begin{eqnarray*}
+(\mathrm{Inv}\,\wedge \,b &\leq &a\,\wedge \,t=t_{0})\Rightarrow \,(0\leq
+t<t_{0})[b/b+cd+1][c/c+1][d/3c+6] \\
+&\equiv &(b=(c+1)^{3}\wedge \,0\leq c^{3}\leq a\wedge \,b\leq a\wedge
+\,t=t_{0})\Rightarrow \\
+(0 &\leq &a-c^{3}<t_{0})\cancel{[b/b+cd+1]} [c/c+1]\cancel{[d/3c+6]}= \\
+&=&(0\leq a-(c+1)^{3}<t_{0}) \\
+&\equiv &\underbrace{(b=(c+1)^{3}\wedge \,0\leq c^{3}\leq a\wedge \,b\leq a)}%
+_{\underbrace{0\leq c^{3}\leq a\,\wedge \,(c+1)^{3}\leq a}_{0\leq
+a-(c+1)^{3}}}\Rightarrow \,(0\leq a-(c+1)^{3}<t)
+\end{eqnarray*}
+
+$6\,\Rightarrow \,2:$\\%
+\begin{eqnarray*}
+(\mathrm{Inv}\,\wedge \,b &>&a\,)\Rightarrow \,(c^{3}\leq a<(c+1)^{3}) \\
+&\equiv &\underbrace{((b=(c+1)^{3}\wedge \,0\leq c^{3}\leq a\wedge \,b>a)}%
+_{0\leq c^{3}\leq a<(c+1)^{3}}\Rightarrow \,(c^{3}\leq a<(c+1)^{3})
+\end{eqnarray*}
+\end{enumerate}
+
+Since all implications are satisfied, the program $p$ is totally correct.

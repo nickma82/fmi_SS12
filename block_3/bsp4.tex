@@ -71,3 +71,32 @@ $S\ :=\ [x:=x+1;\ y:=y+2;]$
 \end{center}
 
 \end{landscape}
+
+\newpage
+To show total correctness we have to show all implications which are produced by the logical consequence rule (lc). At first we have to find a proper bound function (variant) $t$, that is in our case $t=y-x$.
+We have to show following implications:%
+\begin{equation*}
+4\,\Rightarrow \,false,\quad 5\,\Rightarrow \,\mathrm{Inv},\quad (\mathrm{Inv%
+}\,\wedge \,x=y)\,\Rightarrow \,2\quad \text{and}\quad 9\,\Rightarrow \,7.
+\end{equation*}
+
+Then,%
+\begin{eqnarray*}
+\underbrace{(x=y\,\wedge \,y>2\,\wedge \,x<0)}_{false}\, &\Rightarrow
+&\,false \\
+\underbrace{(x=y\,\wedge \,y>2\,\wedge \,x\geq 0)}_{0\leq x\leq 2<y\,\equiv\,
+true}\, &\Rightarrow& \underbrace{\mathrm{Inv}}_{=true\;\text{(by assumption)%
+}}\, \\
+(\underbrace{\mathrm{Inv}}_{=true}\,\wedge \,x =y)\,&\Rightarrow& \,x=y \\
+(\underbrace{\mathrm{Inv}}_{=true}\,\wedge \,x \neq y+1\,\wedge
+\,y-x=t_{0})\,&\Rightarrow& \,\underbrace{(\underbrace{\mathrm{Inv}}%
+_{=true}\,\wedge \,0\leq t<t_{0})[x/x+1][y/y+2]}_{true\,\wedge \,0 \leq t < y-x+1\, \equiv\, true}
+\end{eqnarray*}
+Since all implications are satisfied, the program $p$ is totally correct.
+
+
+
+
+
+
+

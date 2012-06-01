@@ -1,0 +1,30 @@
+\Aufgabe[Predicate Abstraction\hfill\textbf{(1.5 Point)}]
+Consider the following program:
+\begin{verbatim}
+void foo(int j, int z) {
+  assume(z != 0);
+  int i := j;
+  while(z != 0) {
+      i := i + z;
+      if(z > 0)
+          z--
+      else
+          z ++;
+  };
+  assert(i != j)
+}
+\end{verbatim}
+
+The {\em assume statement} at the beginning of the function forces the parameter $z$ not to be 0 when the function is called.
+
+\begin{enumerate}
+
+ \item Argue in your own words why the assertion at the end of the program allways holds, i.e., why the error state can never be reached.
+
+ \item Provide a labeled transition system for the given program.
+
+ \item Provide an abstraction for the labeled transition system that uses the predicates $i = j$, $i < j$, $i > j$.
+
+ \item Check whether the error state can be reached in the abstraction, if so state a trace to the error state and refine the abstraction with suitable predicates such that the error state is not reachable anymore.
+
+\end{enumerate}

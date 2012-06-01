@@ -1,0 +1,23 @@
+\Aufgabe[Computing the (Greatest) Bisimulation Relation \hfill\textbf{(1 Point)}]
+
+Let $K_1 = (S_1, R_1, L_1)$ and  $K_2 = (S_2, R_2, L_2)$ be two Kripke structures over a set of atomic predicates $\mathit{AP}$.
+The relations $H_n \subseteq S_1 \times S_2$ are inductively defined by:
+\begin{itemize}
+\item $(s_1,s_2) \in H_0$ iff $L_1(s_1) = L_2(s_2)$.
+\item $(s_1,s_2) \in H_{n+1}$ iff
+    \begin{enumerate}[(i)]
+    \item $(s_1,s_2) \in H_n$,
+    \item for all $(s_1,t_1) \in R_1$ there exists a $(s_2,t_2) \in R_2$ with $(t_1,t_2) \in H_n$, and
+    \item for all $(s_2,t_2) \in R_2$ there exists a $(s_1,t_1) \in R_1$ with $(t_1,t_2) \in H_n$.
+    \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+
+	\item Compute the sequence $H_0, H_1, H_2,\ldots$ for the Kripke structures $K_1$ and $K_2$ from Exercise 2.
+    
+	\item Show that the sequence $H_0, H_1, H_2,\ldots$ \emph{stabilizes} for all finite Kripke structures $K_1$ and $K_2$, i.e., there is a $n \ge 0$ such that $H_n = H_{n+1}$.
+    
+	\item Construct Kripke structures $K_1^n$ and $K_2^n$ such that the sequence $H_0, H_1, H_2,\ldots$ stabilizes after exactly $n$ steps.
+
+\end{enumerate}

@@ -1,0 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aufgabe
+\Aufgabe[Bounded Model Checking\hfill\textbf{(1.5 Point)}]
+Consider the following Program:
+
+\lstinputlisting[basicstyle=\footnotesize]{main.c}
+
+The Matrix $G$ models a graph with $N$ nodes, i.e, $G[i][j]$ is true iff there is a directed edge from node $i$ to node $j$. The method $\mathit{nondet}$ chooses an integer non-deterministically.
+
+\begin{enumerate}
+	\item Use CBMC to find the lowest value for $K$ such that the assertion at the end of the program can be violated. What does it mean that the error state is or is not reachable for a given graph $G$ and a given value $K$?
+
+	\item Perform an unwinding of the loop for $K = 3$.
+				
+	\item Transform the unwinded program into the SSA form.
+	
+	\item Build a semantically equivalent SMT formula from the SSA form. {\em Note:} A call to $\mathit{nondet}$ can be modeled by introducing a new integer variable.
+
+        \item Can you draw a conclusion about the satisfiability of the formula by comparing the value for $K$ that you determined under $(a)$ with the number of times the loop was unwinded for building the formula? Check whether the formula can be satisfied (You may use an SMT solver such as {\em Yices} or {\em Z3}) to be sure that the result of the satisfiability check is consistent with your expectation.
+
+\end{enumerate}
+
+\vspace{0.5cm}
+\solution{}

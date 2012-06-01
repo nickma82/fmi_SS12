@@ -1,0 +1,85 @@
+\documentclass[12pt,a4paper]{uebung}
+
+\usepackage[british]{babel}
+\usepackage{epsfig}
+\usepackage{rotate}
+\usepackage{amsmath}
+\usepackage{color}
+\makeatletter\let\@amsfonts=P\makeatother
+\usepackage{graphicx}
+\usepackage{typearea}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage[nounderscore]{syntax}
+\usepackage{paralist}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage[ruled]{algorithm2e}
+\def\NN{{\ensuremath{\mathbbm{N}_0\xspace}}}
+\usepackage{fvsw}
+\usepackage{tabularx}
+
+\setlength{\textheight}{25cm}
+
+\begin{document}
+
+\newcommand{\Vorlesung}{Formal Methods in Computer Science}
+\newcommand{\Semester}{SS 2012}
+\newcommand{\Prof}{Univ.~Prof.~Helmut Veith}
+\newcommand{\AssisA}{Dr. Igor Konnov}
+\newcommand{\AssisB}{Dr. Florian Zuleger}
+\newcommand{\AssisC}{Andreas Holzer, M.Sc.}
+\newcommand{\AssisD}{Moritz Sinn, M.Sc.}
+
+\newcommand{\solution}[1]{}
+
+\newcommand\ltlX{\textsf{\textbf{X}}\,}
+\newcommand\ltlF{\textsf{\textbf{F}}\,}
+\newcommand\ltlG{\textsf{\textbf{G}}\,}
+\newcommand\ltlU{\,\textsf{\textbf{U}}\,}
+\newcommand\ILTLX[0]{$\mbox{\textsf{ILTL}}_{\mbox{\textsf{-X}}}$}
+\newcommand\LTLX[0]{$\mbox{\textsf{LTL}}_{\mbox{\textsf{-X}}}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Uebungsblatt{4}{Wednesday, 30 May 2012}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\unitlength}{1mm}
+
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Name:}& Mustermann \\\hline
+\textbf{Vorname:}& Max\\\hline
+\textbf{Matr.-nr.:}& 0123456 \\\hline
+\textbf{Gruppe:}& Mustermann (0123456), Musterfrau (0113456), Doe (0346121)  \\\hline
+\end{tabularx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aufgabe
+
+\begin{center}
+\textbf{The deadline for handing in the solution is Sunday, 17th of June, before midnight.}
+\end{center}
+
+\input{actl_ltl}
+\newpage
+\input{LTL}
+\newpage
+\input{simulation}
+\newpage
+\input{prog_simulation}
+\newpage
+\input{predicate_abstraction}
+\newpage
+\input{cbmc}
+\newpage
+\input{bisim}
+\newpage
+
+\end{document}
+

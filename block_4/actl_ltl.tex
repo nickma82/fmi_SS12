@@ -1,0 +1,44 @@
+\Aufgabe[ACTL \& LTL\hfill\textbf{(2 Points)}]
+\newcommand{\ACTL}{\mathbf{ACTL}}
+\newcommand{\LTL}{\mathbf{LTL}}
+\newcommand{\CTLstar}{\mathbf{CTL}^*}
+\newcommand{\AP}{\mathbf{AP}}
+\newcommand{\true}{\mathbf{true}}
+\newcommand{\false}{\mathbf{false}}
+\newcommand{\trans}{\mathsf{trans}}
+Given an LTL formula $\varphi$ in Negation Normal Form, the following function 
+$\mathsf{trans} : \LTL \rightarrow \ACTL$ translates $\varphi$ into an ACTL 
+formula $\trans(\varphi)$ as follows:
+\begin{center}
+\begin{tabular}{l|l}
+	$\varphi$ & $\trans(\varphi)$\\
+	\hline
+	$\true$ & $\true$\\
+	$\false$ & $\false$\\
+	$a$ & $a$\\
+	$\neg a$ & $\neg a$\\
+	$\varphi_1 \vee \varphi_2$ & $\trans(\varphi_1) \vee \trans(\varphi_2)$\\
+	$\varphi_1 \wedge \varphi_2$ & $\trans(\varphi_1) \wedge \trans(\varphi_1)$\\
+	$\mathbf{X} \varphi_1$ & $\mathbf{AX}~\trans(\varphi_1)$\\
+	$\mathbf{F} \varphi_1$ & $\mathbf{AF}~\trans(\varphi_1)$\\
+	$\mathbf{G} \varphi_1$ & $\mathbf{AG}~\trans(\varphi_1)$\\
+	$\varphi_1 \mathbf{U} \varphi_2$ & $\mathbf{A}\left[ \trans(\varphi_1)\;\mathbf{U}\;\trans(\varphi_2) \right]$\\
+	$\varphi_1 \mathbf{R} \varphi_2$ & $\mathbf{A}\left[ \trans(\varphi_1)\;\mathbf{R}\;\trans(\varphi_2) \right]$\\
+\end{tabular}
+\end{center}
+The semantics of the ``release'' operator $\mathbf{R}$ is defined as follows:
+$$M, \pi \models \varphi_1 \mathbf{R} \varphi_2 \stackrel{def}{\Leftrightarrow} \forall j \geq 0. \pi^j \models \varphi_2 \textnormal{ or } \exists i \geq 0. (\pi^i \models \varphi_1) \wedge (\forall k \leq i. \pi^k \models \varphi_2)$$
+
+\paragraph{a)} Show that, for all $\LTL$ formulas $\varphi$ in negation normal form, the $\CTLstar$ 
+formula $\trans(\varphi) \Rightarrow \mathbf{A}\varphi$ is a tautology.
+\emph{Hint: Show this by showing that $M, s \models \trans(\varphi)$ implies 
+$M, s \models \mathbf{A}\varphi$ for all $\LTL$ formulas $\varphi$ in negation normal form, all Kripke 
+structures $M$ and all states $s$ in $M$.
+Use induction over the structure of~$\varphi$.}\hfill\textbf{(1 Point)}
+
+
+\paragraph{b)} Show that, in general, $M, s \models \varphi$ does not imply $M, s \models \trans(\varphi)$.
+\emph{Hint: Give a Kripke structure $M$ and an $\LTL$ formula $\varphi$ such that $M, s \models \varphi$ and $M, s \not\models \trans(\varphi)$. Discuss why $M, s \models \varphi$ and $M, s \not\models \trans(\varphi)$ holds on $M$ and the given state $s$ in $M$.}\\{\color{white} whitespace}\hfill\textbf{(1 Point)}
+
+
+

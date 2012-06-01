@@ -1,0 +1,29 @@
+\Aufgabe[LTL - Monotonicity and Negation Normal Form \hfill\textbf{(2 Point)}]
+
+\begin{enumerate}
+
+\item Let $K_1 = (S, R, L_1)$ and  $K_2 = (S, R, L_2)$ be two Kripke structures with the same set of states $S$ and the same transition relation $R$ such that $L_1(s) \subseteq L_2(s)$ for all states $s \in S$.
+    Prove that $K_1,s \models \phi$ implies $K_2,s \models \phi$ for all LTL formulae $\phi$ that do not contain negation.
+    \emph{(Hint: prove this statement by structural induction)}.
+
+\item
+
+Exercise 1 defined the \emph{release operator} \textbf{R}.
+Prove that the release operator enjoys the following equivalence using the semantics of LTL \emph{(Hint: use the semantics of LTL formulae)}:
+\begin{displaymath}
+    \phi \mathbf{R} \psi \equiv \neg(\neg \psi \mathbf{U} \neg \phi)
+\end{displaymath}
+
+\item
+
+An LTL formula in \emph{negation normal form}, if
+\begin{itemize}
+\item all negations appear only in front of the atomic propositions,
+\item only the logical operators \emph{true}, \emph{false}, $\vee$, and $\wedge$ are used, and
+\item only the temporal operators \textbf{X}, \textbf{U}, and \textbf{R} are used.
+\end{itemize}
+
+Show that every LTL formula $\phi$ can be transformed into an equivalent formula $\psi$ that is in negation normal form.
+\emph{(Hint: prove this statement by structural induction)}.
+
+\end{enumerate}

@@ -21,4 +21,54 @@ The Matrix $G$ models a graph with $N$ nodes, i.e, $G[i][j]$ is true iff there i
 \end{enumerate}
 
 \vspace{0.5cm}
-\solution{}
+\\
+
+$\ddot\smile$ \textbf{Solution}\\
+\begin{enumerate}
+\item
+The lowest value $K$ for a violated assertion is $1$.
+
+\item[(b) \& (c)] \quad
+\medskip
+\begin{lstlisting}[	frame=lines, mathescape=true,
+					caption={ Unwinded code in SSA form:},
+					label={unw_func}]
+void main() {
+	// Intialization:
+	bool G[N][N] = {{$\ldots$}};
+	bool result$_0$ = 1;
+	int node$_0$ = 0;
+	int next$_0$ = 0;
+	int i$_0$ = 0;
+	
+	// Unwinding of the for-loop for $K = 3$:
+	// First iteration:
+	if(i$_0$ < K) {
+		next$_1$ = nondet();
+		result$_1$ = result$_0$ && G[node$_0$][next$_1$];
+		node$_1$ = next$_1$;
+		i$_1$ = i$_0$ + 1;
+	// Second iteration:
+		if(i$_1$ < K) {
+			next$_2$ = nondet();
+			result$_2$ = result$_1$ && G[node$_1$][next$_2$];
+			node$_2$ = next$_2$;
+			i$_2$ = i$_1$ + 1;
+		// Third iteration + termination:
+			if(i$_2$ < K) {
+				next$_3$ = nondet();
+				result$_3$ = result$_2$ && G[node$_2$][next$_3$];
+				node$_3$ = next$_3$;
+				i$_3$ = i$_2$ + 1;
+				assert(!(i$_3$ < K));
+			}
+		}
+	}
+	result$_4$ = result$_3$ && node$_3$ == 0);
+	assert(!result$_4$);
+}
+\end{lstlisting}
+
+\item[(d)]
+\item[(e)]
+\end{enumerate}

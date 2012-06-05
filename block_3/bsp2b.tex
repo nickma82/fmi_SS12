@@ -1,0 +1,24 @@
+%\solution{
+\textbf{Solution b):}\newline
+\\
+\indent $[p]\sigma =$\\
+\indent $[x:=x+y; \text{ if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ }... \text{ } od]\sigma 
+\hspace{1.6 cm} \sigma: x \mapsto 1, y \mapsto 1\\
+= [\text{if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ }... \text{ } od][x:=x+y]\sigma_1
+\hspace{1 cm} \sigma_1: x \mapsto [x+y]\sigma = 2\\
+\text{} \hspace{12 cm} y \mapsto 1\\
+= [\text{if } x<0 \text{ then } abort \text{ else } while \text{ } x \neq y \text{ } do \text{ }... \text{ } od]\sigma_1
+\hspace{4 cm} \underbrace{[x<0]\sigma_1=0}_{false}\\
+= [\text{while } x \neq y \text{ do } x:=x+1; y:=y+2 \text{ od}]\sigma_1
+\hspace{5 cm} \underbrace{[x \neq y]\sigma_1=0}_{true}\\
+= [\text{while } x \neq y \text{ do } ... \text{ od}] [x:=x+1;y=y+2]\sigma_1\\
+= [\text{while } x \neq y \text{ do } ... \text{ od}] [y:=y+1] [x:=x+1]\sigma_1
+\hspace{3 cm} \sigma_2: x \mapsto [x+1]\sigma_1=3\\
+\text{} \hspace{11.8 cm} y \mapsto 1\\
+= [\text{while } x \neq y \text{ do } ... \text{ od}] [y:=y+2]\sigma_2
+\hspace{4.7 cm} \sigma_3: y \mapsto [y+2]\sigma_2=3\\
+\text{} \hspace{11.8 cm} x \mapsto 3\\
+= [\text{while } x \neq y \text{ do } ... \text{ od}]\sigma_3
+\hspace{8 cm} \underbrace{[x \neq y]\sigma_3=0}_{false}\\
+= \sigma_3$
+%}

@@ -1,0 +1,77 @@
+%\solution{
+\textbf{Solution:}\newline
+\\
+\noindent We have choosen the following\\
+Precondition$:= x=x_0 \land x \ge 0$ and\\
+Postcondition$:= x=2x_0$ and\\
+extended the Invariant$:= 2x_0+x=y \land x \ge 0$\\
+
+\bigskip
+\noindent Now we want to show the assertion is totally correct:\\
+\\
+\begin{ALG}
+\ASSERTN1{\text{Precondtion: } x=x_0 \land x \ge 0}\\
+\ASSERTN4{\INV \sub{y<-3x}}	\quad(as)$\ua$\\
+$y \leftarrow 3x;$\\
+\ASSERTN3{\INV := 2x_0+x=y \land x \ge 0}	\quad(wht'')\\
+\WHILE\ $2x \neq y$ \DO\\
+\ASSERTN9{\INV \land 2x \neq y \land t=t_0}	\quad(wht'')\\
+\ASSERTN8{\INV \land 0 \le t < t_0 \sub{y<-y+1} \sub{x<-x+1}} 
+\quad(as)$\ua$\\
+\>\ $x \leftarrow x+1;$\\
+\ASSERTN7{\INV \land 0 \le t < t_0 \sub{y<-y+1}}	
+\quad(as)$\ua$\\
+\>\ $y \leftarrow y+1;$\\
+\ASSERTN6{\INV \land 0 \le t < t_0}	\quad(wht'')\\
+\OD\\
+\ASSERTN5{\INV \land 2x = y}	\quad(wht'')\\
+\ASSERTN2{\text{Postcondition: } x=2x_0}
+\end{ALG}
+
+\bigskip
+\noindent We define the bound function $t$ as:\\
+$t:=y-2x$,\\
+which fulfils the criteria for bound functions (listed in exercise 7).\\
+
+\bigskip
+\noindent Now the implications:\\´
+\\
+\textbf{$1 \rightarrow 4:$}\\
+\indent $x=x_0 \land x \ge 0 \rightarrow Inv [y|3x]$\\
+$= x=x_0 \land x \ge 0 \rightarrow 2x_0+x = y \land x \ge 0 [y|3x]$\\
+$= \textcolor{green}{x=x_0} \land x \ge 0 \rightarrow \textcolor{green}{\underbrace{2x_0}_{=2x}}+x = 3x \land x \ge 0$\\
+$= x=x_0 \land x \ge 0 \rightarrow \underbrace{3x = 3x}_{true} \checkmark\\
+\indent \land x \ge 0$\\
+$= x=x_0 \land \textcolor{magenta}{x \ge 0} \rightarrow \underbrace{3x = 3x}_{true} \checkmark\\
+\indent \land \textcolor{magenta}{x \ge 0} \checkmark$\\
+\\
+\textbf{$5 \rightarrow 6:$}\\
+\indent $Inv \land 2x \neq y \land t = t_0 \rightarrow Inv \land 0 \le t < t_0 [y|y+1] [x|x+1]$\\
+$= 2x_0+x = y \land x \ge 0 \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow 2x_0+x = y \land x \ge 0 \land 0 \le t < t_0 [y|y+1] [x|x+1]$\\
+$= 2x_0+x = y \land x \ge 0 \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow 2x_0+x+1 = y+1 \land x+1 \ge 0 \land 0 \le t < t_0$\\
+$= 2x_0+x = y \land x \ge 0 \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow 2x_0+x+1 = y+1 \land x+1 \ge 0 \land 0 \le \underbrace{\underbrace{t}_{=y+1-2(x+1)}}_{=y-2x-1} < \underbrace{t_0}_{=y-2x}$\\
+$= 2x_0+x = y \land x \ge 0 \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow 2x_0+x+1 = y+1 \land x+1 \ge 0 \land \underbrace{0 \le y-2x-1 < y-2x}_{true}$\\
+$= 2x_0+x = y \land x \ge 0 \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow 2x_0+x$ \sout{$+1$} $= y$ \sout{$+1$} $\land x+1 \ge 0 \land \underbrace{0 \le y-2x-1 < y-2x}_{true}$\\
+$= \textcolor{green}{2x_0+x = y} \land x \ge 0 \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow \textcolor{green}{2x_0+x = y} \checkmark \\
+\indent \land x+1 \ge 0\\ 
+\indent \land 0 \le y-2x-1 < y-2x \checkmark$\\
+$= 2x_0+x = y \land \textcolor{magenta}{x \ge 0} \land 2x \neq y \land t = t_0\\ 
+\indent \rightarrow 2x_0+x = y \checkmark \\
+\indent \land \textcolor{magenta}{\underbrace{x+1 \ge 0}_{=x \ge -1}} \checkmark \\ 
+\indent \land 0 \le y-2x-1 < y-2x \checkmark$\\
+\\
+\textbf{$9 \rightarrow 2:$}\\
+\indent $Inv \land 2x = y \rightarrow x = 2x_0$\\
+$= \textcolor{green}{2x_0+x = \underbrace{y}_{=2x}} \land x \ge 0 \land \textcolor{green}{2x = y} \rightarrow x = 2x_0$\\
+$= 2x_0$ \sout{$+x$} $=$ \sout{$2$} $x \land x \ge 0 \land 2x = y \rightarrow x = 2x_0$\\
+$= \textcolor{magenta}{2x_0 = x} \land x \ge 0 \land 2x = y \rightarrow \textcolor{magenta}{x = 2x_0} \checkmark$\\
+\\
+So the correctness asertion above is totally correct.\\
+It terminates for all integers $(x_0)$ which are greater or equal 0.
+%}

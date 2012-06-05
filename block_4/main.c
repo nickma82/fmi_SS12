@@ -1,9 +1,14 @@
 #define N 5
-#define K 0
+#define K 3
+
+#define TRUE 1
+#define FALSE 0
+int nondet();
 
 void main() {
+  int i, next;
 
-  bool G[N][N] = { 
+  int G[N][N] = { 
      {0, 1, 0, 0, 1}, 
      {0, 0, 1, 0, 0},
      {0, 1, 0, 1, 0},
@@ -11,17 +16,19 @@ void main() {
      {0, 0, 0, 0, 1}, 
   };
 
-  bool result = true;
+  int result = TRUE;
   int node = 0;
-  for(i = 0; i < K, i++) {
+  node = 0;
+  for(i = 0; i < K; i++) {
       next = nondet();
       result = result && G[node][next];
       node = next;
   }
    
+  printf("result=%d; node=%d", result, node);
   result = result && (node == 0);
    
-  assert(!result);
+ assert(!result);
   
 }
 

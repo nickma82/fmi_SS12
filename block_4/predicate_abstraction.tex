@@ -28,3 +28,53 @@ The {\em assume statement} at the beginning of the function forces the parameter
  \item Check whether the error state can be reached in the abstraction, if so state a trace to the error state and refine the abstraction with suitable predicates such that the error state is not reachable anymore.
 
 \end{enumerate}
+
+
+$\ddot\smile$ \textbf{Solution}\\
+\begin{enumerate}
+\item
+
+
+\item
+\newpage
+\textit{Labeled Transiton System (LTS):}
+\begin{figure}[th]
+\centering
+\begin{tikzpicture}[->, >=stealth, line join=bevel]
+   \pgfsetlinewidth{1bp}
+   \pgfsetcolor{black}
+   
+   \tikzstyle{state} = [draw,shape=circle,minimum size=8mm,font=\footnotesize];
+   \tikzstyle{accept_state} = [shape=circle, minimum size=8mm, accepting, font=\small, draw];
+   \tikzstyle{every path} = [draw, thick];
+   
+   \node[state, initial] at (0,10) (1) {$1$};
+   \node[state] at (0,8) (2) {$2$}; 
+   \node[state] at (0,6) (3) {$3$}; 
+   \node[state] at (0,4) (4) {$4$}; 
+   \node[state] at (-2,2) (5) {$5$}; 
+   \node[state] at (2,2) (6) {$6$}; 
+   \node[state] at (5.2,8) (7) {$7$}; 
+   \node[state] at (5.2,6) (8) [label=left:{\footnotesize END}] {$8$}; 
+   
+   \draw (1) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $i := j;$}$} (2);
+   \draw (2) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(z \neq 0)$}$} (3);
+   \draw (3) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $i := i+z;$}$} (4);
+   \draw (4) to node[auto, swap] {$\mbox{\fontsize{10}{11}\selectfont $assume(z > 0)$}$} (5);
+   \draw (4) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(!(z > 0))$}$} (6);
+   \draw (2) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(z = 0)$}$} (7);
+   \draw (7) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(i \neq j)$}$} (8);
+   \draw[->] (5) .. controls (-5,3) .. (2) node[pos=.4, left] {z := z-1;};
+   \draw[->] (6) .. controls (5,3) .. (2) node[pos=.4, right] {z := z+1;};
+   
+   \end{tikzpicture}
+\caption{{\protect\small LTS of the givenprogram.}}
+\label{lts_program}
+\end{figure}
+
+\item
+Notation + Graph folgen noch
+
+\item
+There is no reachable error trace in the abstraction. $\ddot\smile$
+\end{enumerate}

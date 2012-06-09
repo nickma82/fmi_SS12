@@ -34,7 +34,6 @@ $\ddot\smile$ \textbf{Solution}\\
 \begin{enumerate}
 \item
 
-
 \item
 \newpage
 \textit{Labeled Transiton System (LTS):}
@@ -56,6 +55,7 @@ $\ddot\smile$ \textbf{Solution}\\
    \node[state] at (2,2) (6) {$6$}; 
    \node[state] at (5.2,8) (7) {$7$}; 
    \node[state] at (5.2,6) (8) [label=left:{\footnotesize END}] {$8$}; 
+   \node[state] at (8.2,8) (9) [label=right:{\footnotesize ERROR}] {$9$}; 
    
    \draw (1) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $i := j;$}$} (2);
    \draw (2) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(z \neq 0)$}$} (3);
@@ -64,6 +64,7 @@ $\ddot\smile$ \textbf{Solution}\\
    \draw (4) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(!(z > 0))$}$} (6);
    \draw (2) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(z = 0)$}$} (7);
    \draw (7) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(i \neq j)$}$} (8);
+   \draw (7) to node[auto] {$\mbox{\fontsize{10}{11}\selectfont $assume(i = j)$}$} (9);
    \draw[->] (5) .. controls (-5,3) .. (2) node[pos=.4, left] {z := z-1;};
    \draw[->] (6) .. controls (5,3) .. (2) node[pos=.4, right] {z := z+1;};
    

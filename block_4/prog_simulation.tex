@@ -128,23 +128,25 @@ Give simulation relations between $K$ and the following Kripke structures
     	\end{tikzpicture}
 \end{center}
 
-$\ddot\smile$ \textbf{Solution}\\
+\textbf{Solution:}\\
+
 \begin{enumerate}
-\item
-Kripke structure $K$:
+\item Kripke structure $K$:
+
 \begin{center}
-	\begin{tikzpicture}[->,scale=1,label distance=0mm]
-		\tikzstyle{every node}=[draw,shape=circle,minimum size=7mm,font=\footnotesize];
+\begin{tikzpicture}[->,scale=1,label distance=0mm]
+	\tikzstyle{every node}=[draw,shape=circle,minimum size=7mm,font=\footnotesize];
     \tikzstyle{every path}=[draw,thick];
-    \node at (0, 0)   (s0) [label=right:${ \{port\_o=0\} }$]  {$s_0$};
-    \node at (0, -2)  (s1) [label=upper right:${ \ \{port\_o=1\} }$] {$s_1$};
-    \node at (0, -4)  (s2) [label=right:${ \ \{port\_o=1\} }$] {$s_2$};
-    \node at (0, -6)  (s3) [label=bottom right:${ \ \{port\_o=1\} }$] {$s_3$};
-    \node at (-1, -8) (s4) [label=left:${ \{port\_o=1\} }$] {$s_4$};
-    \node at (1, -8)  (s5) [label=right:${ \{port\_o=2\} }$] {$s_5$};
-    \node at (0, -10) (s6) [label=left:${ \{port\_o=1\} }$] {$s_6$};
-    \node at (2, -10)  (s7) [label=right:${ \{port\_o=3\} }$] {$s_7$};
-    \node at (1, -12)  (s8) [label=upper:${ \ \{port\_o=0\} }$] {$s_8$};
+
+    \node at (0, 0)   (s0) [label=left:${ \{port\_o=0\} }$]  {$s_0$};
+    \node at (0, -1.5)  (s1) [label=right:${ \ \{port\_o=1\} }$] {$s_1$};
+    \node at (0, -3)  (s2) [label=right:${ \ \{port\_o=1\} }$] {$s_2$};
+    \node at (0, -4.5)  (s3) [label=right:${ \ \{port\_o=1\} }$] {$s_3$};
+    \node at (-1.5, -6) (s4) [label=left:${ \{port\_o=1\} }$] {$s_4$};
+    \node at (1.5, -6)  (s5) [label=right:${ \{port\_o=2\} }$] {$s_5$};
+    \node at (0, -7.5) (s6) [label=left:${ \{port\_o=1\} }$] {$s_6$};
+    \node at (3, -7.5)  (s7) [label=right:${ \{port\_o=3\} }$] {$s_7$};
+    \node at (1.5, -9)  (s8) [label=left:${ \ \{port\_o=0\} }$] {$s_8$};
 
     \draw (-0.5, 0.5) to (s0);
     \draw (s0) to (s1);
@@ -152,20 +154,19 @@ Kripke structure $K$:
     \draw (s2) to (s3);
     \draw (s3) to (s4);
     \draw (s3) to (s5);
-    \draw (s4) .. controls +(150:8mm) and +(left:24mm) .. (s1);
+    \draw (s4) .. controls +(120:15mm) and +(left:20mm) .. (s1);
     \draw (s5) .. controls +(30:16mm) and +(60:16mm) .. (s5);
     \draw (s5) to (s6);
     \draw (s5) to (s7);
     \draw (s6) to (s8);
     \draw (s7) to (s8);
-    \draw (s8)  .. controls +(20:170mm) and +(20:60mm) .. (s0);
-    	\end{tikzpicture}
+    \draw (s8)  .. controls +(0:96mm) and +(25:25mm) .. (s0);
+\end{tikzpicture}
 \end{center}
 
-\item
-$S'$ simulates $K$ with the following simulation relation\\
-$$H' = \{(s_0,t_0),(s_1,t_1),(s_2,t_1),(s_3,t_1),(s_4,t_1),(s_5,t_2),(s_6,t_3),(s_7,t_4),(s_8,t_0)\}.$$
-ans $S''$ simulates $K$ with the following simulation relation\\
-$$H'' = \{(s_0,u_0),(s_1,u_3),(s_2,u_3),(s_3,u_1),(s_4,u_3),(s_5,u_2),(s_6,u_3),(s_7,u_4),(s_8,u_0)\}.$$
-$K$ doesn't simulate neither $S'$ nor $S''$, because there doesn't exist any state with AP $\{port\_o=0\}$ which has a path to $\{port\_o=0\}$ and $\{port\_o=1\}$...
+\item $S'$ simulates $K$ with the following simulation relation:
+$$H' = \{(s_0,t_0),(s_1,t_1),(s_2,t_1),(s_3,t_1),(s_4,t_1),(s_5,t_2),(s_6,t_3),(s_7,t_4),(s_8,t_0)\},$$
+and $S''$ simulates $K$ with the following simulation relation,
+$$H'' = \{(s_0,u_0),(s_1,u_3),(s_2,u_3),(s_3,u_1),(s_4,u_3),(s_5,u_2),(s_6,u_1),(s_6,u_3),(s_7,u_4),(s_8,u_0)\}.$$
+%$K$ doesn't simulate neither $S'$ nor $S''$, because there doesn't exist any state with AP $\{port\_o=0\}$ which has a path to $\{port\_o=0\}$ and $\{port\_o=1\}$...
 \end{enumerate}

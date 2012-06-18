@@ -27,3 +27,65 @@ Show that every LTL formula $\phi$ can be transformed into an equivalent formula
 \emph{(Hint: prove this statement by structural induction)}.
 
 \end{enumerate}
+
+b.)
+\textbf{Solution:}
+
+\bigskip
+
+The release-operator $\mathbf{R}$ is defined by%
+\begin{equation}
+\varphi \mathbf{R}\psi \equiv \lnot (\lnot \varphi \mathbf{U\lnot }\psi )
+\label{release_op}
+\end{equation}
+
+and its interpretation is as follows. The formula $\varphi \mathbf{R}\psi $
+holds if $\psi $ remains true, i.e. always holds, up to and including a
+moment $i\geq 0$, when $\varphi $ becomes valid (if there is such a
+(required) moment such that $\psi $ get released).
+
+Let $2^{AP}$ be an alphabeth over $AP$. Then formally, the equivalence (\ref%
+{release_op}) can be proven by using \ the semantics of the LTL\ formulae
+over all Kripke structures $M$ and a given infinite word $%
+s=a_{0}a_{1}a_{2}\ldots \in (2^{AP})^{w}$ such that:%
+
+\renewcommand\thefootnote{\fnsymbol{footnote}}
+
+\begin{eqnarray*}
+M,s &\vDash &\lnot \psi  \\
+&\Leftrightarrow &\text{\qquad (by def. of the operator }\mathbf{U}\text{
+and the negation of it)} \\
+\lnot \Exists j &\geq &0\,(M,s_{j}\vDash \lnot \psi \AND\Forall %
+i<j.M,s_{i}\vDash \lnot \varphi ) \\
+&\Leftrightarrow &\text{\qquad (by semantics of negation)} \\
+\lnot \Exists j &\geq &0\,(M,s_{j}\nvDash \psi \AND\Forall %
+i<j.M,s_{i}\nvDash \varphi ) \\
+&\Leftrightarrow &\text{\qquad (by the duality of }\exists \text{ and }%
+\forall \text{)} \\
+\Forall j &\geq &0\,\lnot (M,s_{j}\nvDash \psi \AND\Forall %
+i<j.M,s_{i}\nvDash \varphi ) \\
+&\Leftrightarrow &\text{\qquad (using the law of de Morgan)} \\
+\Forall j &\geq &0\,(\lnot (M,s_{j}\nvDash \psi )\OR\lnot \Forall %
+i<j.M,s_{i}\nvDash \varphi ) \\
+&\Leftrightarrow &\text{\qquad (by semantics of negation)} \\
+\Forall j &\geq &0\,(M,s_{j}\vDash \psi \OR\underbrace{\Exists %
+i<j.M,s_{i}\vDash \varphi}_{(\dag)})\;^{(}\footnotemark^{)} \\
+&\Leftrightarrow &\text{\qquad (by (}\footnotemark\text{))} \\
+\Forall j &\geq &0.\,M,s_{j}\vDash \psi \quad \text{or\quad }(\Exists i\geq
+0.M,s_{i}\vDash \varphi \AND\Forall k\leq i.M,s_{k}\vDash \varphi ).
+\end{eqnarray*}%
+
+\addtocounter{footnote}{-1}
+\footnotetext{%
+This is equivalent to the common definition of $\mathbf{R}$, s. t. 
+\begin{equation*}
+M.\pi \vDash \varphi \mathbf{R}\psi \quad \text{iff}\quad \Forall j\geq 0%
+\text{, then for every }i<j\text{, s.t. } \underbrace{M,\pi ^{i}\nvDash \varphi \IMPL %
+M,\pi ^{j}\vDash \psi. }_{\lnot (M,\pi ^{i}\nvDash \varphi )\OR M,\pi
+^{j}\vDash \psi }
+\end{equation*}%
+}
+\stepcounter{footnote}
+\footnotetext{Since $j\geq 0$ and $i$ cannot be $< 0$, i.e. $\Exists i\geq 0$, then
+$\Forall j\geq 0$ and $\Exists i < j$ implies that $\Forall i \leq j$. To avoid confusion,
+we have to introduce a new variable $k$ and substitution, s.t. $i\rightarrow k$ and $j\rightarrow i$.}

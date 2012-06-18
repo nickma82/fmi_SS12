@@ -3,7 +3,7 @@
 \usepackage[british]{babel}
 \usepackage{epsfig}
 \usepackage{rotate}
-\usepackage{amsmath}
+\usepackage{amsmath,amsthm,amssymb}
 \usepackage{color}
 \makeatletter\let\@amsfonts=P\makeatother
 \usepackage{graphicx}
@@ -20,10 +20,25 @@
 \def\NN{{\ensuremath{\mathbbm{N}_0\xspace}}}
 \usepackage{fvsw}
 \usepackage{tabularx}
+\usepackage{gn-logic14}
+%\usepackage{enumitem}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=Latex.dll}
+%TCIDATA{Version=5.00.0.2606}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{LastRevised=Monday, June 18, 2012 06:11:23}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+
 
 \lstloadlanguages{[ANSI]C}
 
+\makeatletter\let\@amsfonts=P\makeatother
+\def\NN{{\ensuremath{\mathbbm{N}_0\xspace}}}
 \setlength{\textheight}{25cm}
+\input{tcilatex}
+
 
 \begin{document}
 

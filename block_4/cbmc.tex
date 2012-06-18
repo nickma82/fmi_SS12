@@ -43,19 +43,20 @@ void main() {
 	// Unwinding of the for-loop for $K = 3$:
 	// First iteration:
 	if(i$_0$ < K) {
-		next$_1$ = nondet();
+		next$_1$ = nondet() % N;
 		result$_1$ = result$_0$ && G[node$_0$][next$_1$];
 		node$_1$ = next$_1$;
 		i$_1$ = i$_0$ + 1;
-	// Second iteration:
+		// Second iteration:
 		if(i$_1$ < K) {
-			next$_2$ = nondet();
+			next$_2$ = nondet() % N;
 			result$_2$ = result$_1$ && G[node$_1$][next$_2$];
 			node$_2$ = next$_2$;
 			i$_2$ = i$_1$ + 1;
-		// Third iteration + termination:
+			result$_3$ = result$_2$;
+			// Third iteration + termination:
 			if(i$_2$ < K) {
-				next$_3$ = nondet();
+				next$_3$ = nondet() % N;
 				result$_3$ = result$_2$ && G[node$_2$][next$_3$];
 				node$_3$ = next$_3$;
 				i$_3$ = i$_2$ + 1;
@@ -63,7 +64,8 @@ void main() {
 			}
 		}
 	}
-	result$_4$ = result$_3$ && node$_3$ == 0);
+	result$_4$ = result$_3$ && node$_3$ == 0) && (K > 0);
+
 	assert(!result$_4$);
 }
 \end{lstlisting}

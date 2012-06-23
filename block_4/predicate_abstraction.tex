@@ -46,10 +46,10 @@ decremented. Thus, the loop will be executed exactly in $|z|$ times. Since  $%
 i=j$ is in the precondition of the loop, the loop is guaranteed to terminate
 since $z\neq 0$. Hence, after the termination of the while-loop, the case
 that $i=j$ will never reached, i.e. it will never hold.
-
-\item
 \newpage
-\textit{Labeled Transiton System (LTS):}
+
+\item \textit{Labeled Transiton System (LTS):}
+
 \begin{figure}[th]
 \centering
 \begin{tikzpicture}[->, >=stealth, line join=bevel]
@@ -86,10 +86,219 @@ that $i=j$ will never reached, i.e. it will never hold.
 \label{lts_program}
 \end{figure}
 
-\item
+\item The corresponding predicates for the abstract transition system $%
+TS^{abstract}$ (see figure \ref{abstraction_graph}) are defined as follows:%
+\begin{equation*}
+e\equiv i=j,\quad l\equiv i<j\quad \text{and\quad }g\equiv i>j,
+\end{equation*}
 
-Notation + Graph folgen noch
+where $e$ denotes the case that $(i=j)$ holds and $\overline{e}$ denotes the
+that case $(i=j)$ does not hold in the current state. This definition holds
+also for the predicates $l$ and $g$.
 
-\item
-There is no reachable error trace in the abstraction.
+A possible error trail would be for example $(1,l\overline{g}\overline{e}%
+)\rightarrow (2,\overline{l}\overline{g}e)\rightarrow (7,\overline{l}%
+\overline{g}e)\rightarrow (9,\overline{l}\overline{g}e)$. Since by the
+definition of assumption, an assumption can be never violated, the
+error state $(9,\overline{l}\overline{g}e)$ in $TS^{abstract}$ will never
+reached.
+
+\begin{figure}[th]
+\centering
+% Start of code
+\begin{tikzpicture}[anchor=mid,>=latex,line join=bevel]
+%\begin{tikzpicture}[>=latex,line join=bevel]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: 15 -> 17
+  \draw [->] (171bp,71.697bp) .. controls (171bp,63.983bp) and (171bp,54.712bp)  .. (171bp,36.104bp);
+  % Edge: 5 -> 6
+  \draw [->] (126.65bp,360.76bp) .. controls (122.29bp,352.28bp) and (116.85bp,341.71bp)  .. (107.3bp,323.15bp);
+  % Edge: 10 -> 12
+  \draw [->] (54bp,162bp) .. controls (56.615bp,162bp) and (59.229bp,162bp)  .. (71.93bp,162bp);
+  % Edge: 5 -> 7
+  \draw [->] (143.35bp,360.76bp) .. controls (147.71bp,352.28bp) and (153.15bp,341.71bp)  .. (162.7bp,323.15bp);
+  % Edge: 4 -> 18
+  \draw [->] (162bp,450bp) .. controls (164.61bp,450bp) and (167.23bp,450bp)  .. (179.93bp,450bp);
+  % Edge: 12 -> 6
+  \draw [->] (99bp,180.19bp) .. controls (99bp,204.42bp) and (99bp,248.89bp)  .. (99bp,287.87bp);
+  % Edge: 18 -> 19
+  \draw [->] (234bp,450bp) .. controls (236.61bp,450bp) and (239.23bp,450bp)  .. (251.93bp,450bp);
+  % Edge: 14 -> 16
+  \draw [->] (27bp,71.697bp) .. controls (27bp,63.983bp) and (27bp,54.712bp)  .. (27bp,36.104bp);
+  % Edge: 4 -> 5
+  \draw [->] (135bp,431.7bp) .. controls (135bp,423.98bp) and (135bp,414.71bp)  .. (135bp,396.1bp);
+  % Edge: 11 -> 13
+  \draw [->] (198bp,162bp) .. controls (200.61bp,162bp) and (203.23bp,162bp)  .. (215.93bp,162bp);
+  % Edge: 10 -> 14
+  \draw [->] (27bp,143.7bp) .. controls (27bp,135.98bp) and (27bp,126.71bp)  .. (27bp,108.1bp);
+  % Edge: 13 -> 7
+  \draw [->] (237.38bp,179.88bp) .. controls (231.03bp,198.14bp) and (219.88bp,227.89bp)  .. (207bp,252bp) .. controls (201.73bp,261.86bp) and (195.05bp,272.15bp)  .. (182.95bp,289.32bp);
+  % Edge: 1 -> 4
+  \draw [->] (77.57bp,506.83bp) .. controls (87.75bp,496.94bp) and (101.52bp,483.55bp)  .. (120.2bp,465.38bp);
+  % Edge: 8 -> 10
+  \draw [->] (33.022bp,215.7bp) .. controls (32.141bp,207.98bp) and (31.081bp,198.71bp)  .. (28.955bp,180.1bp);
+  % Edge: 7 -> 9
+  \draw [->] (171bp,287.7bp) .. controls (171bp,279.98bp) and (171bp,270.71bp)  .. (171bp,252.1bp);
+  % Edge: 11 -> 15
+  \draw [->] (171bp,143.7bp) .. controls (171bp,135.98bp) and (171bp,126.71bp)  .. (171bp,108.1bp);
+  % Edge: 3 -> 4
+  \draw [->] (192.43bp,506.83bp) .. controls (182.25bp,496.94bp) and (168.48bp,483.55bp)  .. (149.8bp,465.38bp);
+  % Edge: 6 -> 8
+  \draw [->] (85.427bp,290.15bp) .. controls (76.688bp,280.6bp) and (65.166bp,267.99bp)  .. (48.553bp,249.82bp);
+  % Edge: 9 -> 11
+  \draw [->] (171bp,215.7bp) .. controls (171bp,207.98bp) and (171bp,198.71bp)  .. (171bp,180.1bp);
+  % Edge: 2 -> 4
+  \draw [->] (135bp,503.7bp) .. controls (135bp,495.98bp) and (135bp,486.71bp)  .. (135bp,468.1bp);
+  % Node: 11
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,162bp) ellipse (27bp and 18bp);
+  \draw (171bp,162bp) node {$2 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 10
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (27bp,162bp) ellipse (27bp and 18bp);
+  \draw (27bp,162bp) node {$2 \quad l\bar{g}\bar{e}$};
+\end{scope}
+  % Node: 13
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (243bp,162bp) ellipse (27bp and 18bp);
+  \draw (243bp,162bp) node {$3 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 12
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (99bp,162bp) ellipse (27bp and 18bp);
+  \draw (99bp,162bp) node {$3 \quad l\bar{g}\bar{e}$};
+\end{scope}
+  % Node: 15
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,90bp) ellipse (27bp and 18bp);
+  \draw (171bp,90bp) node {$7 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 14
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (27bp,90bp) ellipse (27bp and 18bp);
+  \draw (27bp,90bp) node {$7 \quad l\bar{g}\bar{e}$};
+\end{scope}
+  % Node: 17
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,18bp) ellipse (27bp and 18bp);
+  \draw (171bp,18bp) node {$8 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 16
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (27bp,18bp) ellipse (27bp and 18bp);
+  \draw (27bp,18bp) node {$8 \quad l\bar{g}\bar{e}$};
+\end{scope}
+  % Node: 19
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (279bp,450bp) ellipse (27bp and 18bp);
+  \draw (279bp,450bp) node {$9 \quad \bar{l}\bar{g}e$};
+\end{scope}
+  % Node: 18
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (207bp,450bp) ellipse (27bp and 18bp);
+  \draw (207bp,450bp) node {$7 \quad \bar{l}\bar{g}e$};
+\end{scope}
+  % Node: 1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (63bp,522bp) ellipse (27bp and 18bp);
+  \draw (63bp,522bp) node {$1 \quad \bar{l}\bar{g}e$};
+\end{scope}
+  % Node: 3
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (207bp,522bp) ellipse (27bp and 18bp);
+  \draw (207bp,522bp) node {$1 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 2
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (135bp,522bp) ellipse (27bp and 18bp);
+  \draw (135bp,522bp) node {$1 \quad l\bar{g}\bar{e}$};
+\end{scope}
+  % Node: 5
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (135bp,378bp) ellipse (27bp and 18bp);
+  \draw (135bp,378bp) node {$3 \quad \bar{l}\bar{g}e$};
+\end{scope}
+  % Node: 4
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (135bp,450bp) ellipse (27bp and 18bp);
+  \draw (135bp,450bp) node {$2 \quad \bar{l}\bar{g}e$};
+\end{scope}
+  % Node: 7
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,306bp) ellipse (27bp and 18bp);
+  \draw (171bp,306bp) node {$4 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 6
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (99bp,306bp) ellipse (27bp and 18bp);
+  \draw (99bp,306bp) node {$4 \quad l\bar{g}\bar{e}$};
+\end{scope}
+  % Node: 9
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,234bp) ellipse (27bp and 18bp);
+  \draw (171bp,234bp) node {$5 \quad \bar{l}g\bar{e}$};
+\end{scope}
+  % Node: 8
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (35bp,234bp) ellipse (27bp and 18bp);
+  \draw (35bp,234bp) node {$6 \quad l\bar{g}\bar{e}$};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+\caption{{\protect\small The abstract transition system $TS^{abstract}$ of the above LTS (\ref{lts_program}), where the state $8$ denotes the final \textit{terminal state} and state $9$ the \textit{error state}.}}
+\label{abstraction_graph}
+\end{figure}
+
+\item By adding a new predicate symbol $z$ to the set of predicates $P=\{l,g,e\}$
+of the abstract transition system $TS^{abstract}$, we achieve a new abstract
+transition system. The new predicate $z$ denotes the case that $(z\neq 0)$
+holds, whereas $\overline{z}$ denotes that $(z\neq 0)$ does not hold in the
+current state. Then the resulting abstract transition system is the same as
+shown in \textit{c.)}, but without the path to the error state, since the
+states $(7,\overline{l}\overline{g}e)$ and $(9,\overline{l}\overline{g}e)$
+will never reached.
+
+
 \end{enumerate}

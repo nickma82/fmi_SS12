@@ -22,15 +22,25 @@ The Matrix $G$ models a graph with $N$ nodes, i.e, $G[i][j]$ is true iff there i
 
 \vspace{0.5cm}
 
-$\ddot\smile$ \textbf{Solution}\\
+\textbf{Solution:}\\
 \begin{enumerate}
-\item
-The lowest value $K$ for a violated assertion is $1$.
+\item The lowest value $K$ for a violated assertion is $1$. Then for any directed
+graph $G$, the given program will reach the error state iff the value of $K$
+is bounded to $1$. As mentioned above, the simple algorithm of the program
+checks only if there exists a directed edge from node $i$ to node $j$, using
+a for-loop which is bounded to $K$. The error state will never reached if
+the iterative unwinding of the for-loop, this means the transformation of
+the loop into an \textit{if-normal form}, was sufficiently with $n+1$ steps
+for $n\geq 0$. Since the loop terminates exactly in $n$ steps, the unwinding
+assertion at position $n+1$ will never reached. In our case when $K=1$, the
+unwinding assertion in the unwinded loop will be violated immeadiatly in the
+first step, since only one unwinding step was done.
 
 \item[(b) \& (c)] \quad
 \medskip
 \begin{lstlisting}[	frame=lines, mathescape=true,
-					caption={ Unwinded code in SSA form:},
+					basicstyle=\footnotesize,
+					caption={Unwinded code in SSA form:},
 					label={unw_func}]
 void main() {
 	// Intialization:
@@ -70,6 +80,13 @@ void main() {
 }
 \end{lstlisting}
 
-\item[(d)]
-\item[(e)]
+\item[(d)] \textit{Built SMT formula from the SSA form:}
+\medskip
+\lstinputlisting[	frame=lines, basicstyle=\scriptsize , tabsize=3,
+					caption={SMT formula using SMT-LIB v1.2:},
+					label={smt_formula}]{FMI_SMT_formula.smt}
+
+\item[(e)] The SMT formula (see listing \ref{smt_formula}), which was written in SMT-LIB v1.2, is \textit{unsatisfiable} for values $K>1$ by using the SMT solver \textit{Yices}. Thus, the satisfiability check is consistent with the satisfiability check of CBMC.
+
+
 \end{enumerate}
